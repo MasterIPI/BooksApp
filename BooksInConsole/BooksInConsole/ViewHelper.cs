@@ -12,7 +12,7 @@ namespace BooksInConsole
         {
             foreach (Book book in list)
             {
-                Console.WriteLine(string.Format($"Book:\n{book.Title}, Author - {book.Author}"));
+                Console.WriteLine(string.Format($"Book:\n{book.Title}, Author - {book.Author}\n"));
             }
             Console.ReadKey();
         }
