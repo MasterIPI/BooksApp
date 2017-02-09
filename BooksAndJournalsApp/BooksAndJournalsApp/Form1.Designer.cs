@@ -28,34 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ListViewer = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.ListViewer)).BeginInit();
+            this.BookViewer = new System.Windows.Forms.DataGridView();
+            this.JournalViewer = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.BookViewer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JournalViewer)).BeginInit();
             this.SuspendLayout();
             // 
-            // ListViewer
+            // BookViewer
             // 
-            this.ListViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListViewer.Location = new System.Drawing.Point(12, 12);
-            this.ListViewer.Name = "ListViewer";
-            this.ListViewer.Size = new System.Drawing.Size(813, 513);
-            this.ListViewer.TabIndex = 0;
+            this.BookViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BookViewer.Location = new System.Drawing.Point(12, 12);
+            this.BookViewer.Name = "BookViewer";
+            this.BookViewer.Size = new System.Drawing.Size(395, 513);
+            this.BookViewer.TabIndex = 0;
+            // 
+            // JournalViewer
+            // 
+            this.JournalViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.JournalViewer.Location = new System.Drawing.Point(430, 12);
+            this.JournalViewer.Name = "JournalViewer";
+            this.JournalViewer.Size = new System.Drawing.Size(395, 513);
+            this.JournalViewer.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 537);
-            this.Controls.Add(this.ListViewer);
+            this.Controls.Add(this.JournalViewer);
+            this.Controls.Add(this.BookViewer);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.ListViewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BookViewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JournalViewer)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView ListViewer;
+        private System.Windows.Forms.DataGridView BookViewer;
+        private System.Windows.Forms.DataGridView JournalViewer;
     }
 }
 

@@ -8,6 +8,6 @@ namespace BooksAndJournalsApp
 {
     public class Journal: PublishedEdition
     { 
-
+        public string Articles { get; set; }
     }
 }
