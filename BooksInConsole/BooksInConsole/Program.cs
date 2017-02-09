@@ -8,10 +8,11 @@ namespace BooksInConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             List<Book> library = new List<Book>();
             Book book = new Book();
+
             for (int i = 0; i < 10; i++)
             {
                 book.Title = "Title" + (i + 1).ToString();
