@@ -8,5 +8,6 @@ namespace BooksAndJournalsApp
 {
     public class Journal: PublishedEdition
     { 
+
     }
 }

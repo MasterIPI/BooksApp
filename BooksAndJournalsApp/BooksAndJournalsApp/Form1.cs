@@ -30,9 +30,9 @@ namespace BooksAndJournalsApp
                 for (int author = 0; author < 3; author++)
                 {
                     tmpjournal.Author += "Author" + (author + 1).ToString() + "; ";
+                    tmpjournal.Title += "Article" + (author + 1).ToString() + "; ";
                 }
-
-                tmpjournal.Title = "Journal" + (journal + 1).ToString();
+                
                 list.Add(tmpjournal);
             }
 
