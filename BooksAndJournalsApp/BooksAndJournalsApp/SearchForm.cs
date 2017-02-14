@@ -20,17 +20,29 @@ namespace BooksAndJournalsApp
         {
             InitializeComponent();
 
-            foreach (Book book in books)
+            for (int bookId = 0; bookId < books.Count; bookId++)
             {
-                authors.Add(book.Author);
+                if (!books[bookId].Author.Contains(";"))
+                {
+                    authors.Add(books[bookId].Author);
+                }
+
+                else
+                {
+                    List<string> tmpBookAuthors = books[bookId].Author.Split(';').ToList();
+                    for (int authorId = 0; authorId < tmpBookAuthors.Count; authorId++)
+                    {
+                        authors.Add(tmpBookAuthors[authorId]);
+                    }
+                }
             }
 
             for (int journal = 0; journal < journals.Count; journal++)
             {
                 List<string> tmpauthors = journals[journal].Author.Split(';').ToList();
-                for (int author = 0; author < tmpauthors.Count; author++)
+                for (int authorId = 0; authorId < tmpauthors.Count; authorId++)
                 {
-                    authors.Add(tmpauthors[author]);
+                    authors.Add(tmpauthors[authorId]);
                 }
             }
 
@@ -41,7 +53,7 @@ namespace BooksAndJournalsApp
         {
             List<string> resultingJournalArticles = new List<string>();
 
-            var bookResult = from book in books where book.Author == AuthorsBox.SelectedItem.ToString() select book.Title;
+            var bookResult = from book in books where book.Author.Contains(AuthorsBox.SelectedItem.ToString()) || book.Author == AuthorsBox.SelectedItem.ToString() select book.Title;
             var journalResult = from journal in journals where journal.Author.Contains(AuthorsBox.SelectedItem.ToString()) || journal.Author == AuthorsBox.SelectedItem.ToString() select journal;
 
             foreach (var journal in journalResult)

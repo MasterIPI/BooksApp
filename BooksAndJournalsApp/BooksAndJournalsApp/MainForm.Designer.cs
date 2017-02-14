@@ -31,6 +31,7 @@
             this.BookViewer = new System.Windows.Forms.DataGridView();
             this.JournalViewer = new System.Windows.Forms.DataGridView();
             this.authorsWorksBtn = new System.Windows.Forms.Button();
+            this.SaveBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BookViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.JournalViewer)).BeginInit();
             this.SuspendLayout();
@@ -61,11 +62,22 @@
             this.authorsWorksBtn.UseVisualStyleBackColor = true;
             this.authorsWorksBtn.Click += new System.EventHandler(this.authorsWorksBtn_Click);
             // 
+            // SaveBtn
+            // 
+            this.SaveBtn.Location = new System.Drawing.Point(430, 7);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(75, 23);
+            this.SaveBtn.TabIndex = 3;
+            this.SaveBtn.Text = "Save";
+            this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 537);
+            this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.authorsWorksBtn);
             this.Controls.Add(this.JournalViewer);
             this.Controls.Add(this.BookViewer);
@@ -82,6 +94,7 @@
         private System.Windows.Forms.DataGridView BookViewer;
         private System.Windows.Forms.DataGridView JournalViewer;
         private System.Windows.Forms.Button authorsWorksBtn;
+        private System.Windows.Forms.Button SaveBtn;
     }
 }
 

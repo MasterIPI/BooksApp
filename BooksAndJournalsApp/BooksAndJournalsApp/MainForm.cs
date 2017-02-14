@@ -4,8 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.IO;
 using System.Windows.Forms;
 using static BooksAndJournalsApp.DataContainer;
 
@@ -13,6 +14,8 @@ namespace BooksAndJournalsApp
 {
     public partial class MainForm : Form
     {
+        private string journalsPath = "journals.xml";
+        private string booksPath = "books.txt";
         public MainForm()
         {
             Book book = new Book();
@@ -22,6 +25,7 @@ namespace BooksAndJournalsApp
             Book book4 = new Book();
             Book book5 = new Book();
             Book book6 = new Book();
+            Book book7 = new Book();
 
             book.Author = "J. K. Rowling";
             book.Title = "Harry Potter and the Philosopher's Stone";
@@ -51,6 +55,9 @@ namespace BooksAndJournalsApp
             book6.Title = "Harry Potter and the Deathly Hallows";
             books.Add(book6);
 
+            book7.Author = "Test Author1;TestAuthor2";
+            book7.Title = "Test Title";
+            books.Add(book7);
 
             Journal journal = new Journal();
             Journal journal1 = new Journal();
@@ -74,6 +81,80 @@ namespace BooksAndJournalsApp
         {
             SearchForm form = new SearchForm();
             form.Show();
+        }
+
+        private void SaveBtn_Click(object sender, EventArgs e)
+        {
+            XDocument journalXml = new XDocument();
+            FileInfo file = new FileInfo(booksPath);
+
+            if (File.Exists(booksPath))
+            {
+                List<string> booksList = new List<string>();
+                StreamReader reader = new StreamReader(file.OpenRead());
+
+                while (!reader.EndOfStream)
+                {
+                    booksList.Add(reader.ReadLine());
+                }
+                reader.Close();
+                reader.Dispose();
+
+                StreamWriter writer = file.AppendText();
+
+                foreach (Book book in books)
+                {
+                    if (!booksList.Contains(book.Author + ":" + book.Title))
+                    {
+                        writer.WriteLine(book.Author + ":" + book.Title);
+                    }
+                }
+                writer.Close();
+                writer.Dispose();
+            }
+
+            else
+            {
+                StreamWriter writeFile = new StreamWriter(file.OpenWrite());
+
+                foreach (Book book in books)
+                {
+                    writeFile.WriteLine(book.Author + ":" + book.Title);
+                }
+                writeFile.Close();
+                writeFile.Dispose();
+            }
+
+            if (File.Exists(journalsPath))
+            {
+                journalXml = XDocument.Load(journalsPath);
+                List<XElement> elements = journalXml.Root.Descendants().ToList();
+
+                foreach (Journal journal in journals)
+                {
+                    XElement tmpElem = new XElement("journal", new XElement("title", journal.Title),
+                                                               new XElement("authors", journal.Author),
+                                                               new XElement("articles", journal.Articles));
+                    if (!elements.Contains(tmpElem))
+                    {
+                        journalXml.Root.Add(tmpElem);
+                    }
+                }
+            }
+
+            else
+            {
+                XElement journ = new XElement("journals");
+                foreach (Journal journal in journals)
+                {
+                    journ.Add(new XElement("journal", new XElement("title", journal.Title),
+                                                      new XElement("authors", journal.Author),
+                                                      new XElement("articles", journal.Articles)));
+                }
+
+                journalXml.Add(journ);
+                journalXml.Save(journalsPath);
+            }
         }
     }
 }
