@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace BooksAndJournalsApp
 {
-    public class Journal: PublishedEdition
+    public class Newspaper: PublishedEdition
     {
-        public string Author { get; set; }
-        public string Articles { get; set; }
+        public string Publisher { get; set; }
 
         public override string ToString()
         {
-            return "Journal";
+            return "Newspaper";
         }
     }
 }

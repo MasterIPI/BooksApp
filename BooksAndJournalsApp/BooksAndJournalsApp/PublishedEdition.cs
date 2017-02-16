@@ -8,7 +8,6 @@ namespace BooksAndJournalsApp
 {
     public abstract class PublishedEdition
     {
-        public string Author { get; set; }
         public string Title { get; set; }
     }
 }
