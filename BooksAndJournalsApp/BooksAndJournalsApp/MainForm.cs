@@ -18,7 +18,7 @@ namespace BooksAndJournalsApp
         private string booksPath = "books.txt";
         private string newspapersPath = "newspapers.xml";
 
-        private List<List<PublishedEdition>> library = new List<List<PublishedEdition>>();
+        private List<string> library = new List<string>();
         public MainForm()
         {
             Book book = new Book();
@@ -88,18 +88,11 @@ namespace BooksAndJournalsApp
 
             InitializeComponent();
 
-            library.Add(books.ToList<PublishedEdition>());
-            library.Add(journals.ToList<PublishedEdition>());
-            library.Add(newspapers.ToList<PublishedEdition>());
+            library.Add(books.First().ToString());
+            library.Add(journals.First().ToString());
+            library.Add(newspapers.First().ToString());
 
-            List<string> items = new List<string>();
-
-            foreach(var item in library)
-            {
-                items.Add(item.First().ToString());
-            }
-
-            containerBox.DataSource = items;
+            containerBox.DataSource = library;
             containerBox.SelectedIndex = 0;
         }
 
@@ -111,14 +104,14 @@ namespace BooksAndJournalsApp
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            XDocument journalXml = new XDocument();
+            XDocument journalsXml = new XDocument();
             XDocument newspapersXml = new XDocument();
-            FileInfo file = new FileInfo(booksPath);
+            FileInfo booksFile = new FileInfo(booksPath);
 
             if (File.Exists(booksPath))
             {
                 List<string> booksList = new List<string>();
-                StreamReader reader = new StreamReader(file.OpenRead());
+                StreamReader reader = new StreamReader(booksFile.OpenRead());
 
                 while (!reader.EndOfStream)
                 {
@@ -127,7 +120,7 @@ namespace BooksAndJournalsApp
                 reader.Close();
                 reader.Dispose();
 
-                StreamWriter writer = file.AppendText();
+                StreamWriter writer = booksFile.AppendText();
 
                 foreach (Book book in books)
                 {
@@ -142,7 +135,7 @@ namespace BooksAndJournalsApp
 
             else
             {
-                StreamWriter writeFile = new StreamWriter(file.OpenWrite());
+                StreamWriter writeFile = new StreamWriter(booksFile.OpenWrite());
 
                 foreach (Book book in books)
                 {
@@ -154,24 +147,21 @@ namespace BooksAndJournalsApp
 
             if (File.Exists(journalsPath))
             {
-                journalXml = XDocument.Load(journalsPath);
-                List<XElement> elements = journalXml.Root.Elements().ToList();
+                journalsXml = XDocument.Load(journalsPath);
+                List<XElement> elements = journalsXml.Root.Elements().ToList();
 
                 foreach (Journal journal in journals)
                 {
                     XElement tmpElem = new XElement("journal", new XElement("title", journal.Title),
                                                                new XElement("authors", journal.Author),
                                                                new XElement("articles", journal.Articles));
-                    for (int element = 0; element < elements.Count; element++)
+                    if (!journalsXml.Root.Value.Contains(tmpElem.Value))
                     {
-                        if (elements[element].Value != tmpElem.Value)
-                        {
-                            journalXml.Root.Add(tmpElem);
-                        }
+                        journalsXml.Root.Add(tmpElem);
                     }
                 }
 
-                journalXml.Save(journalsPath);
+                journalsXml.Save(journalsPath);
             }
 
             else
@@ -184,8 +174,8 @@ namespace BooksAndJournalsApp
                                                       new XElement("articles", journal.Articles)));
                 }
 
-                journalXml.Add(journ);
-                journalXml.Save(journalsPath);
+                journalsXml.Add(journ);
+                journalsXml.Save(journalsPath);
             }
 
             if (File.Exists(newspapersPath))
@@ -197,12 +187,9 @@ namespace BooksAndJournalsApp
                 {
                     XElement tmpElem = new XElement("newspaper", new XElement("title", newspaper.Title),
                                                                  new XElement("publisher", newspaper.Publisher));
-                    for (int element = 0; element < elements.Count; element++)
+                    if (!newspapersXml.Root.Value.Contains(tmpElem.Value))
                     {
-                        if (elements[element].Value != tmpElem.Value)
-                        {
-                            newspapersXml.Root.Add(tmpElem);
-                        }
+                        newspapersXml.Root.Add(tmpElem);
                     }
                 }
 
@@ -225,17 +212,17 @@ namespace BooksAndJournalsApp
 
         private void containerBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (library[containerBox.SelectedIndex].First().ToString() == books.First().ToString())
+            if (library[containerBox.SelectedIndex] == books.First().ToString())
             {
                 ContainerViewer.DataSource = books;
             }
 
-            if (library[containerBox.SelectedIndex].First().ToString() == journals.First().ToString())
+            if (library[containerBox.SelectedIndex] == journals.First().ToString())
             {
                 ContainerViewer.DataSource = journals;
             }
 
-            if (library[containerBox.SelectedIndex].First().ToString() == newspapers.First().ToString())
+            if (library[containerBox.SelectedIndex] == newspapers.First().ToString())
             {
                 ContainerViewer.DataSource = newspapers;
             }
