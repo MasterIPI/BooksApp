@@ -19,6 +19,7 @@ namespace BooksAndJournalsApp
         private string newspapersPath = "newspapers.xml";
 
         private List<string> library = new List<string>();
+
         public MainForm()
         {
             Book book = new Book();
@@ -86,14 +87,13 @@ namespace BooksAndJournalsApp
             news1.Publisher = "Dow Jones & Company";
             newspapers.Add(news1);
 
-            InitializeComponent();
-
             library.Add(books.First().ToString());
             library.Add(journals.First().ToString());
             library.Add(newspapers.First().ToString());
 
+            InitializeComponent();
+
             containerBox.DataSource = library;
-            containerBox.SelectedIndex = 0;
         }
 
         private void authorsWorksBtn_Click(object sender, EventArgs e)
