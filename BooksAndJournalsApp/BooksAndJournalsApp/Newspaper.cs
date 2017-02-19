@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BooksAndJournalsApp
 {
+    [Serializable]
     public class Newspaper: PublishedEdition
     {
         public string Publisher { get; set; }

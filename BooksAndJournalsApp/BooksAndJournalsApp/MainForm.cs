@@ -14,10 +14,6 @@ namespace BooksAndJournalsApp
 {
     public partial class MainForm : Form
     {
-        private string journalsPath = "journals.xml";
-        private string booksPath = "books.txt";
-        private string newspapersPath = "newspapers.xml";
-
         private List<string> library = new List<string>();
 
         public MainForm()
@@ -98,115 +94,17 @@ namespace BooksAndJournalsApp
 
         private void authorsWorksBtn_Click(object sender, EventArgs e)
         {
-            SearchForm form = new SearchForm();
-            form.Show();
+            using (SearchForm form = new SearchForm())
+            {
+                form.ShowDialog();
+            }
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            XDocument journalsXml = new XDocument();
-            XDocument newspapersXml = new XDocument();
-            FileInfo booksFile = new FileInfo(booksPath);
-
-            if (File.Exists(booksPath))
+            using (SaveForm saveForm = new SaveForm())
             {
-                List<string> booksList = new List<string>();
-                StreamReader reader = new StreamReader(booksFile.OpenRead());
-
-                while (!reader.EndOfStream)
-                {
-                    booksList.Add(reader.ReadLine());
-                }
-                reader.Close();
-                reader.Dispose();
-
-                StreamWriter writer = booksFile.AppendText();
-
-                foreach (Book book in books)
-                {
-                    if (!booksList.Contains(book.Author + ":" + book.Title))
-                    {
-                        writer.WriteLine(book.Author + ":" + book.Title);
-                    }
-                }
-                writer.Close();
-                writer.Dispose();
-            }
-
-            else
-            {
-                StreamWriter writeFile = new StreamWriter(booksFile.OpenWrite());
-
-                foreach (Book book in books)
-                {
-                    writeFile.WriteLine(book.Author + ":" + book.Title);
-                }
-                writeFile.Close();
-                writeFile.Dispose();
-            }
-
-            if (File.Exists(journalsPath))
-            {
-                journalsXml = XDocument.Load(journalsPath);
-                List<XElement> elements = journalsXml.Root.Elements().ToList();
-
-                foreach (Journal journal in journals)
-                {
-                    XElement tmpElem = new XElement("journal", new XElement("title", journal.Title),
-                                                               new XElement("authors", journal.Author),
-                                                               new XElement("articles", journal.Articles));
-                    if (!journalsXml.Root.Value.Contains(tmpElem.Value))
-                    {
-                        journalsXml.Root.Add(tmpElem);
-                    }
-                }
-
-                journalsXml.Save(journalsPath);
-            }
-
-            else
-            {
-                XElement journ = new XElement("journals");
-                foreach (Journal journal in journals)
-                {
-                    journ.Add(new XElement("journal", new XElement("title", journal.Title),
-                                                      new XElement("authors", journal.Author),
-                                                      new XElement("articles", journal.Articles)));
-                }
-
-                journalsXml.Add(journ);
-                journalsXml.Save(journalsPath);
-            }
-
-            if (File.Exists(newspapersPath))
-            {
-                newspapersXml = XDocument.Load(newspapersPath);
-                List<XElement> elements = newspapersXml.Root.Elements().ToList();
-
-                foreach (Newspaper newspaper in newspapers)
-                {
-                    XElement tmpElem = new XElement("newspaper", new XElement("title", newspaper.Title),
-                                                                 new XElement("publisher", newspaper.Publisher));
-                    if (!newspapersXml.Root.Value.Contains(tmpElem.Value))
-                    {
-                        newspapersXml.Root.Add(tmpElem);
-                    }
-                }
-
-                newspapersXml.Save(newspapersPath);
-            }
-
-            else
-            {
-                XElement news = new XElement("newspapers");
-                foreach (Newspaper newspaper in newspapers)
-                {
-                    news.Add(new XElement("newspaper", new XElement("title", newspaper.Title),
-                                                       new XElement("publisher", newspaper.Publisher)));
-                }
-
-                newspapersXml.Add(news);
-                newspapersXml.Save(newspapersPath);
+                saveForm.ShowDialog();
             }
         }
 
@@ -226,6 +124,28 @@ namespace BooksAndJournalsApp
             {
                 ContainerViewer.DataSource = newspapers;
             }
+        }
+
+        private void dltBtn_Click(object sender, EventArgs e)
+        {
+            using (DeleteForm dltForm = new DeleteForm(containerBox.SelectedItem.ToString()))
+            {
+                ContainerViewer.DataSource = null;
+                dltForm.ShowDialog();
+            }
+
+            containerBox_SelectedIndexChanged(sender, e);
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            using (AddForm addForm = new AddForm(containerBox.SelectedItem.ToString()))
+            {
+                ContainerViewer.DataSource = null;
+                addForm.ShowDialog();
+            }
+
+            containerBox_SelectedIndexChanged(sender, e);
         }
     }
 }
