@@ -61,55 +61,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddForm.cs">
+    <Compile Include="Forms\AddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddForm.Designer.cs">
+    <Compile Include="Forms\AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Book.cs" />
-    <Compile Include="DataContainer.cs" />
-    <Compile Include="DeleteForm.cs">
+    <Compile Include="Classes\Book.cs" />
+    <Compile Include="Classes\DataContainer.cs" />
+    <Compile Include="Forms\DeleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeleteForm.Designer.cs">
+    <Compile Include="Forms\DeleteForm.Designer.cs">
       <DependentUpon>DeleteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Newspaper.cs" />
-    <Compile Include="PublishedEditionsDataSet.Designer.cs">
+    <Compile Include="Classes\Newspaper.cs" />
+    <Compile Include="DataBase\PublishedEditionsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PublishedEditionsDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="SaveForm.cs">
+    <Compile Include="Forms\SaveForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SaveForm.Designer.cs">
+    <Compile Include="Forms\SaveForm.Designer.cs">
       <DependentUpon>SaveForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchForm.cs">
+    <Compile Include="Forms\SearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchForm.Designer.cs">
+    <Compile Include="Forms\SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PublishedEdition.cs" />
-    <Compile Include="Journal.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\PublishedEdition.cs" />
+    <Compile Include="Classes\Journal.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddForm.resx">
+    <EmbeddedResource Include="Forms\AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeleteForm.resx">
+    <EmbeddedResource Include="Forms\DeleteForm.resx">
       <DependentUpon>DeleteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -121,10 +121,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SaveForm.resx">
+    <EmbeddedResource Include="Forms\SaveForm.resx">
       <DependentUpon>SaveForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchForm.resx">
+    <EmbeddedResource Include="Forms\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -136,15 +136,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="PublishedEditionsDataSet.xsc">
+    <None Include="DataBase\PublishedEditionsDataSet.xsc">
       <DependentUpon>PublishedEditionsDataSet.xsd</DependentUpon>
     </None>
-    <None Include="PublishedEditionsDataSet.xsd">
+    <None Include="DataBase\PublishedEditionsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>PublishedEditionsDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="PublishedEditionsDataSet.xss">
+    <None Include="DataBase\PublishedEditionsDataSet.xss">
       <DependentUpon>PublishedEditionsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
@@ -164,13 +164,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PublishedEditions.mdf">
+    <Content Include="DataBase\PublishedEditions.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="PublishedEditions_log.ldf">
+    <Content Include="DataBase\PublishedEditions_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>PublishedEditions.mdf</DependentUpon>
     </Content>

@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace BooksAndJournalsApp {
+namespace BooksAndJournalsApp.DataBase {
     
     
     /// <summary>
@@ -609,7 +609,7 @@ namespace BooksAndJournalsApp {
         }
     }
 }
-namespace BooksAndJournalsApp.PublishedEditionsDataSetTableAdapters {
+namespace BooksAndJournalsApp.DataBase.PublishedEditionsDataSetTableAdapters {
     
     
     /// <summary>
