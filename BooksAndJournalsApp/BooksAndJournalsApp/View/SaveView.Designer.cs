@@ -1,6 +1,6 @@
 ﻿namespace BooksAndJournalsApp
 {
-    partial class SaveForm
+    partial class SaveView
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,7 @@
             // 
             // saveBtn
             // 
+            this.saveBtn.Enabled = false;
             this.saveBtn.Location = new System.Drawing.Point(113, 197);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
@@ -101,7 +102,7 @@
             this.newspapersBox.TabIndex = 6;
             this.newspapersBox.SelectedIndexChanged += new System.EventHandler(this.EnableSaveBtn);
             // 
-            // SaveForm
+            // SaveView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -113,7 +114,7 @@
             this.Controls.Add(this.journalslbl);
             this.Controls.Add(this.bookslbl);
             this.Controls.Add(this.saveBtn);
-            this.Name = "SaveForm";
+            this.Name = "SaveView";
             this.Text = "SaveForm";
             this.ResumeLayout(false);
             this.PerformLayout();

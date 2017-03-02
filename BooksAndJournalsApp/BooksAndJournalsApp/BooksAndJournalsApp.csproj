@@ -61,56 +61,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AddForm.cs">
+    <Compile Include="Presenter\PublishedEditionsPresenter.cs" />
+    <Compile Include="View\AddView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddForm.Designer.cs">
-      <DependentUpon>AddForm.cs</DependentUpon>
+    <Compile Include="View\AddView.Designer.cs">
+      <DependentUpon>AddView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Book.cs" />
-    <Compile Include="Classes\DataContainer.cs" />
-    <Compile Include="Forms\DeleteForm.cs">
+    <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\PublishedEditionsModel.cs" />
+    <Compile Include="View\DeleteView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DeleteForm.Designer.cs">
-      <DependentUpon>DeleteForm.cs</DependentUpon>
+    <Compile Include="View\DeleteView.Designer.cs">
+      <DependentUpon>DeleteView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Include="View\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="View\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Newspaper.cs" />
-    <Compile Include="DataBase\PublishedEditionsDataSet.Designer.cs">
+    <Compile Include="Model\Newspaper.cs" />
+    <Compile Include="Model\PublishedEditionsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PublishedEditionsDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SaveForm.cs">
+    <Compile Include="View\SaveView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SaveForm.Designer.cs">
-      <DependentUpon>SaveForm.cs</DependentUpon>
+    <Compile Include="View\SaveView.Designer.cs">
+      <DependentUpon>SaveView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SearchForm.cs">
+    <Compile Include="View\SearchView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SearchForm.Designer.cs">
-      <DependentUpon>SearchForm.cs</DependentUpon>
+    <Compile Include="View\SearchView.Designer.cs">
+      <DependentUpon>SearchView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\PublishedEdition.cs" />
-    <Compile Include="Classes\Journal.cs" />
-    <Compile Include="Classes\Program.cs" />
+    <Compile Include="Model\PublishedEdition.cs" />
+    <Compile Include="Model\Journal.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\AddForm.resx">
-      <DependentUpon>AddForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\AddView.resx">
+      <DependentUpon>AddView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DeleteForm.resx">
-      <DependentUpon>DeleteForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\DeleteView.resx">
+      <DependentUpon>DeleteView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,11 +122,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\SaveForm.resx">
-      <DependentUpon>SaveForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\SaveView.resx">
+      <DependentUpon>SaveView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SearchForm.resx">
-      <DependentUpon>SearchForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\SearchView.resx">
+      <DependentUpon>SearchView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,15 +137,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="DataBase\PublishedEditionsDataSet.xsc">
+    <None Include="Model\PublishedEditionsDataSet.xsc">
       <DependentUpon>PublishedEditionsDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataBase\PublishedEditionsDataSet.xsd">
+    <None Include="Model\PublishedEditionsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>PublishedEditionsDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataBase\PublishedEditionsDataSet.xss">
+    <None Include="Model\PublishedEditionsDataSet.xss">
       <DependentUpon>PublishedEditionsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
@@ -164,10 +165,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBase\PublishedEditions.mdf">
+    <Content Include="Model\PublishedEditions.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DataBase\PublishedEditions_log.ldf">
+    <Content Include="Model\PublishedEditions_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>PublishedEditions.mdf</DependentUpon>
     </Content>

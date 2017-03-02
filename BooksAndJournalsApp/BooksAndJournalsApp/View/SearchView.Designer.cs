@@ -1,6 +1,6 @@
 ﻿namespace BooksAndJournalsApp
 {
-    partial class SearchForm
+    partial class SearchView
     {
         /// <summary>
         /// Required designer variable.

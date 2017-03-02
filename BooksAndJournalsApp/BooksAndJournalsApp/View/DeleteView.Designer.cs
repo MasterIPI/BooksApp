@@ -1,6 +1,6 @@
 ﻿namespace BooksAndJournalsApp
 {
-    partial class DeleteForm
+    partial class DeleteView
     {
         /// <summary>
         /// Required designer variable.

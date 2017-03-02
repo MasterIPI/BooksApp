@@ -1,18 +1,23 @@
-﻿using System;
+﻿using BooksAndJournalsApp.Presenter;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using static BooksAndJournalsApp.DataContainer;
+using System.Collections.Generic;
 
 namespace BooksAndJournalsApp
 {
-    public partial class AddForm : Form
+    public partial class AddView : Form
     {
+        private PublishedEditionsPresenter _presenter;
+
         private int textBoxHeight = 35;
         private int textBoxWidth = 100;
         private Point startPoint = new Point(15, 15);
 
-        public AddForm(string contentType)
+        public AddView(string contentType, PublishedEditionsPresenter presenter)
         {
+            _presenter = presenter;
+
             InitializeComponent();
 
             if (contentType == "Book")
@@ -24,10 +29,16 @@ namespace BooksAndJournalsApp
                 Controls.Add(authorlbl);
 
                 TextBox authorBox = new TextBox();
-                authorBox.Location = new Point(authorlbl.Location.X + authorlbl.Size.Width, authorlbl.Location.Y);
+                authorBox.Location = new Point(authorlbl.Location.X + authorlbl.Width, authorlbl.Location.Y);
                 authorBox.Size = new Size(textBoxWidth, textBoxHeight);
                 authorBox.Name = "AuthorBox";
                 Controls.Add(authorBox);
+
+                Label authorlbl2 = new Label();
+                authorlbl2.Location = new Point(authorBox.Location.X + authorBox.Width, authorBox.Location.Y);
+                authorlbl2.AutoSize = true;
+                authorlbl2.Text = "If you want to add more than 1 author, please use the \";\" symbol!!!";
+                Controls.Add(authorlbl2);
 
                 Label titlelbl = new Label();
                 titlelbl.Location = new Point(startPoint.X, startPoint.Y + textBoxHeight);
@@ -36,7 +47,7 @@ namespace BooksAndJournalsApp
                 Controls.Add(titlelbl);
 
                 TextBox titleBox = new TextBox();
-                titleBox.Location = new Point(authorBox.Location.X, titlelbl.Location.Y);
+                titleBox.Location = new Point(titlelbl.Location.X + titlelbl.Width, titlelbl.Location.Y);
                 titleBox.Size = new Size(textBoxWidth, textBoxHeight);
                 titleBox.Name = "TitleBox";
                 Controls.Add(titleBox);
@@ -58,10 +69,16 @@ namespace BooksAndJournalsApp
                 Controls.Add(authorlbl);
 
                 TextBox authorBox = new TextBox();
-                authorBox.Location = new Point(authorlbl.Location.X + authorlbl.Size.Width, authorlbl.Location.Y);
+                authorBox.Location = new Point(authorlbl.Location.X + authorlbl.Width, authorlbl.Location.Y);
                 authorBox.Size = new Size(textBoxWidth, textBoxHeight);
                 authorBox.Name = "AuthorBox";
                 Controls.Add(authorBox);
+
+                Label authorlbl2 = new Label();
+                authorlbl2.Location = new Point(authorBox.Location.X + authorBox.Width, authorBox.Location.Y);
+                authorlbl2.AutoSize = true;
+                authorlbl2.Text = "If you want to add more than 1 author, please use the \";\" symbol!!!";
+                Controls.Add(authorlbl2);
 
                 Label titlelbl = new Label();
                 titlelbl.Location = new Point(startPoint.X, startPoint.Y + textBoxHeight);
@@ -70,7 +87,7 @@ namespace BooksAndJournalsApp
                 Controls.Add(titlelbl);
 
                 TextBox titleBox = new TextBox();
-                titleBox.Location = new Point(authorBox.Location.X, titlelbl.Location.Y);
+                titleBox.Location = new Point(titlelbl.Location.X + titlelbl.Width, titlelbl.Location.Y);
                 titleBox.Size = new Size(textBoxWidth, textBoxHeight);
                 titleBox.Name = "TitleBox";
                 Controls.Add(titleBox);
@@ -82,10 +99,16 @@ namespace BooksAndJournalsApp
                 Controls.Add(articlelbl);
 
                 TextBox articleBox = new TextBox();
-                articleBox.Location = new Point(titleBox.Location.X, articlelbl.Location.Y);
+                articleBox.Location = new Point(articlelbl.Location.X + articlelbl.Width, articlelbl.Location.Y);
                 articleBox.Size = new Size(textBoxWidth, textBoxHeight);
                 articleBox.Name = "ArticleBox";
                 Controls.Add(articleBox);
+
+                Label articlelbl2 = new Label();
+                articlelbl2.Location = new Point(articleBox.Location.X + articleBox.Width, articleBox.Location.Y);
+                articlelbl2.AutoSize = true;
+                articlelbl2.Text = "If you want to add more than 1 article, please use the \";\" symbol!!!";
+                Controls.Add(articlelbl2);
 
                 Button addBtn = new Button();
                 addBtn.Text = "Add";
@@ -116,7 +139,7 @@ namespace BooksAndJournalsApp
                 Controls.Add(titlelbl);
 
                 TextBox titleBox = new TextBox();
-                titleBox.Location = new Point(publisherBox.Location.X, titlelbl.Location.Y);
+                titleBox.Location = new Point(titlelbl.Location.X + titlelbl.Width, titlelbl.Location.Y);
                 titleBox.Size = new Size(textBoxWidth, textBoxHeight);
                 titleBox.Name = "TitleBox";
                 Controls.Add(titleBox);
@@ -139,11 +162,8 @@ namespace BooksAndJournalsApp
 
             else
             {
-                Book book = new Book();
-                book.Author = Controls["AuthorBox"].Text;
-                book.Title = Controls["TitleBox"].Text;
-
-                books.Add(book);
+                //_presenter.AddBook(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text);
+                _presenter.AddBook(Controls["AuthorBox"].Text, Controls["TitleBox"].Text);
 
                 Controls["AuthorBox"].Text = string.Empty;
                 Controls["TitleBox"].Text = string.Empty;
@@ -159,12 +179,8 @@ namespace BooksAndJournalsApp
 
             else
             {
-                Journal journal = new Journal();
-                journal.Author = Controls["AuthorBox"].Text;
-                journal.Articles = Controls["ArticleBox"].Text;
-                journal.Title = Controls["TitleBox"].Text;
-
-                journals.Add(journal);
+                //_presenter.AddJournal(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text, Controls["ArticleBox"].Text);
+                _presenter.AddJournal(Controls["AuthorBox"].Text, Controls["TitleBox"].Text, Controls["ArticleBox"].Text);
 
                 Controls["AuthorBox"].Text = string.Empty;
                 Controls["ArticleBox"].Text = string.Empty;
@@ -181,15 +197,81 @@ namespace BooksAndJournalsApp
 
             else
             {
-                Newspaper newspaper = new Newspaper();
-                newspaper.Publisher = Controls["PublisherBox"].Text;
-                newspaper.Title = Controls["TitleBox"].Text;
-
-                newspapers.Add(newspaper);
+                //_presenter.AddNewspaper(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text);
+                _presenter.AddNewspaper(Controls["AuthorBox"].Text, Controls["TitleBox"].Text);
 
                 Controls["PublisherBox"].Text = string.Empty;
                 Controls["TitleBox"].Text = string.Empty;
             }
         }
+
+        //private string CheckAuthors(string author)
+        //{
+        //    List<string> authorList = new List<string>();
+        //    authorList.AddRange(author.Split(';'));
+
+        //    HashSet<string> authors = new HashSet<string>();
+        //    authors = _presenter.GetAllAuthors();
+
+        //    List<string> matchedauthors = new List<string>();
+            
+        //    foreach(string item in authors)
+        //    {
+        //        if (item == author || item.Contains(author))
+        //        {
+        //            matchedauthors.Add(item);
+        //        }
+        //    }
+
+        //    if (matchedauthors.Count > 0)
+        //    {
+        //        for (int control= 0; control < Controls.Count; control++)
+        //        {
+        //            Controls[control].Enabled = !Controls[control].Enabled;
+        //        }
+
+        //        ComboBox matched = new ComboBox();
+        //        matched.Name = "MatchedAuthorsBox";
+        //        matched.DataSource = matchedauthors;
+        //        matched.Location = new Point((Width / 2 - matched.Width) / 2, Height - matched.DropDownHeight);
+        //        Controls.Add(matched);
+                
+        //        Label matchedLbl = new Label();
+        //        matchedLbl.AutoSize = true;
+        //        matchedLbl.Text = "Is this author is a same person from list?";
+        //        matchedLbl.Location = new Point(matched.Location.X - matchedLbl.Width/2, matched.Location.Y - matchedLbl.Height);
+        //        Controls.Add(matchedLbl);
+
+        //        Button yesBtn = new Button();
+        //        yesBtn.Text = "Yes";
+        //        yesBtn.Location = new Point(matchedLbl.Location.X + matchedLbl.Width, matchedLbl.Location.Y);
+        //        yesBtn.Click += delegate (object sender, EventArgs e) 
+        //        {
+        //            author = string.Empty; author = matched.SelectedItem.ToString();
+
+        //            for (int control = 0; control < Controls.Count; control++)
+        //            {
+        //                Controls[control].Enabled = !Controls[control].Enabled;
+        //            }
+        //        };
+        //        Controls.Add(yesBtn);
+
+        //        Button noBtn = new Button();
+        //        noBtn.Text = "No";
+        //        noBtn.Location = new Point(yesBtn.Location.X, yesBtn.Location.Y + yesBtn.Height);
+        //        noBtn.Click += delegate (object sender, EventArgs e) 
+        //        {
+        //            author = string.Empty; author = matched.SelectedItem.ToString() + _presenter.GetUnicId();
+
+        //            for (int control = 0; control < Controls.Count; control++)
+        //            {
+        //                Controls[control].Enabled = !Controls[control].Enabled;
+        //            }
+        //        };
+        //        Controls.Add(noBtn);
+        //    }
+
+        //    return author;
+        //}
     }
 }

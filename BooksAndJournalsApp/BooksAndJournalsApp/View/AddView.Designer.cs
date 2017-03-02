@@ -1,6 +1,6 @@
 ﻿namespace BooksAndJournalsApp
 {
-    partial class AddForm
+    partial class AddView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // AddForm
+            // AddView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 412);
-            this.Name = "AddForm";
+            this.ClientSize = new System.Drawing.Size(674, 412);
+            this.Name = "AddView";
             this.Text = "AddForm";
             this.ResumeLayout(false);
 

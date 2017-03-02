@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BooksAndJournalsApp.Presenter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,13 @@ namespace BooksAndJournalsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            PublishedEditionsModel model = new PublishedEditionsModel();
+            MainView view = new MainView();
+            PublishedEditionsPresenter presenter = new PublishedEditionsPresenter(model, view);
+            view.Init();
+
+            Application.Run(view);
         }
     }
 }
