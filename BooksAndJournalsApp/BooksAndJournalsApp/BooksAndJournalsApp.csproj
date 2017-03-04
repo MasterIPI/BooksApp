@@ -70,6 +70,12 @@
     </Compile>
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\PublishedEditionsModel.cs" />
+    <Compile Include="View\CheckAuthorsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CheckAuthorsView.Designer.cs">
+      <DependentUpon>CheckAuthorsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DeleteView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="View\AddView.resx">
       <DependentUpon>AddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CheckAuthorsView.resx">
+      <DependentUpon>CheckAuthorsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DeleteView.resx">
       <DependentUpon>DeleteView.cs</DependentUpon>

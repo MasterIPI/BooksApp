@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using BooksAndJournalsApp.View;
 
 namespace BooksAndJournalsApp
 {
@@ -37,7 +38,7 @@ namespace BooksAndJournalsApp
                 Label authorlbl2 = new Label();
                 authorlbl2.Location = new Point(authorBox.Location.X + authorBox.Width, authorBox.Location.Y);
                 authorlbl2.AutoSize = true;
-                authorlbl2.Text = "If you want to add more than 1 author, please use the \";\" symbol!!!";
+                authorlbl2.Text = "Add book with only 1 author";
                 Controls.Add(authorlbl2);
 
                 Label titlelbl = new Label();
@@ -162,8 +163,7 @@ namespace BooksAndJournalsApp
 
             else
             {
-                //_presenter.AddBook(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text);
-                _presenter.AddBook(Controls["AuthorBox"].Text, Controls["TitleBox"].Text);
+                _presenter.AddBook(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text);
 
                 Controls["AuthorBox"].Text = string.Empty;
                 Controls["TitleBox"].Text = string.Empty;
@@ -179,8 +179,7 @@ namespace BooksAndJournalsApp
 
             else
             {
-                //_presenter.AddJournal(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text, Controls["ArticleBox"].Text);
-                _presenter.AddJournal(Controls["AuthorBox"].Text, Controls["TitleBox"].Text, Controls["ArticleBox"].Text);
+                _presenter.AddJournal(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text, Controls["ArticleBox"].Text);
 
                 Controls["AuthorBox"].Text = string.Empty;
                 Controls["ArticleBox"].Text = string.Empty;
@@ -197,81 +196,42 @@ namespace BooksAndJournalsApp
 
             else
             {
-                //_presenter.AddNewspaper(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text);
-                _presenter.AddNewspaper(Controls["AuthorBox"].Text, Controls["TitleBox"].Text);
+                _presenter.AddNewspaper(Controls["PublisherBox"].Text, Controls["TitleBox"].Text);
 
                 Controls["PublisherBox"].Text = string.Empty;
                 Controls["TitleBox"].Text = string.Empty;
             }
         }
 
-        //private string CheckAuthors(string author)
-        //{
-        //    List<string> authorList = new List<string>();
-        //    authorList.AddRange(author.Split(';'));
+        private string CheckAuthors(string author)
+        {
+            HashSet<string> authors = new HashSet<string>();
+            authors = _presenter.GetAllAuthors();
 
-        //    HashSet<string> authors = new HashSet<string>();
-        //    authors = _presenter.GetAllAuthors();
+            List<string> matchedauthors = new List<string>();
 
-        //    List<string> matchedauthors = new List<string>();
-            
-        //    foreach(string item in authors)
-        //    {
-        //        if (item == author || item.Contains(author))
-        //        {
-        //            matchedauthors.Add(item);
-        //        }
-        //    }
+            foreach (string item in authors)
+            {
+                if (item == author || item.Contains(author))
+                {
+                    matchedauthors.Add(item);
+                }
+            }
 
-        //    if (matchedauthors.Count > 0)
-        //    {
-        //        for (int control= 0; control < Controls.Count; control++)
-        //        {
-        //            Controls[control].Enabled = !Controls[control].Enabled;
-        //        }
+            if (matchedauthors.Count > 0)
+            {
+                using (CheckAuthorsView view = new CheckAuthorsView(matchedauthors))
+                {
+                    view.ShowDialog();
+                    if (view.ActiveControl.Text == "No")
+                    {
+                        author = string.Empty;
+                        author = view.Controls["MatchedBox"].Text + _presenter.GetUnicId();
+                    }
+                }
+            }
 
-        //        ComboBox matched = new ComboBox();
-        //        matched.Name = "MatchedAuthorsBox";
-        //        matched.DataSource = matchedauthors;
-        //        matched.Location = new Point((Width / 2 - matched.Width) / 2, Height - matched.DropDownHeight);
-        //        Controls.Add(matched);
-                
-        //        Label matchedLbl = new Label();
-        //        matchedLbl.AutoSize = true;
-        //        matchedLbl.Text = "Is this author is a same person from list?";
-        //        matchedLbl.Location = new Point(matched.Location.X - matchedLbl.Width/2, matched.Location.Y - matchedLbl.Height);
-        //        Controls.Add(matchedLbl);
-
-        //        Button yesBtn = new Button();
-        //        yesBtn.Text = "Yes";
-        //        yesBtn.Location = new Point(matchedLbl.Location.X + matchedLbl.Width, matchedLbl.Location.Y);
-        //        yesBtn.Click += delegate (object sender, EventArgs e) 
-        //        {
-        //            author = string.Empty; author = matched.SelectedItem.ToString();
-
-        //            for (int control = 0; control < Controls.Count; control++)
-        //            {
-        //                Controls[control].Enabled = !Controls[control].Enabled;
-        //            }
-        //        };
-        //        Controls.Add(yesBtn);
-
-        //        Button noBtn = new Button();
-        //        noBtn.Text = "No";
-        //        noBtn.Location = new Point(yesBtn.Location.X, yesBtn.Location.Y + yesBtn.Height);
-        //        noBtn.Click += delegate (object sender, EventArgs e) 
-        //        {
-        //            author = string.Empty; author = matched.SelectedItem.ToString() + _presenter.GetUnicId();
-
-        //            for (int control = 0; control < Controls.Count; control++)
-        //            {
-        //                Controls[control].Enabled = !Controls[control].Enabled;
-        //            }
-        //        };
-        //        Controls.Add(noBtn);
-        //    }
-
-        //    return author;
-        //}
+            return author;
+        }
     }
 }
