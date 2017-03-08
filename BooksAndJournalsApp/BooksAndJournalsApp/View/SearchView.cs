@@ -23,17 +23,12 @@ namespace BooksAndJournalsApp
 
             InitializeComponent();
 
-            AuthorsBox.DataSource = presenter.GetAllAuthors().ToList();
+            AuthorsGV.DataSource = presenter.GetAllAuthors();
         }
 
-        private void searchBtn_Click(object sender, EventArgs e)
+        private void AuthorsGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            searchResultsView.DataSource = _presenter.OnSearchViewSearchBtnClick(AuthorsBox.SelectedItem.ToString());
-        }
-
-        private void AuthorsBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            searchBtn.Enabled = true;
+            searchResultsView.DataSource = _presenter.FindAuthorsWorks(AuthorsGV.CurrentRow.Cells["Name"].Value.ToString(), Int32.Parse(AuthorsGV.CurrentRow.Cells["YearOfBirth"].Value.ToString()));
         }
     }
 }

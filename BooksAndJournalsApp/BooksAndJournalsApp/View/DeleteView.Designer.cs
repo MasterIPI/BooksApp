@@ -36,6 +36,7 @@
             // ContentViewer
             // 
             this.ContentViewer.AllowUserToAddRows = false;
+            this.ContentViewer.AllowUserToDeleteRows = false;
             this.ContentViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ContentViewer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ContentViewer.Location = new System.Drawing.Point(12, 38);
@@ -54,14 +55,14 @@
             this.dltRowBtn.UseVisualStyleBackColor = true;
             this.dltRowBtn.Click += new System.EventHandler(this.dltRowBtn_Click);
             // 
-            // DeleteForm
+            // DeleteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(575, 403);
             this.Controls.Add(this.dltRowBtn);
             this.Controls.Add(this.ContentViewer);
-            this.Name = "DeleteForm";
+            this.Name = "DeleteView";
             this.Text = "DeleteForm";
             ((System.ComponentModel.ISupportInitialize)(this.ContentViewer)).EndInit();
             this.ResumeLayout(false);

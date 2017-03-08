@@ -24,14 +24,14 @@ namespace BooksAndJournalsApp
         {
             if (ContentViewer.CurrentRow.DataBoundItem != null)
             {
-                _presenter.OnDeleteViewsDltRowBtnClick(ContentViewer.CurrentRow.DataBoundItem);
+                _presenter.OnDeleteViewsDltRowBtnClick(ContentViewer.CurrentRow, _contentType);
                 UpdateView();
             }
         }
 
         private void UpdateView()
         {
-            ContentViewer.DataSource = typeof(List<>);
+            ContentViewer.DataSource = null;
             ContentViewer.DataSource = _presenter.GetContentFromName(_contentType);
         }
     }

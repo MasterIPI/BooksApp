@@ -42,6 +42,7 @@ namespace BooksAndJournalsApp
                 dltForm.ShowDialog();
             }
 
+            presenter.UpdateData();
             UpdateViewedData();
         }
 
@@ -52,12 +53,13 @@ namespace BooksAndJournalsApp
                 addForm.ShowDialog();
             }
 
+            presenter.UpdateData();
             UpdateViewedData();
         }
 
         public void UpdateViewedData()
         {
-            ContainerViewer.DataSource = typeof(List<>);
+            ContainerViewer.DataSource = null;
             ContainerViewer.DataSource = presenter.GetContentFromName(containerBox.SelectedItem.ToString());
             
         }

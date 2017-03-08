@@ -21,7 +21,6 @@ namespace BooksAndJournalsApp
             InitializeComponent();
 
             booksBox.Items.AddRange(saveFileOptions.ToArray());
-            booksBox.Items.Add(".db");
             journalsBox.Items.AddRange(saveFileOptions.ToArray());
             newspapersBox.Items.AddRange(saveFileOptions.ToArray());
         }

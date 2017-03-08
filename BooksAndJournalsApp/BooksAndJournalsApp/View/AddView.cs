@@ -41,8 +41,20 @@ namespace BooksAndJournalsApp
                 authorlbl2.Text = "Add book with only 1 author";
                 Controls.Add(authorlbl2);
 
+                Label yearlbl = new Label();
+                yearlbl.Location = new Point(authorlbl.Location.X, authorlbl.Location.Y + textBoxHeight);
+                yearlbl.AutoSize = true;
+                yearlbl.Text = "Birth year";
+                Controls.Add(yearlbl);
+
+                TextBox yearBox = new TextBox();
+                yearBox.Location = new Point(yearlbl.Location.X + yearlbl.Width, yearlbl.Location.Y);
+                yearBox.Size = new Size(textBoxWidth, textBoxHeight);
+                yearBox.Name = "YearBox";
+                Controls.Add(yearBox);
+
                 Label titlelbl = new Label();
-                titlelbl.Location = new Point(startPoint.X, startPoint.Y + textBoxHeight);
+                titlelbl.Location = new Point(yearlbl.Location.X, yearlbl.Location.Y + textBoxHeight);
                 titlelbl.AutoSize = true;
                 titlelbl.Text = "Title";
                 Controls.Add(titlelbl);
@@ -78,11 +90,23 @@ namespace BooksAndJournalsApp
                 Label authorlbl2 = new Label();
                 authorlbl2.Location = new Point(authorBox.Location.X + authorBox.Width, authorBox.Location.Y);
                 authorlbl2.AutoSize = true;
-                authorlbl2.Text = "If you want to add more than 1 author, please use the \";\" symbol!!!";
+                authorlbl2.Text = "Add only 1 author, please!!!";
                 Controls.Add(authorlbl2);
 
+                Label yearlbl = new Label();
+                yearlbl.Location = new Point(startPoint.X, authorlbl.Location.Y + textBoxHeight);
+                yearlbl.AutoSize = true;
+                yearlbl.Text = "Birth year";
+                Controls.Add(yearlbl);
+
+                TextBox yearBox = new TextBox();
+                yearBox.Location = new Point(yearlbl.Location.X + yearlbl.Width, yearlbl.Location.Y);
+                yearBox.Size = new Size(textBoxWidth, textBoxHeight);
+                yearBox.Name = "YearBox";
+                Controls.Add(yearBox);
+
                 Label titlelbl = new Label();
-                titlelbl.Location = new Point(startPoint.X, startPoint.Y + textBoxHeight);
+                titlelbl.Location = new Point(yearlbl.Location.X, yearlbl.Location.Y + textBoxHeight);
                 titlelbl.AutoSize = true;
                 titlelbl.Text = "Title";
                 Controls.Add(titlelbl);
@@ -94,9 +118,9 @@ namespace BooksAndJournalsApp
                 Controls.Add(titleBox);
 
                 Label articlelbl = new Label();
-                articlelbl.Location = new Point(startPoint.X, titlelbl.Location.Y + textBoxHeight);
+                articlelbl.Location = new Point(titlelbl.Location.X, titlelbl.Location.Y + textBoxHeight);
                 articlelbl.AutoSize = true;
-                articlelbl.Text = "Articles";
+                articlelbl.Text = "Article";
                 Controls.Add(articlelbl);
 
                 TextBox articleBox = new TextBox();
@@ -108,7 +132,7 @@ namespace BooksAndJournalsApp
                 Label articlelbl2 = new Label();
                 articlelbl2.Location = new Point(articleBox.Location.X + articleBox.Width, articleBox.Location.Y);
                 articlelbl2.AutoSize = true;
-                articlelbl2.Text = "If you want to add more than 1 article, please use the \";\" symbol!!!";
+                articlelbl2.Text = "Add only 1 article, please!!!";
                 Controls.Add(articlelbl2);
 
                 Button addBtn = new Button();
@@ -145,10 +169,28 @@ namespace BooksAndJournalsApp
                 titleBox.Name = "TitleBox";
                 Controls.Add(titleBox);
 
+                Label articlelbl = new Label();
+                articlelbl.Location = new Point(startPoint.X, titlelbl.Location.Y + textBoxHeight);
+                articlelbl.AutoSize = true;
+                articlelbl.Text = "Article";
+                Controls.Add(articlelbl);
+
+                TextBox articleBox = new TextBox();
+                articleBox.Location = new Point(articlelbl.Location.X + articlelbl.Width, articlelbl.Location.Y);
+                articleBox.Size = new Size(textBoxWidth, textBoxHeight);
+                articleBox.Name = "ArticleBox";
+                Controls.Add(articleBox);
+
+                Label articlelbl2 = new Label();
+                articlelbl2.Location = new Point(articleBox.Location.X + articleBox.Width, articleBox.Location.Y);
+                articlelbl2.AutoSize = true;
+                articlelbl2.Text = "Add only 1 article, please!!!";
+                Controls.Add(articlelbl2);
+
                 Button addBtn = new Button();
                 addBtn.Text = "Add";
                 addBtn.AutoSize = true;
-                addBtn.Location = new Point(titleBox.Location.X + (titleBox.Width - addBtn.Width), titleBox.Location.Y + textBoxHeight);
+                addBtn.Location = new Point(articleBox.Location.X + (articleBox.Width - addBtn.Width), articleBox.Location.Y + textBoxHeight);
                 addBtn.Click += AddNewspaper;
                 Controls.Add(addBtn);
             }
@@ -156,82 +198,48 @@ namespace BooksAndJournalsApp
 
         private void AddBook(object sender, EventArgs e)
         {
-            if (Controls["AuthorBox"].Text == string.Empty || Controls["TitleBox"].Text == string.Empty)
+            if (Controls["AuthorBox"].Text == string.Empty || Controls["TitleBox"].Text == string.Empty || Controls["YearBox"].Text == string.Empty)
             {
                 MessageBox.Show("All of the fields must be not empty!", "Warning!!!");
             }
 
             else
             {
-                _presenter.AddBook(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text);
+                _presenter.AddBook(Controls["TitleBox"].Text, Controls["AuthorBox"].Text, Int32.Parse(Controls["YearBox"].Text));
 
                 Controls["AuthorBox"].Text = string.Empty;
-                Controls["TitleBox"].Text = string.Empty;
+                Controls["YearBox"].Text = string.Empty;
             }
         }
 
         private void AddJournal(object sender, EventArgs e)
         {
-            if (Controls["AuthorBox"].Text == string.Empty || Controls["TitleBox"].Text == string.Empty || Controls["ArticleBox"].Text == string.Empty)
+            if (Controls["AuthorBox"].Text == string.Empty || Controls["TitleBox"].Text == string.Empty || Controls["ArticleBox"].Text == string.Empty || Controls["YearBox"].Text == string.Empty)
             {
                 MessageBox.Show("All of the fields must be not empty!", "Warning!!!");
             }
 
             else
             {
-                _presenter.AddJournal(CheckAuthors(Controls["AuthorBox"].Text), Controls["TitleBox"].Text, Controls["ArticleBox"].Text);
+                _presenter.AddJournal(Controls["TitleBox"].Text, Controls["AuthorBox"].Text, Int32.Parse(Controls["YearBox"].Text), Controls["ArticleBox"].Text);
 
-                Controls["AuthorBox"].Text = string.Empty;
                 Controls["ArticleBox"].Text = string.Empty;
-                Controls["TitleBox"].Text = string.Empty;
             }
         }
 
         private void AddNewspaper(object sender, EventArgs e)
         {
-            if (Controls["PublisherBox"].Text == string.Empty || Controls["TitleBox"].Text == string.Empty)
+            if (Controls["PublisherBox"].Text == string.Empty || Controls["TitleBox"].Text == string.Empty || Controls["ArticleBox"].Text == string.Empty)
             {
                 MessageBox.Show("All of the fields must be not empty!", "Warning!!!");
             }
 
             else
             {
-                _presenter.AddNewspaper(Controls["PublisherBox"].Text, Controls["TitleBox"].Text);
+                _presenter.AddNewspaper(Controls["TitleBox"].Text, Controls["PublisherBox"].Text, Controls["ArticleBox"].Text);
 
-                Controls["PublisherBox"].Text = string.Empty;
-                Controls["TitleBox"].Text = string.Empty;
+                Controls["ArticleBox"].Text = string.Empty;
             }
-        }
-
-        private string CheckAuthors(string author)
-        {
-            HashSet<string> authors = new HashSet<string>();
-            authors = _presenter.GetAllAuthors();
-
-            List<string> matchedauthors = new List<string>();
-
-            foreach (string item in authors)
-            {
-                if (item == author || item.Contains(author))
-                {
-                    matchedauthors.Add(item);
-                }
-            }
-
-            if (matchedauthors.Count > 0)
-            {
-                using (CheckAuthorsView view = new CheckAuthorsView(matchedauthors))
-                {
-                    view.ShowDialog();
-                    if (view.ActiveControl.Text == "No")
-                    {
-                        author = string.Empty;
-                        author = view.Controls["MatchedBox"].Text + _presenter.GetUnicId();
-                    }
-                }
-            }
-
-            return author;
         }
     }
 }

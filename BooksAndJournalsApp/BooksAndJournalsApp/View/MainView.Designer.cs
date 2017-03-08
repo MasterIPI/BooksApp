@@ -44,11 +44,11 @@
             this.ContainerViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ContainerViewer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
             this.ContainerViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ContainerViewer.Location = new System.Drawing.Point(12, 36);
             this.ContainerViewer.MultiSelect = false;
             this.ContainerViewer.Name = "ContainerViewer";
+            this.ContainerViewer.ReadOnly = true;
             this.ContainerViewer.Size = new System.Drawing.Size(813, 489);
             this.ContainerViewer.TabIndex = 0;
             // 
@@ -101,7 +101,7 @@
             this.dltBtn.UseVisualStyleBackColor = true;
             this.dltBtn.Click += new System.EventHandler(this.dltBtn_Click);
             // 
-            // MainForm
+            // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -112,7 +112,7 @@
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.authorsWorksBtn);
             this.Controls.Add(this.ContainerViewer);
-            this.Name = "MainForm";
+            this.Name = "MainView";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.ContainerViewer)).EndInit();
             this.ResumeLayout(false);
