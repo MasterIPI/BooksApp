@@ -14,6 +14,7 @@ namespace Forms
         {
             InitializeComponent();
             presenter = new PublishedEditionsPresenter(this);
+            containerBox.DataSource = presenter.GetListDataSources();
         }
 
         private void authorsWorksBtn_Click(object sender, EventArgs e)
@@ -71,14 +72,6 @@ namespace Forms
             if (errorMessage != string.Empty)
             {
                 MessageBox.Show(errorMessage, "Exception", MessageBoxButtons.OK);
-            }
-        }
-
-        public void Init()
-        {
-            if (presenter != null)
-            {
-                containerBox.DataSource = presenter.GetListDataSources();
             }
         }
     }

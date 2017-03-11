@@ -17,11 +17,7 @@ namespace Forms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            MainView view = new MainView();
-            view.Init();
-
-            Application.Run(view);
+            Application.Run(new MainView());
         }
     }
 }
