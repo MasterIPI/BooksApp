@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Presenters;
 
-using BooksAndJournalsApp.Presenter;
-
-namespace BooksAndJournalsApp
+namespace Forms
 {
     public partial class SaveView : Form
     {

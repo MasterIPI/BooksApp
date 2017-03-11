@@ -1,9 +1,8 @@
-﻿using BooksAndJournalsApp.Presenter;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
+using Presenters;
 
-namespace BooksAndJournalsApp
+namespace Forms
 {
     public partial class DeleteView : Form
     {

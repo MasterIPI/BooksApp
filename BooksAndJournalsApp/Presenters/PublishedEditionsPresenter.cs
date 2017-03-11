@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using Models;
+using View;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace BooksAndJournalsApp.Presenter
+namespace Presenters
 {
     public class PublishedEditionsPresenter
     {
         private PublishedEditionsModel _model;
-        private MainView _view;
+        private IMainView _view;
 
-        public PublishedEditionsPresenter(PublishedEditionsModel model, MainView view)
+        public PublishedEditionsPresenter(IMainView view)
         {
-            _model = model;
+            _model = new PublishedEditionsModel();
             _view = view;
-
-            _view.presenter = this;
         }
 
         public List<string> GetListDataSources()

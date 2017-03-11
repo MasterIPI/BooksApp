@@ -1,15 +1,8 @@
-﻿using BooksAndJournalsApp.Presenter;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BooksAndJournalsApp.View
+namespace Forms.View
 {
     public partial class CheckAuthorsView : Form
     {
@@ -19,12 +12,7 @@ namespace BooksAndJournalsApp.View
             MatchedBox.DataSource = matchedAuthors;
         }
 
-        private void YesBtn_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void NoBtn_Click(object sender, EventArgs e)
+        private void CloseBtn_Click(object sender, EventArgs e)
         {
             Close();
         }

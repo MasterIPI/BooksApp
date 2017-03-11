@@ -1,11 +1,11 @@
-﻿using BooksAndJournalsApp.Presenter;
+﻿using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BooksAndJournalsApp
+namespace Forms
 {
     static class Program
     {
@@ -18,9 +18,7 @@ namespace BooksAndJournalsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            PublishedEditionsModel model = new PublishedEditionsModel();
             MainView view = new MainView();
-            PublishedEditionsPresenter presenter = new PublishedEditionsPresenter(model, view);
             view.Init();
 
             Application.Run(view);

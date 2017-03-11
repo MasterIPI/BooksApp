@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BooksAndJournalsApp
+namespace Entities
 {
     [Serializable]
     public class Book: PublishedEdition

@@ -1,4 +1,4 @@
-﻿namespace BooksAndJournalsApp
+﻿namespace Forms
 {
     partial class MainView
     {

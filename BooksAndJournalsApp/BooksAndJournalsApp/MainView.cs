@@ -1,17 +1,19 @@
-﻿using BooksAndJournalsApp.Presenter;
+﻿using Presenters;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using View;
 
-namespace BooksAndJournalsApp
+namespace Forms
 {
-    public partial class MainView : Form
+    public partial class MainView : Form, IMainView
     {
-        public PublishedEditionsPresenter presenter { get; set; }
+        private PublishedEditionsPresenter presenter;
 
         public MainView()
         {
             InitializeComponent();
+            presenter = new PublishedEditionsPresenter(this);
         }
 
         private void authorsWorksBtn_Click(object sender, EventArgs e)

@@ -1,11 +1,9 @@
-﻿using BooksAndJournalsApp.Presenter;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using BooksAndJournalsApp.View;
+using Presenters;
 
-namespace BooksAndJournalsApp
+namespace Forms
 {
     public partial class AddView : Form
     {

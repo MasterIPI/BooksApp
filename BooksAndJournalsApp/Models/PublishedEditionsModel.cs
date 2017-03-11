@@ -1,14 +1,11 @@
-﻿using BooksAndJournalsApp.Presenter;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 using System.Data;
 
-namespace BooksAndJournalsApp
+namespace Models
 {
     public class PublishedEditionsModel
     {
@@ -35,7 +32,7 @@ namespace BooksAndJournalsApp
             journals.TableName = "Journals";
             newspapers.TableName = "Newspapers";
 
-            dbConncect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iwinn\Source\Repos\BooksApp\BooksAndJournalsApp\BooksAndJournalsApp\Model\PublishedEditions.mdf;Integrated Security=True";
+            dbConncect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iwinn\Source\Repos\BooksApp\BooksAndJournalsApp\BooksAndJournalsApp\PublishedEditions.mdf;Integrated Security=True";
 
             UpdateData();
         }

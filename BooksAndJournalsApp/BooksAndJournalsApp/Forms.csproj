@@ -61,61 +61,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Author.cs" />
-    <Compile Include="Presenter\PublishedEditionsPresenter.cs" />
-    <Compile Include="View\AddView.cs">
+    <Compile Include="AddView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddView.Designer.cs">
+    <Compile Include="AddView.Designer.cs">
       <DependentUpon>AddView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Book.cs" />
-    <Compile Include="Model\PublishedEditionsModel.cs" />
-    <Compile Include="View\CheckAuthorsView.cs">
+    <Compile Include="CheckAuthorsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\CheckAuthorsView.Designer.cs">
+    <Compile Include="CheckAuthorsView.Designer.cs">
       <DependentUpon>CheckAuthorsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DeleteView.cs">
+    <Compile Include="DeleteView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\DeleteView.Designer.cs">
+    <Compile Include="DeleteView.Designer.cs">
       <DependentUpon>DeleteView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\MainView.cs">
+    <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\MainView.Designer.cs">
+    <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Newspaper.cs" />
-    <Compile Include="View\SaveView.cs">
+    <Compile Include="SaveView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\SaveView.Designer.cs">
+    <Compile Include="SaveView.Designer.cs">
       <DependentUpon>SaveView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchView.cs">
+    <Compile Include="SearchView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\SearchView.Designer.cs">
+    <Compile Include="SearchView.Designer.cs">
       <DependentUpon>SearchView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\PublishedEdition.cs" />
-    <Compile Include="Model\Journal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="View\AddView.resx">
+    <EmbeddedResource Include="AddView.resx">
       <DependentUpon>AddView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\CheckAuthorsView.resx">
+    <EmbeddedResource Include="CheckAuthorsView.resx">
       <DependentUpon>CheckAuthorsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DeleteView.resx">
+    <EmbeddedResource Include="DeleteView.resx">
       <DependentUpon>DeleteView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\MainView.resx">
+    <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -127,10 +120,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\SaveView.resx">
+    <EmbeddedResource Include="SaveView.resx">
       <DependentUpon>SaveView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SearchView.resx">
+    <EmbeddedResource Include="SearchView.resx">
       <DependentUpon>SearchView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -159,13 +152,31 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\PublishedEditions.mdf">
+    <Content Include="PublishedEditions.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Model\PublishedEditions_log.ldf">
+    <Content Include="PublishedEditions_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>PublishedEditions.mdf</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{e8106406-0b61-45f1-9eda-ebd9b501f05e}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{41B12DC6-1D85-469C-8EED-D64B81985BB7}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Presenters\Presenters.csproj">
+      <Project>{01ac95ca-d8d6-4ccf-a8ae-6e78c04a5244}</Project>
+      <Name>Presenters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\View\View.csproj">
+      <Project>{FFA77D0E-AF83-454F-BEED-7AAF0516127A}</Project>
+      <Name>View</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

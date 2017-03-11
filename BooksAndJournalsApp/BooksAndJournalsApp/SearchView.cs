@@ -1,15 +1,9 @@
-﻿using BooksAndJournalsApp.Presenter;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Presenters;
 using System.Windows.Forms;
 
-namespace BooksAndJournalsApp
+namespace Forms
 {
     public partial class SearchView : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace BooksAndJournalsApp.View
+﻿namespace Forms.View
 {
     partial class CheckAuthorsView
     {
@@ -52,7 +52,7 @@
             this.YesBtn.TabIndex = 1;
             this.YesBtn.Text = "Yes";
             this.YesBtn.UseVisualStyleBackColor = true;
-            this.YesBtn.Click += new System.EventHandler(this.YesBtn_Click);
+            this.YesBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
             // NoBtn
             // 
@@ -63,7 +63,7 @@
             this.NoBtn.TabIndex = 2;
             this.NoBtn.Text = "No";
             this.NoBtn.UseVisualStyleBackColor = true;
-            this.NoBtn.Click += new System.EventHandler(this.NoBtn_Click);
+            this.NoBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
             // label1
             // 

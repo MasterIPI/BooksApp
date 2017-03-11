@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BooksAndJournalsApp.Properties
+namespace Forms.Properties
 {
 
 
