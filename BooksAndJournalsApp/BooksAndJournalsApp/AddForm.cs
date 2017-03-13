@@ -5,7 +5,7 @@ using Presenters;
 
 namespace Forms
 {
-    public partial class AddView : Form
+    public partial class AddForm : Form
     {
         private PublishedEditionsPresenter _presenter;
 
@@ -13,7 +13,7 @@ namespace Forms
         private int textBoxWidth = 100;
         private Point startPoint = new Point(15, 15);
 
-        public AddView(string contentType, PublishedEditionsPresenter presenter)
+        public AddForm(string contentType, PublishedEditionsPresenter presenter)
         {
             _presenter = presenter;
 

@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class DeleteView
+    partial class DeleteForm
     {
         /// <summary>
         /// Required designer variable.

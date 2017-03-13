@@ -6,11 +6,11 @@ using View;
 
 namespace Forms
 {
-    public partial class MainView : Form, IMainView
+    public partial class MainForm : Form, IMainView
     {
         private PublishedEditionsPresenter presenter;
 
-        public MainView()
+        public MainForm()
         {
             InitializeComponent();
             presenter = new PublishedEditionsPresenter(this);
@@ -19,7 +19,7 @@ namespace Forms
 
         private void authorsWorksBtn_Click(object sender, EventArgs e)
         {
-            using (SearchView form = new SearchView(presenter))
+            using (SearchForm form = new SearchForm(presenter))
             {
                 form.ShowDialog();
             }
@@ -27,7 +27,7 @@ namespace Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            using (SaveView saveForm = new SaveView(presenter))
+            using (SaveForm saveForm = new SaveForm(presenter))
             {
                 saveForm.ShowDialog();
             }
@@ -40,7 +40,7 @@ namespace Forms
 
         private void dltBtn_Click(object sender, EventArgs e)
         {
-            using (DeleteView dltForm = new DeleteView(containerBox.SelectedItem.ToString(), presenter))
+            using (DeleteForm dltForm = new DeleteForm(containerBox.SelectedItem.ToString(), presenter))
             {
                 dltForm.ShowDialog();
             }
@@ -51,7 +51,7 @@ namespace Forms
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            using (AddView addForm = new AddView(containerBox.SelectedItem.ToString(), presenter))
+            using (AddForm addForm = new AddForm(containerBox.SelectedItem.ToString(), presenter))
             {
                 addForm.ShowDialog();
             }
@@ -65,14 +65,6 @@ namespace Forms
             ContainerViewer.DataSource = null;
             ContainerViewer.DataSource = presenter.GetContentFromName(containerBox.SelectedItem.ToString());
             
-        }
-
-        public void ShowError(string errorMessage)
-        {
-            if (errorMessage != string.Empty)
-            {
-                MessageBox.Show(errorMessage, "Exception", MessageBoxButtons.OK);
-            }
         }
     }
 }

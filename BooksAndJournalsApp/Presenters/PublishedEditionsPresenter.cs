@@ -9,12 +9,12 @@ namespace Presenters
 {
     public class PublishedEditionsPresenter
     {
-        private PublishedEditionsModel _model;
+        private MainModel _model;
         private IMainView _view;
 
         public PublishedEditionsPresenter(IMainView view)
         {
-            _model = new PublishedEditionsModel();
+            _model = new MainModel();
             _view = view;
         }
 
@@ -25,9 +25,9 @@ namespace Presenters
 
         public void OnSaveViewSaveBtnClick(string booksSaveOption, string journalsSaveOption, string newspapersSaveOption)
         {
-            _view.ShowError(_model.Serialize(_model.books, booksSaveOption));
-            _view.ShowError(_model.Serialize(_model.journals, journalsSaveOption));
-            _view.ShowError(_model.Serialize(_model.newspapers, newspapersSaveOption));
+            _model._bookModel.Serialize(booksSaveOption);
+            _model._journalModel.Serialize(journalsSaveOption);
+            _model._newspaperModel.Serialize(newspapersSaveOption);
         }
 
         public List<object> FindAuthorsWorks(string author, int yearofbirth)
@@ -46,17 +46,17 @@ namespace Presenters
         {
             if (contentType == "Book")
             {
-                return _model.books;
+                return _model._bookModel.books;
             }
 
             if (contentType == "Journal")
             {
-                return _model.journals;
+                return _model._journalModel.journals;
             }
 
             if (contentType == "Newspaper")
             {
-                return _model.newspapers;
+                return _model._newspaperModel.newspapers;
             }
 
             return null;
@@ -66,33 +66,33 @@ namespace Presenters
         {
             if (ContentType == "Book")
             {
-                _model.RemoveFromBooks(Row.Cells["Book"].Value.ToString());
+                _model._bookModel.RemoveFromBooks(Row.Cells["Book"].Value.ToString());
             }
 
             if (ContentType == "Journal")
             {
-                _model.RemoveFromJournals(Row.Cells["Journal"].Value.ToString());
+                _model._journalModel.RemoveFromJournals(Row.Cells["Journal"].Value.ToString());
             }
 
             if (ContentType == "Newspaper")
             {
-                _model.RemoveFromNewspapers(Row.Cells["Newspaper"].Value.ToString(), Row.Cells["Publisher"].Value.ToString());
+                _model._newspaperModel.RemoveFromNewspapers(Row.Cells["Newspaper"].Value.ToString(), Row.Cells["Publisher"].Value.ToString());
             }
         }
 
         public void AddBook(string title, string author, int yearofbirth)
         {
-            _model.AddBook(title, author, yearofbirth);
+            _model._bookModel.AddBook(title, author, yearofbirth);
         }
 
         public void AddJournal(string title, string author, int yearofbirth, string article)
         {
-            _model.AddJournal(title, author, yearofbirth, article);
+            _model._journalModel.AddJournal(title, author, yearofbirth, article);
         }
 
         public void AddNewspaper(string title, string publisher,  string article)
         {
-            _model.AddNewspaper(title, publisher, article);
+            _model._newspaperModel.AddNewspaper(title, publisher, article);
         }
 
         public void UpdateData()

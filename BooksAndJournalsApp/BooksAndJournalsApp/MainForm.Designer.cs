@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class MainView
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.

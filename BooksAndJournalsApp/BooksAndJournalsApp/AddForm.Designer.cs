@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class AddView
+    partial class AddForm
     {
         /// <summary>
         /// Required designer variable.

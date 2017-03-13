@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class SaveView
+    partial class SaveForm
     {
         /// <summary>
         /// Required designer variable.

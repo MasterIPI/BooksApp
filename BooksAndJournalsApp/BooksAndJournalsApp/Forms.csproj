@@ -7,7 +7,7 @@
     <ProjectGuid>{82EED17B-ABF6-419D-86EB-E500A7B2064F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BooksAndJournalsApp</RootNamespace>
+    <RootNamespace>Forms</RootNamespace>
     <AssemblyName>BooksAndJournalsApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -61,55 +61,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddView.cs">
+    <Compile Include="AddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddView.Designer.cs">
-      <DependentUpon>AddView.cs</DependentUpon>
+    <Compile Include="AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CheckAuthorsView.cs">
+    <Compile Include="DeleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CheckAuthorsView.Designer.cs">
-      <DependentUpon>CheckAuthorsView.cs</DependentUpon>
+    <Compile Include="DeleteForm.Designer.cs">
+      <DependentUpon>DeleteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeleteView.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeleteView.Designer.cs">
-      <DependentUpon>DeleteView.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainView.cs">
+    <Compile Include="SaveForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <Compile Include="SaveForm.Designer.cs">
+      <DependentUpon>SaveForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SaveView.cs">
+    <Compile Include="SearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SaveView.Designer.cs">
-      <DependentUpon>SaveView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SearchView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SearchView.Designer.cs">
-      <DependentUpon>SearchView.cs</DependentUpon>
+    <Compile Include="SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddView.resx">
-      <DependentUpon>AddView.cs</DependentUpon>
+    <EmbeddedResource Include="AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CheckAuthorsView.resx">
-      <DependentUpon>CheckAuthorsView.cs</DependentUpon>
+    <EmbeddedResource Include="DeleteForm.resx">
+      <DependentUpon>DeleteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeleteView.resx">
-      <DependentUpon>DeleteView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -119,12 +110,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SaveView.resx">
-      <DependentUpon>SaveView.cs</DependentUpon>
+    <EmbeddedResource Include="SaveForm.resx">
+      <DependentUpon>SaveForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchView.resx">
-      <DependentUpon>SearchView.cs</DependentUpon>
+    <EmbeddedResource Include="SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

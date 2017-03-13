@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class SearchView
+    partial class SearchForm
     {
         /// <summary>
         /// Required designer variable.

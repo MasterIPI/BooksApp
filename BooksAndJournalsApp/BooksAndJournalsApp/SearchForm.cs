@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace Forms
 {
-    public partial class SearchView : Form
+    public partial class SearchForm : Form
     {
         private PublishedEditionsPresenter _presenter;
         private List<string> results = new List<string>();
 
 
-        public SearchView(PublishedEditionsPresenter presenter)
+        public SearchForm(PublishedEditionsPresenter presenter)
         {
             _presenter = presenter;
 

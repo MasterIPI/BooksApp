@@ -5,12 +5,12 @@ using Presenters;
 
 namespace Forms
 {
-    public partial class SaveView : Form
+    public partial class SaveForm : Form
     {
         private PublishedEditionsPresenter _presenter;
         private List<string> saveFileOptions;
 
-        public SaveView(PublishedEditionsPresenter presenter)
+        public SaveForm(PublishedEditionsPresenter presenter)
         {
             _presenter = presenter;
             saveFileOptions = new List<string>();

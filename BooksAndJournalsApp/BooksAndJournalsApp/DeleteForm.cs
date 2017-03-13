@@ -4,12 +4,12 @@ using Presenters;
 
 namespace Forms
 {
-    public partial class DeleteView : Form
+    public partial class DeleteForm : Form
     {
         private PublishedEditionsPresenter _presenter;
         private string _contentType;
 
-        public DeleteView(string contentType, PublishedEditionsPresenter presenter)
+        public DeleteForm(string contentType, PublishedEditionsPresenter presenter)
         {
             _presenter = presenter;
             _contentType = contentType;

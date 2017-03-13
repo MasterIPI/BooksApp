@@ -8,6 +8,6 @@ namespace View
 {
     public interface IMainView
     {
-        void ShowError(string errorMessage);
+        void UpdateViewedData();
     }
 }
