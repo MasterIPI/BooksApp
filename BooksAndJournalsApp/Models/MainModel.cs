@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,24 +41,24 @@ namespace Models
             _newspaperModel.UpdateNewspapers();
         }
 
-        public DataTable GetAllAuthors()
+        public List<Author> GetAllAuthors()
         {
             DataTable authors = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter("select authors.Name as Name, authors.YearOfBirth as YearOfBirth from authors", dbConnect);
+            SqlDataAdapter adapter = new SqlDataAdapter("select authors.Id as Id, authors.Name as Name, authors.YearOfBirth as YearOfBirth from authors", dbConnect);
 
             adapter.Fill(authors);
 
-            return authors;
+            return (from row in authors.AsEnumerable() select (new Author(Int32.Parse(row["Id"].ToString()), row["Name"].ToString(), Int32.Parse(row["YearOfBirth"].ToString()) ))).ToList();
         }
 
-        public DataTable FindAuthorsWorks(string author, int yearofbirth)
+        public List<string> FindAuthorsWorks(string author, int yearofbirth)
         {
             DataTable result = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter($"select books.title as Title from books inner join authors on books.authorid = authors.id where authors.name = '{author}' and authors.yearofbirth = {yearofbirth} union (select journal_articles.title as Title from journal_articles inner join authors on journal_articles.authorid = authors.id where authors.name = '{author}' and authors.yearofbirth = {yearofbirth});", dbConnect);
 
             adapter.Fill(result);
 
-            return result;
+            return (from row in result.AsEnumerable() select (row["Title"].ToString())).ToList();
         }
     }
 }

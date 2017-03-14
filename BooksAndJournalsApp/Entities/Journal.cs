@@ -5,12 +5,14 @@ namespace Entities
     [Serializable]
     public class Journal: PublishedEdition
     {
-        public string Author { get; set; }
-        public string Articles { get; set; }
+        public Author Author { get; set; }
+        public string Article { get; set; }
 
-        public override string ToString()
+        public Journal (string title, Author author, string article)
         {
-            return "Journal";
+            Title = title;
+            Author = author;
+            Article = article;
         }
     }
 }

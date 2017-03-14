@@ -5,11 +5,12 @@ namespace Entities
     [Serializable]
     public class Book: PublishedEdition
     {
-        public string Author { get; set; }
+        public Author Author { get; set; }
 
-        public override string ToString()
+        public Book (string title, Author author)
         {
-            return "Book";
+            Title = title;
+            Author = author;
         }
     }
 }

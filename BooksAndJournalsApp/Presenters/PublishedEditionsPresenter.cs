@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using Entities;
 
 namespace Presenters
 {
@@ -30,19 +31,17 @@ namespace Presenters
             _model._newspaperModel.Serialize(newspapersSaveOption);
         }
 
-        public List<object> FindAuthorsWorks(string author, int yearofbirth)
+        public List<string> FindAuthorsWorks(string author, int yearofbirth)
         {
-            List<object> result = (from row in _model.FindAuthorsWorks(author, yearofbirth).AsEnumerable() select (row["Title"])).ToList();
-
-            return result;
+            return _model.FindAuthorsWorks(author,yearofbirth);
         }
 
-        public DataTable GetAllAuthors()
+        public List<Author> GetAllAuthors()
         {
             return _model.GetAllAuthors();
         }
 
-        public DataTable GetContentFromName(string contentType)
+        public dynamic GetContentFromName(string contentType)
         {
             if (contentType == "Book")
             {
@@ -66,17 +65,17 @@ namespace Presenters
         {
             if (ContentType == "Book")
             {
-                _model._bookModel.RemoveFromBooks(Row.Cells["Book"].Value.ToString());
+                _model._bookModel.RemoveFromBooks(Row.Cells["Title"].Value.ToString());
             }
 
             if (ContentType == "Journal")
             {
-                _model._journalModel.RemoveFromJournals(Row.Cells["Journal"].Value.ToString());
+                _model._journalModel.RemoveFromJournals(Row.Cells["Title"].Value.ToString());
             }
 
             if (ContentType == "Newspaper")
             {
-                _model._newspaperModel.RemoveFromNewspapers(Row.Cells["Newspaper"].Value.ToString(), Row.Cells["Publisher"].Value.ToString());
+                _model._newspaperModel.RemoveFromNewspapers(Row.Cells["Title"].Value.ToString(), Row.Cells["Publisher"].Value.ToString());
             }
         }
 

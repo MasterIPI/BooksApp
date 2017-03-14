@@ -1,6 +1,10 @@
-﻿using System.Data;
+﻿using Entities;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 
@@ -8,17 +12,17 @@ namespace Models
 {
     public class JournalModel
     {
-        public DataTable journals = new DataTable();
+        public List<Journal> journals = new List<Journal>(); 
         private string _dbConnect;
+
         public JournalModel(string dbConnect)
         {
             _dbConnect = dbConnect;
-            journals.TableName = "Journals";
         }
 
         public void Serialize(string fileFormat)
         {
-            string filePath = journals.TableName + fileFormat;
+            string filePath = "Journals" + fileFormat;
 
             if (fileFormat == ".xml")
             {
@@ -43,9 +47,12 @@ namespace Models
 
         public void UpdateJournals()
         {
-            journals.Clear();
-            SqlDataAdapter adapterjournals = new SqlDataAdapter("select journals.title as Journal, journal_articles.title as Article, authors.name as Author, authors.yearofbirth as YearOfBirth from journals inner join journal_articles on journals.id = journal_articles.journalid inner join authors on journal_articles.authorid = authors.id;", _dbConnect);
-            adapterjournals.Fill(journals);
+            DataTable _journals = new DataTable();
+
+            SqlDataAdapter adapterjournals = new SqlDataAdapter("select journals.title as Journal, journal_articles.title as Article, authors.name as Author, authors.yearofbirth as YearOfBirth, authors.Id as Id from journals inner join journal_articles on journals.id = journal_articles.journalid inner join authors on journal_articles.authorid = authors.id;", _dbConnect);
+            adapterjournals.Fill(_journals);
+
+            journals = (from row in _journals.AsEnumerable() select (new Journal(row["Journal"].ToString(), new Author(Int32.Parse(row["Id"].ToString()), row["Author"].ToString(), Int32.Parse(row["YearOfBirth"].ToString())), row["Article"].ToString()))).ToList();
         }
 
         public void RemoveFromJournals(string title)

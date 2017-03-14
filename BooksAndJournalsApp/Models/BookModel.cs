@@ -4,24 +4,25 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Data.SqlClient;
 using System.Data;
+using Entities;
+using System;
+using System.Linq;
 
 namespace Models
 {
     public class BookModel
     {
-        public DataTable books = new DataTable();
-
+        public List<Book> books = new List<Book>();
         private string _dbConnect;
 
         public BookModel (string dbConnect)
         {
-            books.TableName = "Books";
             _dbConnect = dbConnect;
         }
 
         public void Serialize(string fileFormat)
         {
-            string filePath = books.TableName + fileFormat;
+            string filePath = "Books" + fileFormat;
 
             if (fileFormat == ".xml")
             {
@@ -76,9 +77,11 @@ namespace Models
 
         public void UpdateBooks()
         {
-            books.Clear();
-            SqlDataAdapter adapterbooks = new SqlDataAdapter("select books.title as Book, authors.name as Author, authors.yearofbirth as YearOfBirth from books inner join authors on books.authorid = authors.id;", _dbConnect);
-            adapterbooks.Fill(books);
+            DataTable _books = new DataTable();
+            SqlDataAdapter adapterbooks = new SqlDataAdapter("select books.title as Book, authors.name as Author, authors.yearofbirth as YearOfBirth, authors.Id as Id from books inner join authors on books.authorid = authors.id;", _dbConnect);
+            adapterbooks.Fill(_books);
+
+            books = (from row in _books.AsEnumerable() select (new Book(row["Book"].ToString(), new Author(Int32.Parse(row["Id"].ToString()), row["Author"].ToString(), Int32.Parse(row["YearOfBirth"].ToString()))))).ToList();
         }
     }
 }

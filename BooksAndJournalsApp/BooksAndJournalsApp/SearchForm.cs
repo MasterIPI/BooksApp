@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using Presenters;
 using System.Windows.Forms;
+using Entities;
 
 namespace Forms
 {
     public partial class SearchForm : Form
     {
         private PublishedEditionsPresenter _presenter;
-        private List<string> results = new List<string>();
-
 
         public SearchForm(PublishedEditionsPresenter presenter)
         {
             _presenter = presenter;
 
             InitializeComponent();
-
+            
             AuthorsGV.DataSource = presenter.GetAllAuthors();
+            AuthorsGV.Columns["Id"].Visible = false;
         }
 
         private void AuthorsGV_CellClick(object sender, DataGridViewCellEventArgs e)

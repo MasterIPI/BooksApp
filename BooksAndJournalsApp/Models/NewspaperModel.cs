@@ -1,6 +1,9 @@
-﻿using System.Data;
+﻿using Entities;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 
@@ -8,18 +11,17 @@ namespace Models
 {
     public class NewspaperModel
     {
-        public DataTable newspapers = new DataTable();
+        public List<Newspaper> newspapers = new List<Newspaper>();
         private string _dbConnect;
 
         public NewspaperModel(string dbConnect)
         {
             _dbConnect = dbConnect;
-            newspapers.TableName = "Newspapers";
         }
 
         public void Serialize(string fileFormat)
         {
-            string filePath = newspapers.TableName + fileFormat;
+            string filePath = "Newspapers" + fileFormat;
 
             if (fileFormat == ".xml")
             {
@@ -44,9 +46,11 @@ namespace Models
 
         public void UpdateNewspapers()
         {
-            newspapers.Clear();
+            DataTable _newspapers = new DataTable();
             SqlDataAdapter adapternewspapers = new SqlDataAdapter("select newspapers.title as Newspaper, newspapers.publisher as Publisher, Newspapers_Articles.Title as Article from newspapers inner join newspapers_articles on newspapers.id = Newspapers_Articles.newspaperid order by Newspaper;", _dbConnect);
-            adapternewspapers.Fill(newspapers);
+            adapternewspapers.Fill(_newspapers);
+
+            newspapers = (from row in _newspapers.AsEnumerable() select (new Newspaper(row["Newspaper"].ToString(), row["Publisher"].ToString(), row["Article"].ToString()))).ToList();
         }
 
         public void RemoveFromNewspapers(string title, string publisher)
