@@ -43,6 +43,7 @@
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="Journal.cs" />
+    <Compile Include="JournalArticle.cs" />
     <Compile Include="Newspaper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishedEdition.cs" />

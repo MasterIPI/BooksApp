@@ -48,7 +48,7 @@ namespace Models
 
             adapter.Fill(authors);
 
-            return (from row in authors.AsEnumerable() select (new Author(Int32.Parse(row["Id"].ToString()), row["Name"].ToString(), Int32.Parse(row["YearOfBirth"].ToString()) ))).ToList();
+            return (from row in authors.AsEnumerable() select (new Author(Int32.Parse(row["Id"].ToString()), row["Name"].ToString(), Int32.Parse(row["YearOfBirth"].ToString())))).ToList();
         }
 
         public List<string> FindAuthorsWorks(string author, int yearofbirth)
