@@ -1,16 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities
 {
     [Serializable]
     public class Journal: PublishedEdition
     {
-        public JournalArticle Article { get; set; }
+        public List<JournalArticle> Articles { get; set; }
 
-        public Journal (string title, Author author, string article)
+        public Journal()
+        {
+            Articles = new List<JournalArticle>();
+        }
+
+        public Journal(string title)
         {
             Title = title;
-            Article = new JournalArticle(article, author);
+            Articles = new List<JournalArticle>();
+        }
+
+        public Journal (string title, List<JournalArticle> articles)
+        {
+            Title = title;
+            Articles = articles;
         }
     }
 }

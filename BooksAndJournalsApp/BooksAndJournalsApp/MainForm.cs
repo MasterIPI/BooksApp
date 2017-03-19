@@ -1,4 +1,5 @@
-﻿using Presenters;
+﻿using Entities;
+using Presenters;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -62,9 +63,48 @@ namespace Forms
 
         public void UpdateViewedData()
         {
+            AuthorsGV.DataSource = null;
+            ArticleBox.DataSource = null;
             ContainerViewer.DataSource = null;
             ContainerViewer.DataSource = presenter.GetContentFromName(containerBox.SelectedItem.ToString());
-            
         }
+
+        private void ContainerViewer_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AuthorsGV.DataSource = null;
+            ArticleBox.DataSource = null;
+
+            if (containerBox.SelectedItem.ToString() == "Book")
+            {
+                List<Book> books = (List<Book>)ContainerViewer.DataSource;
+                AuthorsGV.DataSource = books[ContainerViewer.CurrentRow.Index].Authors;
+            }
+
+            if (containerBox.SelectedItem.ToString() == "Journal")
+            {
+                List<Journal> journals = (List<Journal>)ContainerViewer.DataSource;
+                ArticleBox.DataSource = journals[ContainerViewer.CurrentRow.Index].Articles;
+            }
+
+            if (containerBox.SelectedItem.ToString() == "Newspaper")
+            {
+                List<Newspaper> newspapers = (List<Newspaper>)ContainerViewer.DataSource;
+                ArticleBox.DataSource = newspapers[ContainerViewer.CurrentRow.Index].Articles;
+            }
+        }
+
+        private void ArticleBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (containerBox.SelectedItem.ToString() == "Journal")
+            {
+                List<JournalArticle> articles = (List<JournalArticle>)ArticleBox.DataSource;
+                if (ArticleBox.SelectedIndex >= 0)
+                {
+                    AuthorsGV.DataSource = articles[ArticleBox.SelectedIndex].Authors;
+                }
+            }
+        }
+
+        
     }
 }

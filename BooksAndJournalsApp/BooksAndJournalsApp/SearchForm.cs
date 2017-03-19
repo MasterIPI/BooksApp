@@ -17,7 +17,6 @@ namespace Forms
             InitializeComponent();
             
             AuthorsGV.DataSource = presenter.GetAllAuthors();
-            AuthorsGV.Columns["Id"].Visible = false;
         }
 
         private void AuthorsGV_CellClick(object sender, DataGridViewCellEventArgs e)

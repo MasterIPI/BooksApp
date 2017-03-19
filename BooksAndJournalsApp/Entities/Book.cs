@@ -1,16 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities
 {
     [Serializable]
     public class Book: PublishedEdition
     {
-        public Author Author { get; set; }
+        public List<Author> Authors { get; set; }
 
-        public Book (string title, Author author)
+        public Book ()
+        {
+            Authors = new List<Author>();
+        }
+
+        public Book(string title)
         {
             Title = title;
-            Author = author;
+            Authors = new List<Author>();
+        }
+
+        public Book (string title, List<Author> authors)
+        {
+            Title = title;
+            Authors = authors;
         }
     }
 }

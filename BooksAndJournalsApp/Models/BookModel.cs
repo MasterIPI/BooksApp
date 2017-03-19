@@ -78,10 +78,19 @@ namespace Models
         public void UpdateBooks()
         {
             DataTable _books = new DataTable();
-            SqlDataAdapter adapterbooks = new SqlDataAdapter("select books.title as Book, authors.name as Author, authors.yearofbirth as YearOfBirth, authors.Id as Id from books inner join authors on books.authorid = authors.id;", _dbConnect);
+            SqlDataAdapter adapterbooks = new SqlDataAdapter("select books.title as Book from books;", _dbConnect);
             adapterbooks.Fill(_books);
 
-            books = (from row in _books.AsEnumerable() select (new Book(row["Book"].ToString(), new Author(Int32.Parse(row["Id"].ToString()), row["Author"].ToString(), Int32.Parse(row["YearOfBirth"].ToString()))))).ToList();
+            books = (from row in _books.AsEnumerable() select (new Book(row["Book"].ToString()))).ToList();
+
+            foreach (Book book in books)
+            {
+                DataTable authors = new DataTable();
+                adapterbooks = new SqlDataAdapter($"select authors.name as Author, authors.YearOfBirth as YearOfBirth from Books inner join book_to_authors on books.id = book_to_authors.bookid inner join authors on book_to_authors.authorid = authors.id where books.Title = '{book.Title.Replace("'","''")}';", _dbConnect);
+                adapterbooks.Fill(authors);
+
+                book.Authors.AddRange((from row in authors.AsEnumerable() select (new Author(row["Author"].ToString(), Int32.Parse(row["YearOfBirth"].ToString())))).ToList());
+            }
         }
     }
 }

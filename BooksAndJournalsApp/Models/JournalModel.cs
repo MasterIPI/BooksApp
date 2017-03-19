@@ -49,10 +49,29 @@ namespace Models
         {
             DataTable _journals = new DataTable();
 
-            SqlDataAdapter adapterjournals = new SqlDataAdapter("select journals.title as Journal, journal_articles.title as Article, authors.name as Author, authors.yearofbirth as YearOfBirth, authors.Id as Id from journals inner join journal_articles on journals.id = journal_articles.journalid inner join authors on journal_articles.authorid = authors.id;", _dbConnect);
+            SqlDataAdapter adapterjournals = new SqlDataAdapter("select [Journals].Title as Journal from [Journals];", _dbConnect);
+            
             adapterjournals.Fill(_journals);
 
-            journals = (from row in _journals.AsEnumerable() select (new Journal(row["Journal"].ToString(), new Author(Int32.Parse(row["Id"].ToString()), row["Author"].ToString(), Int32.Parse(row["YearOfBirth"].ToString())), row["Article"].ToString()))).ToList();
+            journals = (from row in _journals.AsEnumerable() select (new Journal(row["Journal"].ToString()))).ToList();
+
+            foreach(Journal journal in journals)
+            {
+                DataTable articles = new DataTable();
+                adapterjournals = new SqlDataAdapter($"select [Journal_Articles].Title as Article from [Journal_Articles] inner join [Journals_to_JournalArticles] on [Journal_Articles].Id = [Journals_to_JournalArticles].ArticleId inner join [Journals] on [Journals_to_JournalArticles].JournalId = [Journals].Id where [Journals].Title = '{journal.Title}'", _dbConnect);
+                adapterjournals.Fill(articles);
+
+                journal.Articles.AddRange((from row in articles.AsEnumerable() select(new JournalArticle(row["Article"].ToString()))).ToList());
+
+                foreach(JournalArticle article in journal.Articles)
+                {
+                    DataTable authors = new DataTable();
+                    adapterjournals = new SqlDataAdapter($"select [Authors].Name as Name, [Authors].YearOfBirth as YearOfBirth from [Authors] inner join [JournalArticles_to_Authors] on [Authors].Id = [JournalArticles_to_Authors].AuthorId where [JournalArticles_to_Authors].ArticleId = (select [Journal_Articles].Id from [Journal_Articles] where [Journal_Articles].Title = '{article.Article}');", _dbConnect);
+                    adapterjournals.Fill(authors);
+
+                    article.Authors.AddRange((from row in authors.AsEnumerable() select (new Author(row["Name"].ToString(), Int32.Parse(row["YearOfBirth"].ToString())))).ToList());
+                }
+            }
         }
 
         public void RemoveFromJournals(string title)

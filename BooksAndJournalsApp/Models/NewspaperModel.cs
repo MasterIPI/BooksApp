@@ -47,10 +47,19 @@ namespace Models
         public void UpdateNewspapers()
         {
             DataTable _newspapers = new DataTable();
-            SqlDataAdapter adapternewspapers = new SqlDataAdapter("select newspapers.title as Newspaper, newspapers.publisher as Publisher, Newspapers_Articles.Title as Article from newspapers inner join newspapers_articles on newspapers.id = Newspapers_Articles.newspaperid order by Newspaper;", _dbConnect);
+            SqlDataAdapter adapternewspapers = new SqlDataAdapter("select [Newspapers].Title as Newspaper, [Newspapers].Publisher as Publisher from [Newspapers];", _dbConnect);
             adapternewspapers.Fill(_newspapers);
 
-            newspapers = (from row in _newspapers.AsEnumerable() select (new Newspaper(row["Newspaper"].ToString(), row["Publisher"].ToString(), row["Article"].ToString()))).ToList();
+            newspapers = (from row in _newspapers.AsEnumerable() select (new Newspaper(row["Newspaper"].ToString(), row["Publisher"].ToString()))).ToList();
+
+            foreach (Newspaper newspaper in newspapers)
+            {
+                DataTable articles = new DataTable();
+                adapternewspapers = new SqlDataAdapter($"select [Newspapers_Articles].Title as Article from [Newspapers_Articles] inner join [Newspapers] on [Newspapers_Articles].NewspaperId = [Newspapers].Id where [Newspapers].Title = '{newspaper.Title}' and [Newspapers].Publisher = '{newspaper.Publisher}'", _dbConnect);
+                adapternewspapers.Fill(articles);
+
+                newspaper.Articles.AddRange((from row in articles.AsEnumerable() select (row["Article"].ToString())).ToList());
+            }
         }
 
         public void RemoveFromNewspapers(string title, string publisher)

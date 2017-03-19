@@ -8,18 +8,29 @@ namespace Entities
 {
     public class JournalArticle
     {
-        public string Title { get; set; }
-        public Author Author { get; set; }
+        public string Article { get; set; }
+        public List<Author> Authors { get; set; }
 
-        public JournalArticle(string title, Author author)
+        public JournalArticle()
         {
-            Title = title;
-            Author = author;
+            Authors = new List<Author>();
+        }
+
+        public JournalArticle(string title)
+        {
+            Article = title;
+            Authors = new List<Author>();
+        }
+
+        public JournalArticle(string title, List<Author> authors)
+        {
+            Article = title;
+            Authors = authors;
         }
 
         public override string ToString()
         {
-            return Title + ", " + Author.Name + ", " + Author.YearOfBirth.ToString();
+            return Article;
         }
     }
 }
