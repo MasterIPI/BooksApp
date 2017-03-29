@@ -41,21 +41,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddBookPresenter.cs" />
+    <Compile Include="AddJournalPresenter.cs" />
+    <Compile Include="AddNewspaperPresenter.cs" />
+    <Compile Include="DeletePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublishedEditionsPresenter.cs" />
+    <Compile Include="MainPresenter.cs" />
+    <Compile Include="SavePresenter.cs" />
+    <Compile Include="SearchPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdditionalDataProvider\AdditionalDataProvider.csproj">
+      <Project>{e01e9857-5daf-4703-85de-97d71f37a3d0}</Project>
+      <Name>AdditionalDataProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{e8106406-0b61-45f1-9eda-ebd9b501f05e}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{72535167-EFA5-4135-B7A0-BFCD58F3188B}</Project>
+      <Name>Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{41B12DC6-1D85-469C-8EED-D64B81985BB7}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\View\View.csproj">
+    <ProjectReference Include="..\View\Views.csproj">
       <Project>{FFA77D0E-AF83-454F-BEED-7AAF0516127A}</Project>
-      <Name>View</Name>
+      <Name>Views</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

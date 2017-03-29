@@ -28,135 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ContainerViewer = new System.Windows.Forms.DataGridView();
-            this.authorsWorksBtn = new System.Windows.Forms.Button();
-            this.SaveBtn = new System.Windows.Forms.Button();
-            this.containerBox = new System.Windows.Forms.ComboBox();
-            this.addBtn = new System.Windows.Forms.Button();
-            this.dltBtn = new System.Windows.Forms.Button();
-            this.ArticleBox = new System.Windows.Forms.ListBox();
-            this.AuthorsGV = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.ContainerViewer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AuthorsGV)).BeginInit();
+            this.DGVPublishedEditionViewer = new System.Windows.Forms.DataGridView();
+            this.BtnAuthorsWorks = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.DropBoxTypes = new System.Windows.Forms.ComboBox();
+            this.BtnAdd = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
+            this.LstBoxArticle = new System.Windows.Forms.ListBox();
+            this.DGVAuthorsViewer = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVPublishedEditionViewer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVAuthorsViewer)).BeginInit();
             this.SuspendLayout();
             // 
-            // ContainerViewer
+            // DGVPublishedEditionViewer
             // 
-            this.ContainerViewer.AllowUserToAddRows = false;
-            this.ContainerViewer.AllowUserToDeleteRows = false;
-            this.ContainerViewer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DGVPublishedEditionViewer.AllowUserToAddRows = false;
+            this.DGVPublishedEditionViewer.AllowUserToDeleteRows = false;
+            this.DGVPublishedEditionViewer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.ContainerViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ContainerViewer.Location = new System.Drawing.Point(12, 36);
-            this.ContainerViewer.MultiSelect = false;
-            this.ContainerViewer.Name = "ContainerViewer";
-            this.ContainerViewer.ReadOnly = true;
-            this.ContainerViewer.Size = new System.Drawing.Size(496, 489);
-            this.ContainerViewer.TabIndex = 0;
-            this.ContainerViewer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ContainerViewer_CellClick);
+            this.DGVPublishedEditionViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVPublishedEditionViewer.Location = new System.Drawing.Point(12, 36);
+            this.DGVPublishedEditionViewer.MultiSelect = false;
+            this.DGVPublishedEditionViewer.Name = "DGVPublishedEditionViewer";
+            this.DGVPublishedEditionViewer.ReadOnly = true;
+            this.DGVPublishedEditionViewer.Size = new System.Drawing.Size(496, 471);
+            this.DGVPublishedEditionViewer.TabIndex = 0;
+            this.DGVPublishedEditionViewer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVPublishedEditionViewer_CellClick);
             // 
-            // authorsWorksBtn
+            // BtnAuthorsWorks
             // 
-            this.authorsWorksBtn.Location = new System.Drawing.Point(139, 7);
-            this.authorsWorksBtn.Name = "authorsWorksBtn";
-            this.authorsWorksBtn.Size = new System.Drawing.Size(112, 23);
-            this.authorsWorksBtn.TabIndex = 2;
-            this.authorsWorksBtn.Text = "View Authors works";
-            this.authorsWorksBtn.UseVisualStyleBackColor = true;
-            this.authorsWorksBtn.Click += new System.EventHandler(this.authorsWorksBtn_Click);
+            this.BtnAuthorsWorks.Location = new System.Drawing.Point(139, 7);
+            this.BtnAuthorsWorks.Name = "BtnAuthorsWorks";
+            this.BtnAuthorsWorks.Size = new System.Drawing.Size(112, 23);
+            this.BtnAuthorsWorks.TabIndex = 2;
+            this.BtnAuthorsWorks.Text = "View Authors works";
+            this.BtnAuthorsWorks.UseVisualStyleBackColor = true;
+            this.BtnAuthorsWorks.Click += new System.EventHandler(this.BtnAuthorsWorks_Click);
             // 
-            // SaveBtn
+            // BtnSave
             // 
-            this.SaveBtn.Location = new System.Drawing.Point(750, 7);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(75, 23);
-            this.SaveBtn.TabIndex = 3;
-            this.SaveBtn.Text = "Save";
-            this.SaveBtn.UseVisualStyleBackColor = true;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            this.BtnSave.Location = new System.Drawing.Point(750, 7);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(75, 23);
+            this.BtnSave.TabIndex = 3;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // containerBox
+            // DropBoxTypes
             // 
-            this.containerBox.FormattingEnabled = true;
-            this.containerBox.Location = new System.Drawing.Point(12, 9);
-            this.containerBox.Name = "containerBox";
-            this.containerBox.Size = new System.Drawing.Size(121, 21);
-            this.containerBox.TabIndex = 4;
-            this.containerBox.SelectedIndexChanged += new System.EventHandler(this.containerBox_SelectedIndexChanged);
+            this.DropBoxTypes.FormattingEnabled = true;
+            this.DropBoxTypes.Location = new System.Drawing.Point(12, 9);
+            this.DropBoxTypes.Name = "DropBoxTypes";
+            this.DropBoxTypes.Size = new System.Drawing.Size(121, 21);
+            this.DropBoxTypes.TabIndex = 4;
+            this.DropBoxTypes.SelectedIndexChanged += new System.EventHandler(this.DropBoxTypes_SelectedIndexChanged);
             // 
-            // addBtn
+            // BtnAdd
             // 
-            this.addBtn.Location = new System.Drawing.Point(352, 7);
-            this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(75, 23);
-            this.addBtn.TabIndex = 5;
-            this.addBtn.Text = "Add";
-            this.addBtn.UseVisualStyleBackColor = true;
-            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            this.BtnAdd.Location = new System.Drawing.Point(352, 7);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(75, 23);
+            this.BtnAdd.TabIndex = 5;
+            this.BtnAdd.Text = "Add";
+            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // dltBtn
+            // BtnDelete
             // 
-            this.dltBtn.Location = new System.Drawing.Point(433, 7);
-            this.dltBtn.Name = "dltBtn";
-            this.dltBtn.Size = new System.Drawing.Size(75, 23);
-            this.dltBtn.TabIndex = 6;
-            this.dltBtn.Text = "Delete";
-            this.dltBtn.UseVisualStyleBackColor = true;
-            this.dltBtn.Click += new System.EventHandler(this.dltBtn_Click);
+            this.BtnDelete.Location = new System.Drawing.Point(433, 7);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(75, 23);
+            this.BtnDelete.TabIndex = 6;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // ArticleBox
+            // LstBoxArticle
             // 
-            this.ArticleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LstBoxArticle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ArticleBox.FormattingEnabled = true;
-            this.ArticleBox.Location = new System.Drawing.Point(514, 36);
-            this.ArticleBox.Name = "ArticleBox";
-            this.ArticleBox.Size = new System.Drawing.Size(311, 238);
-            this.ArticleBox.TabIndex = 8;
-            this.ArticleBox.SelectedIndexChanged += new System.EventHandler(this.ArticleBox_SelectedIndexChanged);
+            this.LstBoxArticle.FormattingEnabled = true;
+            this.LstBoxArticle.Location = new System.Drawing.Point(514, 36);
+            this.LstBoxArticle.Name = "LstBoxArticle";
+            this.LstBoxArticle.Size = new System.Drawing.Size(310, 238);
+            this.LstBoxArticle.TabIndex = 8;
+            this.LstBoxArticle.SelectedIndexChanged += new System.EventHandler(this.LstBoxArticle_SelectedIndexChanged);
             // 
-            // AuthorsGV
+            // DGVAuthorsViewer
             // 
-            this.AuthorsGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DGVAuthorsViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AuthorsGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AuthorsGV.Location = new System.Drawing.Point(514, 280);
-            this.AuthorsGV.Name = "AuthorsGV";
-            this.AuthorsGV.Size = new System.Drawing.Size(311, 245);
-            this.AuthorsGV.TabIndex = 9;
+            this.DGVAuthorsViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVAuthorsViewer.Location = new System.Drawing.Point(514, 280);
+            this.DGVAuthorsViewer.Name = "DGVAuthorsViewer";
+            this.DGVAuthorsViewer.Size = new System.Drawing.Size(310, 227);
+            this.DGVAuthorsViewer.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 537);
-            this.Controls.Add(this.AuthorsGV);
-            this.Controls.Add(this.ArticleBox);
-            this.Controls.Add(this.dltBtn);
-            this.Controls.Add(this.addBtn);
-            this.Controls.Add(this.containerBox);
-            this.Controls.Add(this.SaveBtn);
-            this.Controls.Add(this.authorsWorksBtn);
-            this.Controls.Add(this.ContainerViewer);
+            this.ClientSize = new System.Drawing.Size(836, 519);
+            this.Controls.Add(this.DGVAuthorsViewer);
+            this.Controls.Add(this.LstBoxArticle);
+            this.Controls.Add(this.BtnDelete);
+            this.Controls.Add(this.BtnAdd);
+            this.Controls.Add(this.DropBoxTypes);
+            this.Controls.Add(this.BtnSave);
+            this.Controls.Add(this.BtnAuthorsWorks);
+            this.Controls.Add(this.DGVPublishedEditionViewer);
             this.Name = "MainForm";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.ContainerViewer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AuthorsGV)).EndInit();
+            this.Text = "MainForm";
+            ((System.ComponentModel.ISupportInitialize)(this.DGVPublishedEditionViewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVAuthorsViewer)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView ContainerViewer;
-        private System.Windows.Forms.Button authorsWorksBtn;
-        private System.Windows.Forms.Button SaveBtn;
-        private System.Windows.Forms.ComboBox containerBox;
-        private System.Windows.Forms.Button addBtn;
-        private System.Windows.Forms.Button dltBtn;
-        private System.Windows.Forms.ListBox ArticleBox;
-        private System.Windows.Forms.DataGridView AuthorsGV;
+        private System.Windows.Forms.DataGridView DGVPublishedEditionViewer;
+        private System.Windows.Forms.Button BtnAuthorsWorks;
+        private System.Windows.Forms.Button BtnSave;
+        private System.Windows.Forms.ComboBox DropBoxTypes;
+        private System.Windows.Forms.Button BtnAdd;
+        private System.Windows.Forms.Button BtnDelete;
+        private System.Windows.Forms.ListBox LstBoxArticle;
+        private System.Windows.Forms.DataGridView DGVAuthorsViewer;
     }
 }
 

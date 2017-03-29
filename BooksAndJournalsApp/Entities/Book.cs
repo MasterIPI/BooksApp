@@ -8,21 +8,11 @@ namespace Entities
     {
         public List<Author> Authors { get; set; }
 
-        public Book ()
+        public Book(int id, string title)
         {
-            Authors = new List<Author>();
-        }
-
-        public Book(string title)
-        {
+            Id = id;
             Title = title;
             Authors = new List<Author>();
-        }
-
-        public Book (string title, List<Author> authors)
-        {
-            Title = title;
-            Authors = authors;
         }
     }
 }

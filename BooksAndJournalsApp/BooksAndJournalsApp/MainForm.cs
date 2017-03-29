@@ -1,110 +1,132 @@
 ﻿using Entities;
+using AdditionalDataProvider;
 using Presenters;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using View;
+using Views;
+using Enums;
 
 namespace Forms
 {
     public partial class MainForm : Form, IMainView
     {
-        private PublishedEditionsPresenter presenter;
+        private MainPresenter _presenter;
 
         public MainForm()
         {
             InitializeComponent();
-            presenter = new PublishedEditionsPresenter(this);
-            containerBox.DataSource = presenter.GetListDataSources();
+            _presenter = new MainPresenter(this);
+            DropBoxTypes.DataSource = _presenter.GetListDataSources();
         }
 
-        private void authorsWorksBtn_Click(object sender, EventArgs e)
+        private void BtnAuthorsWorks_Click(object sender, EventArgs e)
         {
-            using (SearchForm form = new SearchForm(presenter))
+            using (SearchForm form = new SearchForm())
             {
                 form.ShowDialog();
             }
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            using (SaveForm saveForm = new SaveForm(presenter))
+            using (SaveForm saveForm = new SaveForm())
             {
                 saveForm.ShowDialog();
             }
         }
 
-        private void containerBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void DropBoxTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateViewedData();
         }
 
-        private void dltBtn_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (DeleteForm dltForm = new DeleteForm(containerBox.SelectedItem.ToString(), presenter))
+            using (DeleteForm dltForm = new DeleteForm(DropBoxTypes.SelectedItem.ToString()))
             {
                 dltForm.ShowDialog();
             }
 
-            presenter.UpdateData();
+            _presenter.UpdateData();
             UpdateViewedData();
         }
 
-        private void addBtn_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
-            using (AddForm addForm = new AddForm(containerBox.SelectedItem.ToString(), presenter))
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Book.ToString())
             {
-                addForm.ShowDialog();
+                using (AddBookForm addForm = new AddBookForm())
+                {
+                    addForm.ShowDialog();
+                }
             }
 
-            presenter.UpdateData();
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Journal.ToString())
+            {
+                using (AddJournalForm addForm = new AddJournalForm())
+                {
+                    addForm.ShowDialog();
+                }
+            }
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Newspaper.ToString())
+            {
+                using (AddNewspaperForm addForm = new AddNewspaperForm())
+                {
+                    addForm.ShowDialog();
+                }
+            }
+
+            _presenter.UpdateData();
             UpdateViewedData();
         }
 
         public void UpdateViewedData()
         {
-            AuthorsGV.DataSource = null;
-            ArticleBox.DataSource = null;
-            ContainerViewer.DataSource = null;
-            ContainerViewer.DataSource = presenter.GetContentFromName(containerBox.SelectedItem.ToString());
+            DGVAuthorsViewer.DataSource = null;
+            LstBoxArticle.DataSource = null;
+            DGVPublishedEditionViewer.DataSource = null;
+            DGVPublishedEditionViewer.DataSource = _presenter.GetContentFromName(DropBoxTypes.SelectedItem.ToString());
+            DGVPublishedEditionViewer.Columns["Id"].Visible = false;
         }
 
-        private void ContainerViewer_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void LstBoxArticle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AuthorsGV.DataSource = null;
-            ArticleBox.DataSource = null;
-
-            if (containerBox.SelectedItem.ToString() == "Book")
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Journal.ToString())
             {
-                List<Book> books = (List<Book>)ContainerViewer.DataSource;
-                AuthorsGV.DataSource = books[ContainerViewer.CurrentRow.Index].Authors;
-            }
-
-            if (containerBox.SelectedItem.ToString() == "Journal")
-            {
-                List<Journal> journals = (List<Journal>)ContainerViewer.DataSource;
-                ArticleBox.DataSource = journals[ContainerViewer.CurrentRow.Index].Articles;
-            }
-
-            if (containerBox.SelectedItem.ToString() == "Newspaper")
-            {
-                List<Newspaper> newspapers = (List<Newspaper>)ContainerViewer.DataSource;
-                ArticleBox.DataSource = newspapers[ContainerViewer.CurrentRow.Index].Articles;
-            }
-        }
-
-        private void ArticleBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (containerBox.SelectedItem.ToString() == "Journal")
-            {
-                List<JournalArticle> articles = (List<JournalArticle>)ArticleBox.DataSource;
-                if (ArticleBox.SelectedIndex >= 0)
+                List<JournalArticle> articles = (List<JournalArticle>)LstBoxArticle.DataSource;
+                if (LstBoxArticle.SelectedIndex >= 0)
                 {
-                    AuthorsGV.DataSource = articles[ArticleBox.SelectedIndex].Authors;
+                    DGVAuthorsViewer.DataSource = articles[LstBoxArticle.SelectedIndex].Authors;
+                    DGVAuthorsViewer.Columns["Id"].Visible = false;
                 }
             }
         }
 
-        
+        private void DGVPublishedEditionViewer_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DGVAuthorsViewer.DataSource = null;
+            LstBoxArticle.DataSource = null;
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Book.ToString())
+            {
+                List<Book> books = (List<Book>)DGVPublishedEditionViewer.DataSource;
+                DGVAuthorsViewer.DataSource = books[DGVPublishedEditionViewer.CurrentRow.Index].Authors;
+                DGVAuthorsViewer.Columns["Id"].Visible = false;
+            }
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Journal.ToString())
+            {
+                List<Journal> journals = (List<Journal>)DGVPublishedEditionViewer.DataSource;
+                LstBoxArticle.DataSource = journals[DGVPublishedEditionViewer.CurrentRow.Index].Articles;
+            }
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Newspaper.ToString())
+            {
+                List<Newspaper> newspapers = (List<Newspaper>)DGVPublishedEditionViewer.DataSource;
+                LstBoxArticle.DataSource = newspapers[DGVPublishedEditionViewer.CurrentRow.Index].Articles;
+            }
+        }
     }
 }

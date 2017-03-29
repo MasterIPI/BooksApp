@@ -9,23 +9,12 @@ namespace Entities
         public string Publisher { get; set; }
         public List<string> Articles { get; set; }
 
-        public Newspaper()
+        public Newspaper(int id, string title, string publisher)
         {
-            Articles = new List<string>();
-        }
-
-        public Newspaper(string title, string publisher)
-        {
+            Id = id;
             Title = title;
             Publisher = publisher;
             Articles = new List<string>();
-        }
-
-        public Newspaper(string title, string publisher, List<string> articles)
-        {
-            Title = title;
-            Publisher = publisher;
-            Articles = articles;
         }
     }
 }

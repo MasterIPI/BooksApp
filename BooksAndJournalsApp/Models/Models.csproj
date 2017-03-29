@@ -41,15 +41,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JournalModel.cs" />
-    <Compile Include="MainModel.cs" />
     <Compile Include="NewspaperModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BookModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdditionalDataProvider\AdditionalDataProvider.csproj">
+      <Project>{e01e9857-5daf-4703-85de-97d71f37a3d0}</Project>
+      <Name>AdditionalDataProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{E8106406-0B61-45F1-9EDA-EBD9B501F05E}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{72535167-EFA5-4135-B7A0-BFCD58F3188B}</Project>
+      <Name>Enums</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

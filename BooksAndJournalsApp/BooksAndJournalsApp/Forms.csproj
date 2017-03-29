@@ -61,11 +61,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddForm.cs">
+    <Compile Include="AddBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddForm.Designer.cs">
-      <DependentUpon>AddForm.cs</DependentUpon>
+    <Compile Include="AddBookForm.Designer.cs">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddJournalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddJournalForm.Designer.cs">
+      <DependentUpon>AddJournalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewspaperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewspaperForm.Designer.cs">
+      <DependentUpon>AddNewspaperForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DeleteForm.cs">
       <SubType>Form</SubType>
@@ -93,8 +105,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddForm.resx">
-      <DependentUpon>AddForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddBookForm.resx">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddJournalForm.resx">
+      <DependentUpon>AddJournalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewspaperForm.resx">
+      <DependentUpon>AddNewspaperForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteForm.resx">
       <DependentUpon>DeleteForm.cs</DependentUpon>
@@ -153,9 +171,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdditionalDataProvider\AdditionalDataProvider.csproj">
+      <Project>{e01e9857-5daf-4703-85de-97d71f37a3d0}</Project>
+      <Name>AdditionalDataProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{e8106406-0b61-45f1-9eda-ebd9b501f05e}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{72535167-efa5-4135-b7a0-bfcd58f3188b}</Project>
+      <Name>Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{41B12DC6-1D85-469C-8EED-D64B81985BB7}</Project>
@@ -165,9 +191,9 @@
       <Project>{01ac95ca-d8d6-4ccf-a8ae-6e78c04a5244}</Project>
       <Name>Presenters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\View\View.csproj">
+    <ProjectReference Include="..\View\Views.csproj">
       <Project>{FFA77D0E-AF83-454F-BEED-7AAF0516127A}</Project>
-      <Name>View</Name>
+      <Name>Views</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

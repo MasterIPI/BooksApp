@@ -28,93 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.saveBtn = new System.Windows.Forms.Button();
-            this.bookslbl = new System.Windows.Forms.Label();
-            this.journalslbl = new System.Windows.Forms.Label();
-            this.newspaperslbl = new System.Windows.Forms.Label();
-            this.booksBox = new System.Windows.Forms.ComboBox();
-            this.journalsBox = new System.Windows.Forms.ComboBox();
-            this.newspapersBox = new System.Windows.Forms.ComboBox();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.LblBooks = new System.Windows.Forms.Label();
+            this.LblJournals = new System.Windows.Forms.Label();
+            this.LblNewspapers = new System.Windows.Forms.Label();
+            this.DrpBoxBooks = new System.Windows.Forms.ComboBox();
+            this.DrpBoxJournals = new System.Windows.Forms.ComboBox();
+            this.DrpBoxNewspapers = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // saveBtn
+            // BtnSave
             // 
-            this.saveBtn.Enabled = false;
-            this.saveBtn.Location = new System.Drawing.Point(113, 197);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(75, 23);
-            this.saveBtn.TabIndex = 0;
-            this.saveBtn.Text = "Save All";
-            this.saveBtn.UseVisualStyleBackColor = true;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.BtnSave.Enabled = false;
+            this.BtnSave.Location = new System.Drawing.Point(113, 197);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(75, 23);
+            this.BtnSave.TabIndex = 0;
+            this.BtnSave.Text = "Save All";
+            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // bookslbl
+            // LblBooks
             // 
-            this.bookslbl.AutoSize = true;
-            this.bookslbl.Location = new System.Drawing.Point(24, 39);
-            this.bookslbl.Name = "bookslbl";
-            this.bookslbl.Size = new System.Drawing.Size(37, 13);
-            this.bookslbl.TabIndex = 1;
-            this.bookslbl.Text = "Books";
+            this.LblBooks.AutoSize = true;
+            this.LblBooks.Location = new System.Drawing.Point(24, 39);
+            this.LblBooks.Name = "LblBooks";
+            this.LblBooks.Size = new System.Drawing.Size(37, 13);
+            this.LblBooks.TabIndex = 1;
+            this.LblBooks.Text = "Books";
             // 
-            // journalslbl
+            // LblJournals
             // 
-            this.journalslbl.AutoSize = true;
-            this.journalslbl.Location = new System.Drawing.Point(24, 84);
-            this.journalslbl.Name = "journalslbl";
-            this.journalslbl.Size = new System.Drawing.Size(46, 13);
-            this.journalslbl.TabIndex = 2;
-            this.journalslbl.Text = "Journals";
+            this.LblJournals.AutoSize = true;
+            this.LblJournals.Location = new System.Drawing.Point(24, 84);
+            this.LblJournals.Name = "LblJournals";
+            this.LblJournals.Size = new System.Drawing.Size(46, 13);
+            this.LblJournals.TabIndex = 2;
+            this.LblJournals.Text = "Journals";
             // 
-            // newspaperslbl
+            // LblNewspapers
             // 
-            this.newspaperslbl.AutoSize = true;
-            this.newspaperslbl.Location = new System.Drawing.Point(24, 126);
-            this.newspaperslbl.Name = "newspaperslbl";
-            this.newspaperslbl.Size = new System.Drawing.Size(66, 13);
-            this.newspaperslbl.TabIndex = 3;
-            this.newspaperslbl.Text = "Newspapers";
+            this.LblNewspapers.AutoSize = true;
+            this.LblNewspapers.Location = new System.Drawing.Point(24, 126);
+            this.LblNewspapers.Name = "LblNewspapers";
+            this.LblNewspapers.Size = new System.Drawing.Size(66, 13);
+            this.LblNewspapers.TabIndex = 3;
+            this.LblNewspapers.Text = "Newspapers";
             // 
-            // booksBox
+            // DrpBoxBooks
             // 
-            this.booksBox.FormattingEnabled = true;
-            this.booksBox.Location = new System.Drawing.Point(113, 36);
-            this.booksBox.Name = "booksBox";
-            this.booksBox.Size = new System.Drawing.Size(86, 21);
-            this.booksBox.TabIndex = 4;
-            this.booksBox.SelectedIndexChanged += new System.EventHandler(this.EnableSaveBtn);
+            this.DrpBoxBooks.FormattingEnabled = true;
+            this.DrpBoxBooks.Location = new System.Drawing.Point(113, 36);
+            this.DrpBoxBooks.Name = "DrpBoxBooks";
+            this.DrpBoxBooks.Size = new System.Drawing.Size(86, 21);
+            this.DrpBoxBooks.TabIndex = 4;
+            this.DrpBoxBooks.SelectedIndexChanged += new System.EventHandler(this.EnableBtnSave);
             // 
-            // journalsBox
+            // DrpBoxJournals
             // 
-            this.journalsBox.FormattingEnabled = true;
-            this.journalsBox.Location = new System.Drawing.Point(113, 81);
-            this.journalsBox.Name = "journalsBox";
-            this.journalsBox.Size = new System.Drawing.Size(86, 21);
-            this.journalsBox.TabIndex = 5;
-            this.journalsBox.SelectedIndexChanged += new System.EventHandler(this.EnableSaveBtn);
+            this.DrpBoxJournals.FormattingEnabled = true;
+            this.DrpBoxJournals.Location = new System.Drawing.Point(113, 81);
+            this.DrpBoxJournals.Name = "DrpBoxJournals";
+            this.DrpBoxJournals.Size = new System.Drawing.Size(86, 21);
+            this.DrpBoxJournals.TabIndex = 5;
+            this.DrpBoxJournals.SelectedIndexChanged += new System.EventHandler(this.EnableBtnSave);
             // 
-            // newspapersBox
+            // DrpBoxNewspapers
             // 
-            this.newspapersBox.FormattingEnabled = true;
-            this.newspapersBox.Location = new System.Drawing.Point(113, 123);
-            this.newspapersBox.Name = "newspapersBox";
-            this.newspapersBox.Size = new System.Drawing.Size(86, 21);
-            this.newspapersBox.TabIndex = 6;
-            this.newspapersBox.SelectedIndexChanged += new System.EventHandler(this.EnableSaveBtn);
+            this.DrpBoxNewspapers.FormattingEnabled = true;
+            this.DrpBoxNewspapers.Location = new System.Drawing.Point(113, 123);
+            this.DrpBoxNewspapers.Name = "DrpBoxNewspapers";
+            this.DrpBoxNewspapers.Size = new System.Drawing.Size(86, 21);
+            this.DrpBoxNewspapers.TabIndex = 6;
+            this.DrpBoxNewspapers.SelectedIndexChanged += new System.EventHandler(this.EnableBtnSave);
             // 
-            // SaveView
+            // SaveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(265, 290);
-            this.Controls.Add(this.newspapersBox);
-            this.Controls.Add(this.journalsBox);
-            this.Controls.Add(this.booksBox);
-            this.Controls.Add(this.newspaperslbl);
-            this.Controls.Add(this.journalslbl);
-            this.Controls.Add(this.bookslbl);
-            this.Controls.Add(this.saveBtn);
-            this.Name = "SaveView";
+            this.Controls.Add(this.DrpBoxNewspapers);
+            this.Controls.Add(this.DrpBoxJournals);
+            this.Controls.Add(this.DrpBoxBooks);
+            this.Controls.Add(this.LblNewspapers);
+            this.Controls.Add(this.LblJournals);
+            this.Controls.Add(this.LblBooks);
+            this.Controls.Add(this.BtnSave);
+            this.Name = "SaveForm";
             this.Text = "SaveForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -123,12 +123,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button saveBtn;
-        private System.Windows.Forms.Label bookslbl;
-        private System.Windows.Forms.Label journalslbl;
-        private System.Windows.Forms.Label newspaperslbl;
-        private System.Windows.Forms.ComboBox booksBox;
-        private System.Windows.Forms.ComboBox journalsBox;
-        private System.Windows.Forms.ComboBox newspapersBox;
+        private System.Windows.Forms.Button BtnSave;
+        private System.Windows.Forms.Label LblBooks;
+        private System.Windows.Forms.Label LblJournals;
+        private System.Windows.Forms.Label LblNewspapers;
+        private System.Windows.Forms.ComboBox DrpBoxBooks;
+        private System.Windows.Forms.ComboBox DrpBoxJournals;
+        private System.Windows.Forms.ComboBox DrpBoxNewspapers;
     }
 }

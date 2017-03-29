@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
 using Presenters;
+using Views;
 
 namespace Forms
 {
-    public partial class DeleteForm : Form
+    public partial class DeleteForm : Form, IDeleteView
     {
-        private PublishedEditionsPresenter _presenter;
+        private DeletePresenter _presenter;
         private string _contentType;
 
-        public DeleteForm(string contentType, PublishedEditionsPresenter presenter)
+        public DeleteForm(string contentType)
         {
-            _presenter = presenter;
+            _presenter = new DeletePresenter(this);
             _contentType = contentType;
 
             InitializeComponent();
@@ -19,19 +20,20 @@ namespace Forms
             UpdateView();
         }
 
-        private void dltRowBtn_Click(object sender, EventArgs e)
+        private void BtnDeleteRow_Click(object sender, EventArgs e)
         {
-            if (ContentViewer.CurrentRow.DataBoundItem != null)
+            if (DGVContentViewer.CurrentRow.DataBoundItem != null)
             {
-                _presenter.OnDeleteViewsDltRowBtnClick(ContentViewer.CurrentRow, _contentType);
+                _presenter.OnDeleteViewsDltRowBtnClick(DGVContentViewer.CurrentRow, _contentType);
                 UpdateView();
             }
         }
 
-        private void UpdateView()
+        public void UpdateView()
         {
-            ContentViewer.DataSource = null;
-            ContentViewer.DataSource = _presenter.GetContentFromName(_contentType);
+            DGVContentViewer.DataSource = null;
+            DGVContentViewer.DataSource = _presenter.GetContentFromName(_contentType);
+            DGVContentViewer.Columns["Id"].Visible = false;
         }
     }
 }

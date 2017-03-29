@@ -28,52 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchResultsView = new System.Windows.Forms.ListBox();
-            this.AuthorsGV = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.AuthorsGV)).BeginInit();
+            this.LstBoxSearchResultsView = new System.Windows.Forms.ListBox();
+            this.DGVAuthors = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVAuthors)).BeginInit();
             this.SuspendLayout();
             // 
-            // searchResultsView
+            // LstBoxSearchResultsView
             // 
-            this.searchResultsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LstBoxSearchResultsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchResultsView.FormattingEnabled = true;
-            this.searchResultsView.Location = new System.Drawing.Point(288, 13);
-            this.searchResultsView.Name = "searchResultsView";
-            this.searchResultsView.Size = new System.Drawing.Size(309, 290);
-            this.searchResultsView.TabIndex = 3;
+            this.LstBoxSearchResultsView.FormattingEnabled = true;
+            this.LstBoxSearchResultsView.Location = new System.Drawing.Point(288, 13);
+            this.LstBoxSearchResultsView.Name = "LstBoxSearchResultsView";
+            this.LstBoxSearchResultsView.Size = new System.Drawing.Size(309, 290);
+            this.LstBoxSearchResultsView.TabIndex = 3;
             // 
-            // AuthorsGV
+            // DGVAuthors
             // 
-            this.AuthorsGV.AllowUserToAddRows = false;
-            this.AuthorsGV.AllowUserToDeleteRows = false;
-            this.AuthorsGV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DGVAuthors.AllowUserToAddRows = false;
+            this.DGVAuthors.AllowUserToDeleteRows = false;
+            this.DGVAuthors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.AuthorsGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AuthorsGV.Location = new System.Drawing.Point(12, 12);
-            this.AuthorsGV.Name = "AuthorsGV";
-            this.AuthorsGV.ReadOnly = true;
-            this.AuthorsGV.Size = new System.Drawing.Size(270, 291);
-            this.AuthorsGV.TabIndex = 5;
-            this.AuthorsGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AuthorsGV_CellClick);
+            this.DGVAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVAuthors.Location = new System.Drawing.Point(12, 12);
+            this.DGVAuthors.Name = "DGVAuthors";
+            this.DGVAuthors.ReadOnly = true;
+            this.DGVAuthors.Size = new System.Drawing.Size(270, 291);
+            this.DGVAuthors.TabIndex = 5;
+            this.DGVAuthors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVAuthors_CellClick);
             // 
-            // SearchView
+            // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 316);
-            this.Controls.Add(this.AuthorsGV);
-            this.Controls.Add(this.searchResultsView);
-            this.Name = "SearchView";
-            this.Text = "Form2";
-            ((System.ComponentModel.ISupportInitialize)(this.AuthorsGV)).EndInit();
+            this.Controls.Add(this.DGVAuthors);
+            this.Controls.Add(this.LstBoxSearchResultsView);
+            this.Name = "SearchForm";
+            this.Text = "SearchForm";
+            ((System.ComponentModel.ISupportInitialize)(this.DGVAuthors)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ListBox searchResultsView;
-        private System.Windows.Forms.DataGridView AuthorsGV;
+        private System.Windows.Forms.ListBox LstBoxSearchResultsView;
+        private System.Windows.Forms.DataGridView DGVAuthors;
     }
 }

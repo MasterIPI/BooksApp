@@ -8,21 +8,11 @@ namespace Entities
     {
         public List<JournalArticle> Articles { get; set; }
 
-        public Journal()
+        public Journal(int id, string title)
         {
-            Articles = new List<JournalArticle>();
-        }
-
-        public Journal(string title)
-        {
+            Id = id;
             Title = title;
             Articles = new List<JournalArticle>();
-        }
-
-        public Journal (string title, List<JournalArticle> articles)
-        {
-            Title = title;
-            Articles = articles;
         }
     }
 }

@@ -1,27 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using Presenters;
 using System.Windows.Forms;
-using Entities;
+using Views;
 
 namespace Forms
 {
-    public partial class SearchForm : Form
+    public partial class SearchForm : Form, ISearchView
     {
-        private PublishedEditionsPresenter _presenter;
+        private SearchPresenter _presenter;
 
-        public SearchForm(PublishedEditionsPresenter presenter)
+        public SearchForm()
         {
-            _presenter = presenter;
-
             InitializeComponent();
-            
-            AuthorsGV.DataSource = presenter.GetAllAuthors();
+
+            _presenter = new SearchPresenter(this);
+            DGVAuthors.DataSource = _presenter.GetAllAuthors();
+            DGVAuthors.Columns["Id"].Visible = false;
         }
 
-        private void AuthorsGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DGVAuthors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            searchResultsView.DataSource = _presenter.FindAuthorsWorks(AuthorsGV.CurrentRow.Cells["Name"].Value.ToString(), Int32.Parse(AuthorsGV.CurrentRow.Cells["YearOfBirth"].Value.ToString()));
+            LstBoxSearchResultsView.DataSource = _presenter.FindAuthorsWorks(Int32.Parse(DGVAuthors.CurrentRow.Cells["Id"].Value.ToString()));
         }
     }
 }
