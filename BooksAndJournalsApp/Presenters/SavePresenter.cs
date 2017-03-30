@@ -13,9 +13,9 @@ namespace Presenters
         public SavePresenter(ISaveView View)
         {
             _view = View;
-            _bookModel = new BookModel();
-            _journalModel = new JournalModel();
-            _newspaperModel = new NewspaperModel();
+            _bookModel = BookModel.GetInstance();
+            _journalModel = JournalModel.GetInstance();
+            _newspaperModel = NewspaperModel.GetInstance();
         }
 
         public void OnSaveViewSaveBtnClick(string booksSaveOption, string journalsSaveOption, string newspapersSaveOption)

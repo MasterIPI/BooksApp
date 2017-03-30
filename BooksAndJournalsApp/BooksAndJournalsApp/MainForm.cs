@@ -43,12 +43,11 @@ namespace Forms
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (DeleteForm dltForm = new DeleteForm(DropBoxTypes.SelectedItem.ToString()))
+            using (DeleteForm dltForm = new DeleteForm(_presenter.GetContentFromName(DropBoxTypes.SelectedItem.ToString())))
             {
                 dltForm.ShowDialog();
             }
 
-            _presenter.UpdateData();
             UpdateViewedData();
         }
 

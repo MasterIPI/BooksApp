@@ -11,7 +11,7 @@ namespace Presenters
 
         public AddBookPresenter(IBookAdd View)
         {
-            _bookModel = new BookModel();
+            _bookModel = BookModel.GetInstance();
             _view = View;
         }
 

@@ -20,9 +20,9 @@ namespace Presenters
 
         public MainPresenter(IMainView view)
         {
-            _bookModel = new BookModel();
-            _journalModel = new JournalModel();
-            _newspaperModel = new NewspaperModel();
+            _bookModel = BookModel.GetInstance();
+            _journalModel = JournalModel.GetInstance();
+            _newspaperModel = NewspaperModel.GetInstance();
             _view = view;
         }
 

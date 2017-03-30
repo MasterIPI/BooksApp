@@ -11,7 +11,7 @@ namespace Presenters
 
         public AddNewspaperPresenter(INewspaperAdd View)
         {
-            _newspaperModel = new NewspaperModel();
+            _newspaperModel = NewspaperModel.GetInstance();
             _view = View;
         }
 

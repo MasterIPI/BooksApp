@@ -9,16 +9,28 @@ using AdditionalDataProvider;
 using Enums;
 using Entities;
 using System;
+using System.Windows.Forms;
 
 namespace Models
 {
     public class NewspaperModel
     {
+        private static NewspaperModel _model;
         public List<Newspaper> Newspapers = new List<Newspaper>();
 
-        public NewspaperModel()
+        private NewspaperModel()
         {
             UpdateNewspapers();
+        }
+
+        public static NewspaperModel GetInstance()
+        {
+            if (_model == null)
+            {
+                _model = new NewspaperModel();
+            }
+
+            return _model;
         }
 
         public void Serialize(string fileFormat)
@@ -64,20 +76,19 @@ namespace Models
             }
         }
 
-        public void RemoveFromNewspapers(string title, string publisher)
+        public void RemoveFromNewspapers(DataGridViewRow Row)
         {
             using (SqlConnection connection = new SqlConnection(DataSources.DbConnect))
             {
                 SqlCommand command = new SqlCommand("RemoveFromNewspapers", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@newspaperTitle", title);
-                command.Parameters.AddWithValue("@publisher", publisher);
+                command.Parameters.AddWithValue("@Id", Row.Cells["Id"].Value);
                 connection.Open();
 
                 command.ExecuteNonQuery();
             }
 
-            UpdateNewspapers();
+            Newspapers.Remove((Newspaper)Row.DataBoundItem);
         }
 
         public void AddNewspaper(string title, string publisher, string articleName)

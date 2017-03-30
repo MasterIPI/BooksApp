@@ -9,16 +9,28 @@ using System.Xml.Serialization;
 using AdditionalDataProvider;
 using Enums;
 using Entities;
+using System.Windows.Forms;
 
 namespace Models
 {
     public class JournalModel
     {
+        private static JournalModel _model;
         public List<Journal> Journals = new List<Journal>(); 
 
-        public JournalModel()
+        private JournalModel()
         {
             UpdateJournals();
+        }
+
+        public static JournalModel GetInstance()
+        {
+            if (_model == null)
+            {
+                _model = new JournalModel();
+            }
+
+            return _model;
         }
 
         public void Serialize(string fileFormat)
@@ -75,19 +87,20 @@ namespace Models
             }
         }
 
-        public void RemoveFromJournals(string title)
+        public void RemoveFromJournals(DataGridViewRow Row)
         {
+            
             using (SqlConnection connection = new SqlConnection(DataSources.DbConnect))
             {
                 SqlCommand command = new SqlCommand("RemoveFromJournals", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@journalTitle", title);
+                command.Parameters.AddWithValue("@Id", Row.Cells["Id"].Value);
                 connection.Open();
 
                 command.ExecuteNonQuery();
             }
 
-            UpdateJournals();
+            Journals.Remove((Journal)Row.DataBoundItem);
         }
 
         public void AddJournal(string title, string authorName, int yearOfBirth, string articleName)

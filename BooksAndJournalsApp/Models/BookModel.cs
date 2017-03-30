@@ -9,16 +9,28 @@ using System;
 using System.Linq;
 using AdditionalDataProvider;
 using Enums;
+using System.Windows.Forms;
 
 namespace Models
 {
     public class BookModel
     {
+        private static BookModel _model;
         public List<Book> Books = new List<Book>();
 
-        public BookModel()
+        private BookModel()
         {
             UpdateBooks();
+        }
+
+        public static BookModel GetInstance()
+        {
+            if (_model == null)
+            {
+                _model = new BookModel();
+            }
+
+            return _model;
         }
 
         public void Serialize(string fileFormat)
@@ -61,19 +73,19 @@ namespace Models
             }
         }
 
-        public void RemoveFromBooks(string title)
+        public void RemoveFromBooks(DataGridViewRow Row)
         {
             using (SqlConnection connection = new SqlConnection(DataSources.DbConnect))
             {
                 SqlCommand command = new SqlCommand("RemoveFromBooks", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@bookTitle", title);
+                command.Parameters.AddWithValue("@Id", Row.Cells["Id"].Value);
                 connection.Open();
 
                 command.ExecuteNonQuery();
             }
 
-            UpdateBooks();
+            Books.Remove((Book)Row.DataBoundItem);
         }
 
         public void UpdateBooks()

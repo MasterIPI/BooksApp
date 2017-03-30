@@ -15,26 +15,26 @@ namespace Presenters
         public DeletePresenter(IDeleteView View)
         {
             _view = View;
-            _bookModel = new BookModel();
-            _journalModel = new JournalModel();
-            _newspaperModel = new NewspaperModel();
+            _bookModel = BookModel.GetInstance();
+            _journalModel = JournalModel.GetInstance();
+            _newspaperModel = NewspaperModel.GetInstance();
         }
 
-        public void OnDeleteViewsDltRowBtnClick(DataGridViewRow Row, string contentType)
+        public void OnDeleteViewsDltRowBtnClick(DataGridViewRow Row, ContentType Type)
         {
-            if (contentType == ContentType.Book.ToString())
+            if (Type == ContentType.Book)
             {
-                _bookModel.RemoveFromBooks(Row.Cells["Title"].Value.ToString());
+                _bookModel.RemoveFromBooks(Row);
             }
 
-            if (contentType == ContentType.Journal.ToString())
+            if (Type == ContentType.Journal)
             {
-                _journalModel.RemoveFromJournals(Row.Cells["Title"].Value.ToString());
+                _journalModel.RemoveFromJournals(Row);
             }
 
-            if (contentType == ContentType.Newspaper.ToString())
+            if (Type == ContentType.Newspaper)
             {
-                _newspaperModel.RemoveFromNewspapers(Row.Cells["Title"].Value.ToString(), Row.Cells["Publisher"].Value.ToString());
+                _newspaperModel.RemoveFromNewspapers(Row);
             }
         }
 

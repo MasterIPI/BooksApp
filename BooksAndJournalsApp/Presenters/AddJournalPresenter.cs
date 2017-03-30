@@ -11,7 +11,7 @@ namespace Presenters
 
         public AddJournalPresenter(IJournalAdd View)
         {
-            _journalModel = new JournalModel();
+            _journalModel = JournalModel.GetInstance();
             _view = View;
         }
 
