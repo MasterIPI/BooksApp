@@ -11,13 +11,13 @@ namespace Presenters
 
         public AddNewspaperPresenter(INewspaperAdd View)
         {
-            _newspaperModel = NewspaperModel.GetInstance();
+            _newspaperModel = new NewspaperModel();
             _view = View;
         }
 
-        public void AddNewspaper(string title, string publisher, string article)
+        public void AddNewspaper()
         {
-            _newspaperModel.AddNewspaper(title, publisher, article);
+            _newspaperModel.AddNewspaper(_view.Title, _view.Publisher, _view.Article);
         }
     }
 }

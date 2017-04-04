@@ -50,6 +50,16 @@
     <Compile Include="ISearchView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{E8106406-0B61-45F1-9EDA-EBD9B501F05E}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{72535167-EFA5-4135-B7A0-BFCD58F3188B}</Project>
+      <Name>Enums</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

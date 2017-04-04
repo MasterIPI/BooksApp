@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Views;
 using Models;
+using Entities;
 
 namespace Presenters
 {
@@ -15,47 +16,30 @@ namespace Presenters
         public DeletePresenter(IDeleteView View)
         {
             _view = View;
-            _bookModel = BookModel.GetInstance();
-            _journalModel = JournalModel.GetInstance();
-            _newspaperModel = NewspaperModel.GetInstance();
+            _bookModel = new BookModel();
+            _journalModel = new JournalModel();
+            _newspaperModel = new NewspaperModel();
         }
 
-        public void OnDeleteViewsDltRowBtnClick(DataGridViewRow Row, ContentType Type)
+        public void DeleteRowBtnClick()
         {
-            if (Type == ContentType.Book)
+            if (_view.Type == ContentType.Book)
             {
-                _bookModel.RemoveFromBooks(Row);
+                _bookModel.RemoveFromBooks((int)_view.CurrentRow.Cells["Id"].Value);
+                _view.Books.Remove((Book)_view.CurrentRow.DataBoundItem);
             }
 
-            if (Type == ContentType.Journal)
+            if (_view.Type == ContentType.Journal)
             {
-                _journalModel.RemoveFromJournals(Row);
+                _journalModel.RemoveFromJournals((int)_view.CurrentRow.Cells["Id"].Value);
+                _view.Journals.Remove((Journal)_view.CurrentRow.DataBoundItem);
             }
 
-            if (Type == ContentType.Newspaper)
+            if (_view.Type == ContentType.Newspaper)
             {
-                _newspaperModel.RemoveFromNewspapers(Row);
+                _newspaperModel.RemoveFromNewspapers((int)_view.CurrentRow.Cells["Id"].Value);
+                _view.Newspapers.Remove((Newspaper)_view.CurrentRow.DataBoundItem);
             }
-        }
-
-        public dynamic GetContentFromName(string contentType)
-        {
-            if (contentType == ContentType.Book.ToString())
-            {
-                return _bookModel.Books;
-            }
-
-            if (contentType == ContentType.Journal.ToString())
-            {
-                return _journalModel.Journals;
-            }
-
-            if (contentType == ContentType.Newspaper.ToString())
-            {
-                return _newspaperModel.Newspapers;
-            }
-
-            return null;
         }
     }
 }

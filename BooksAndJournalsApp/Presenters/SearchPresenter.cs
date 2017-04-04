@@ -18,10 +18,10 @@ namespace Presenters
             _view = View;
         }
 
-        public List<string> FindAuthorsWorks(int id)
+        public List<string> FindAuthorsWorks()
         {
             DataTable result = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter($"select books.title as Title from books inner join Book_to_Authors on books.Id = Book_to_Authors.BookId inner join authors on Book_to_Authors.AuthorId = authors.Id where authors.Id = {id} union (select journal_articles.title as Title from journal_articles inner join journalArticles_to_authors on journal_articles.Id = journalArticles_to_authors.ArticleId inner join Authors on journalArticles_to_authors.AuthorId = Authors.Id where authors.Id = {id});", DataSources.DbConnect);
+            SqlDataAdapter adapter = new SqlDataAdapter($"select books.title as Title from books inner join Book_to_Authors on books.Id = Book_to_Authors.BookId inner join authors on Book_to_Authors.AuthorId = authors.Id where authors.Id = {_view.AuthorId} union (select journal_articles.title as Title from journal_articles inner join journalArticles_to_authors on journal_articles.Id = journalArticles_to_authors.ArticleId inner join Authors on journalArticles_to_authors.AuthorId = Authors.Id where authors.Id = {_view.AuthorId});", DataSources.DbConnect);
 
             adapter.Fill(result);
 

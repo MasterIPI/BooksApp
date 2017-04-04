@@ -11,13 +11,13 @@ namespace Presenters
 
         public AddJournalPresenter(IJournalAdd View)
         {
-            _journalModel = JournalModel.GetInstance();
+            _journalModel = new JournalModel();
             _view = View;
         }
 
-        public void AddJournal(string title, string author, int yearofbirth, string article)
+        public void AddJournal()
         {
-            _journalModel.AddJournal(title, author, yearofbirth, article);
+            _journalModel.AddJournal(_view.Title, _view.Author, _view.YearOfBirth, _view.Article);
         }
     }
 }

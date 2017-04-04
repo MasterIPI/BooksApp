@@ -13,10 +13,55 @@ namespace Forms
     {
         private MainPresenter _presenter;
 
+        private List<Book> _books = new List<Book>();
+        private List<Journal> _journals = new List<Journal>();
+        private List<Newspaper> _newspapers = new List<Newspaper>();
+
+        public List<Book> Books
+        {
+            get
+            {
+                return _books;
+            }
+
+            set
+            {
+                _books.AddRange(value);
+            }
+        }
+
+        public List<Journal> Journals
+        {
+            get
+            {
+                return _journals;
+            }
+
+            set
+            {
+                _journals.AddRange(value);
+            }
+        }
+
+        public List<Newspaper> Newspapers
+        {
+            get
+            {
+                return _newspapers;
+            }
+
+            set
+            {
+                _newspapers.AddRange(value);
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
+
             _presenter = new MainPresenter(this);
+            _presenter.UpdateData();
             DropBoxTypes.DataSource = _presenter.GetListDataSources();
         }
 
@@ -30,10 +75,7 @@ namespace Forms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            using (SaveForm saveForm = new SaveForm())
-            {
-                saveForm.ShowDialog();
-            }
+            CallSaveView();
         }
 
         private void DropBoxTypes_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,10 +85,7 @@ namespace Forms
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (DeleteForm dltForm = new DeleteForm(_presenter.GetContentFromName(DropBoxTypes.SelectedItem.ToString())))
-            {
-                dltForm.ShowDialog();
-            }
+            CallDeleteView();
 
             UpdateViewedData();
         }
@@ -55,26 +94,17 @@ namespace Forms
         {
             if (DropBoxTypes.SelectedItem.ToString() == ContentType.Book.ToString())
             {
-                using (AddBookForm addForm = new AddBookForm())
-                {
-                    addForm.ShowDialog();
-                }
+                CallAddBookView();
             }
 
             if (DropBoxTypes.SelectedItem.ToString() == ContentType.Journal.ToString())
             {
-                using (AddJournalForm addForm = new AddJournalForm())
-                {
-                    addForm.ShowDialog();
-                }
+                CallAddJournalView();
             }
 
             if (DropBoxTypes.SelectedItem.ToString() == ContentType.Newspaper.ToString())
             {
-                using (AddNewspaperForm addForm = new AddNewspaperForm())
-                {
-                    addForm.ShowDialog();
-                }
+                CallAddNewspaperView();
             }
 
             _presenter.UpdateData();
@@ -86,7 +116,22 @@ namespace Forms
             DGVAuthorsViewer.DataSource = null;
             LstBoxArticle.DataSource = null;
             DGVPublishedEditionViewer.DataSource = null;
-            DGVPublishedEditionViewer.DataSource = _presenter.GetContentFromName(DropBoxTypes.SelectedItem.ToString());
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Book.ToString())
+            {
+                DGVPublishedEditionViewer.DataSource = Books;
+            }
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Journal.ToString())
+            {
+                DGVPublishedEditionViewer.DataSource = Journals;
+            }
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Newspaper.ToString())
+            {
+                DGVPublishedEditionViewer.DataSource = Newspapers;
+            }
+            
             DGVPublishedEditionViewer.Columns["Id"].Visible = false;
         }
 
@@ -125,6 +170,67 @@ namespace Forms
             {
                 List<Newspaper> newspapers = (List<Newspaper>)DGVPublishedEditionViewer.DataSource;
                 LstBoxArticle.DataSource = newspapers[DGVPublishedEditionViewer.CurrentRow.Index].Articles;
+            }
+        }
+
+        public void CallDeleteView()
+        {
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Book.ToString())
+            {
+                using (DeleteForm dltForm = new DeleteForm(ref _books))
+                {
+                    dltForm.ShowDialog();
+                }
+            }
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Journal.ToString())
+            {
+                using (DeleteForm dltForm = new DeleteForm(ref _journals))
+                {
+                    dltForm.ShowDialog();
+                }
+            }
+
+            if (DropBoxTypes.SelectedItem.ToString() == ContentType.Newspaper.ToString())
+            {
+                using (DeleteForm dltForm = new DeleteForm(ref _newspapers))
+                {
+                    dltForm.ShowDialog();
+                }
+            }
+
+            UpdateViewedData();
+        }
+
+        public void CallAddBookView()
+        {
+            using (AddBookForm addForm = new AddBookForm())
+            {
+                addForm.ShowDialog();
+            }
+        }
+
+        public void CallAddJournalView()
+        {
+            using (AddJournalForm addForm = new AddJournalForm())
+            {
+                addForm.ShowDialog();
+            }
+        }
+
+        public void CallAddNewspaperView()
+        {
+            using (AddNewspaperForm addForm = new AddNewspaperForm())
+            {
+                addForm.ShowDialog();
+            }
+        }
+
+        public void CallSaveView()
+        {
+            using (SaveForm saveForm = new SaveForm(Books, Journals, Newspapers))
+            {
+                saveForm.ShowDialog();
             }
         }
     }

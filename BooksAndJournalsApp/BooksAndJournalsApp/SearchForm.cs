@@ -7,6 +7,7 @@ namespace Forms
 {
     public partial class SearchForm : Form, ISearchView
     {
+        private int _authorId;
         private SearchPresenter _presenter;
 
         public SearchForm()
@@ -18,9 +19,23 @@ namespace Forms
             DGVAuthors.Columns["Id"].Visible = false;
         }
 
+        public int AuthorId
+        {
+            get
+            {
+                return _authorId;
+            }
+
+            set
+            {
+                _authorId = value;
+            }
+        }
+
         private void DGVAuthors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LstBoxSearchResultsView.DataSource = _presenter.FindAuthorsWorks(Int32.Parse(DGVAuthors.CurrentRow.Cells["Id"].Value.ToString()));
+            AuthorId = Int32.Parse(DGVAuthors.CurrentRow.Cells["Id"].Value.ToString());
+            LstBoxSearchResultsView.DataSource = _presenter.FindAuthorsWorks();
         }
     }
 }

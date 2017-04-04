@@ -11,13 +11,13 @@ namespace Presenters
 
         public AddBookPresenter(IBookAdd View)
         {
-            _bookModel = BookModel.GetInstance();
+            _bookModel = new BookModel();
             _view = View;
         }
 
-        public void AddBook(string title, string author, int yearofbirth)
+        public void AddBook()
         {
-            _bookModel.AddBook(title, author, yearofbirth);
+            _bookModel.AddBook(_view.Title, _view.Author, _view.YearOfBirth);
         }
     }
 }

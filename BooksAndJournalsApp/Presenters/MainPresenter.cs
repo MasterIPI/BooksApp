@@ -1,11 +1,7 @@
 ﻿using Models;
 using Views;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Windows.Forms;
-using Entities;
-using AdditionalDataProvider;
 using Enums;
 using System;
 
@@ -20,9 +16,9 @@ namespace Presenters
 
         public MainPresenter(IMainView view)
         {
-            _bookModel = BookModel.GetInstance();
-            _journalModel = JournalModel.GetInstance();
-            _newspaperModel = NewspaperModel.GetInstance();
+            _bookModel = new BookModel();
+            _journalModel = new JournalModel();
+            _newspaperModel = new NewspaperModel();
             _view = view;
         }
 
@@ -31,31 +27,14 @@ namespace Presenters
             return Enum.GetNames(typeof(ContentType)).ToList();
         }
 
-        public dynamic GetContentFromName(string contentType)
-        {
-            if (contentType == ContentType.Book.ToString())
-            {
-                return _bookModel.Books;
-            }
-
-            if (contentType == ContentType.Journal.ToString())
-            {
-                return _journalModel.Journals;
-            }
-
-            if (contentType == ContentType.Newspaper.ToString())
-            {
-                return _newspaperModel.Newspapers;
-            }
-
-            return null;
-        }
-
         public void UpdateData()
         {
-            _bookModel.UpdateBooks();
-            _journalModel.UpdateJournals();
-            _newspaperModel.UpdateNewspapers();
+            _view.Books.Clear();
+            _view.Journals.Clear();
+            _view.Newspapers.Clear();
+            _view.Books = _bookModel.UpdateBooks();
+            _view.Journals.AddRange(_journalModel.UpdateJournals());
+            _view.Newspapers.AddRange(_newspaperModel.UpdateNewspapers());
         }
     }
 }

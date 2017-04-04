@@ -15,25 +15,12 @@ namespace Models
 {
     public class BookModel
     {
-        private static BookModel _model;
-        public List<Book> Books = new List<Book>();
-
-        private BookModel()
+        public BookModel()
         {
             UpdateBooks();
         }
 
-        public static BookModel GetInstance()
-        {
-            if (_model == null)
-            {
-                _model = new BookModel();
-            }
-
-            return _model;
-        }
-
-        public void Serialize(string fileFormat)
+        public void Serialize(string fileFormat, List<Book> Books)
         {
             string filePath = ContentType.Book.ToString() + fileFormat;
 
@@ -73,28 +60,26 @@ namespace Models
             }
         }
 
-        public void RemoveFromBooks(DataGridViewRow Row)
+        public void RemoveFromBooks(int Id)
         {
             using (SqlConnection connection = new SqlConnection(DataSources.DbConnect))
             {
                 SqlCommand command = new SqlCommand("RemoveFromBooks", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", Row.Cells["Id"].Value);
+                command.Parameters.AddWithValue("@Id", Id);
                 connection.Open();
 
                 command.ExecuteNonQuery();
             }
-
-            Books.Remove((Book)Row.DataBoundItem);
         }
 
-        public void UpdateBooks()
+        public List<Book> UpdateBooks()
         {
             DataTable _books = new DataTable();
             SqlDataAdapter adapterbooks = new SqlDataAdapter("select books.Id as Id, books.title as Book from books;", DataSources.DbConnect);
             adapterbooks.Fill(_books);
 
-            Books = (from row in _books.AsEnumerable() select (new Book(Int32.Parse(row["Id"].ToString()), row["Book"].ToString()))).ToList();
+            List<Book> Books = (from row in _books.AsEnumerable() select (new Book(Int32.Parse(row["Id"].ToString()), row["Book"].ToString()))).ToList();
 
             foreach (Book book in Books)
             {
@@ -104,6 +89,8 @@ namespace Models
 
                 book.Authors.AddRange((from row in authors.AsEnumerable() select (new Author(Int32.Parse(row["Id"].ToString()), row["Author"].ToString(), Int32.Parse(row["YearOfBirth"].ToString())))).ToList());
             }
+
+            return Books;
         }
     }
 }

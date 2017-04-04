@@ -10,39 +10,105 @@ namespace Forms
 {
     public partial class DeleteForm : Form, IDeleteView
     {
-        private DeletePresenter _presenter;
-        private List<Book> _books;
-        private List<Journal> _journals;
-        private List<Newspaper> _newspapers;
+        private List<Book> _books = new List<Book>();
+        private List<Journal> _journals = new List<Journal>();
+        private List<Newspaper> _newspapers = new List<Newspaper>();
+        private DataGridViewRow _currentRow;
         private ContentType _type;
+        private DeletePresenter _presenter;
 
-        public DeleteForm(List<Book> Books)
+        public ContentType Type
+        {
+            get
+            {
+                return _type;
+            }
+
+            set
+            {
+                _type = value;
+            }
+        }
+
+        public DataGridViewRow CurrentRow
+        {
+            get
+            {
+                return _currentRow;
+            }
+
+            set
+            {
+                _currentRow = value;
+            }
+        }
+
+        public List<Book> Books
+        {
+            get
+            {
+                return _books;
+            }
+
+            set
+            {
+                _books = value;
+            }
+        }
+
+        public List<Journal> Journals
+        {
+            get
+            {
+                return _journals;
+            }
+
+            set
+            {
+                _journals = value;
+            }
+        }
+
+        public List<Newspaper> Newspapers
+        {
+            get
+            {
+                return _newspapers;
+            }
+
+            set
+            {
+                _newspapers = value;
+            }
+        }
+
+        public DeleteForm(ref List<Book> books)
         {
             _presenter = new DeletePresenter(this);
-            _books = Books;
-            _type = ContentType.Book;
+            Books = books;
+            Type = ContentType.Book;
 
             InitializeComponent();
 
             UpdateView();
         }
 
-        public DeleteForm(List<Journal> Journals)
+        public DeleteForm(ref List<Journal> journals)
         {
             _presenter = new DeletePresenter(this);
-            _journals = Journals;
-            _type = ContentType.Journal;
+            Journals = journals;
+            Type = ContentType.Journal;
 
             InitializeComponent();
 
             UpdateView();
         }
 
-        public DeleteForm(List<Newspaper> Newspapers)
+        public DeleteForm(ref List<Newspaper> newspapers)
         {
             _presenter = new DeletePresenter(this);
-            _newspapers = Newspapers;
-            _type = ContentType.Newspaper;
+            Newspapers = newspapers;
+            Type = ContentType.Newspaper;
 
             InitializeComponent();
 
@@ -53,7 +119,8 @@ namespace Forms
         {
             if (DGVContentViewer.CurrentRow.DataBoundItem != null)
             {
-                _presenter.OnDeleteViewsDltRowBtnClick(DGVContentViewer.CurrentRow, _type);
+                CurrentRow = DGVContentViewer.CurrentRow;
+                _presenter.DeleteRowBtnClick();
                 UpdateView();
             }
         }
@@ -61,7 +128,22 @@ namespace Forms
         public void UpdateView()
         {
             DGVContentViewer.DataSource = null;
-            DGVContentViewer.DataSource = _presenter.GetContentFromName(_type.ToString());
+
+            if (Type == ContentType.Book)
+            {
+                DGVContentViewer.DataSource = Books;
+            }
+
+            if (Type == ContentType.Journal)
+            {
+                DGVContentViewer.DataSource = Journals;
+            }
+
+            if (Type == ContentType.Newspaper)
+            {
+                DGVContentViewer.DataSource = Newspapers;
+            }
+            
             DGVContentViewer.Columns["Id"].Visible = false;
         }
     }

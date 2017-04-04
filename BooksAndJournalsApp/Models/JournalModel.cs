@@ -15,25 +15,12 @@ namespace Models
 {
     public class JournalModel
     {
-        private static JournalModel _model;
-        public List<Journal> Journals = new List<Journal>(); 
-
-        private JournalModel()
+        public JournalModel()
         {
             UpdateJournals();
         }
 
-        public static JournalModel GetInstance()
-        {
-            if (_model == null)
-            {
-                _model = new JournalModel();
-            }
-
-            return _model;
-        }
-
-        public void Serialize(string fileFormat)
+        public void Serialize(string fileFormat, List<Journal> Journals)
         {
             string filePath = ContentType.Journal + fileFormat;
 
@@ -58,7 +45,7 @@ namespace Models
             }
         }
 
-        public void UpdateJournals()
+        public List<Journal> UpdateJournals()
         {
             DataTable _journals = new DataTable();
 
@@ -66,7 +53,7 @@ namespace Models
             
             adapterjournals.Fill(_journals);
 
-            Journals = (from row in _journals.AsEnumerable() select (new Journal(Int32.Parse(row["Id"].ToString()),row["Journal"].ToString()))).ToList();
+            List<Journal> Journals = (from row in _journals.AsEnumerable() select (new Journal(Int32.Parse(row["Id"].ToString()),row["Journal"].ToString()))).ToList();
 
             foreach(Journal journal in Journals)
             {
@@ -85,22 +72,22 @@ namespace Models
                     article.Authors.AddRange((from row in authors.AsEnumerable() select (new Author(Int32.Parse(row["Id"].ToString()), row["Name"].ToString(), Int32.Parse(row["YearOfBirth"].ToString())))).ToList());
                 }
             }
+
+            return Journals;
         }
 
-        public void RemoveFromJournals(DataGridViewRow Row)
+        public void RemoveFromJournals(int Id)
         {
             
             using (SqlConnection connection = new SqlConnection(DataSources.DbConnect))
             {
                 SqlCommand command = new SqlCommand("RemoveFromJournals", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", Row.Cells["Id"].Value);
+                command.Parameters.AddWithValue("@Id", Id);
                 connection.Open();
 
                 command.ExecuteNonQuery();
             }
-
-            Journals.Remove((Journal)Row.DataBoundItem);
         }
 
         public void AddJournal(string title, string authorName, int yearOfBirth, string articleName)

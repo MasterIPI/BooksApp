@@ -13,16 +13,16 @@ namespace Presenters
         public SavePresenter(ISaveView View)
         {
             _view = View;
-            _bookModel = BookModel.GetInstance();
-            _journalModel = JournalModel.GetInstance();
-            _newspaperModel = NewspaperModel.GetInstance();
+            _bookModel = new BookModel();
+            _journalModel = new JournalModel();
+            _newspaperModel = new NewspaperModel();
         }
 
-        public void OnSaveViewSaveBtnClick(string booksSaveOption, string journalsSaveOption, string newspapersSaveOption)
+        public void SaveViewBtnSaveClick()
         {
-            _bookModel.Serialize(booksSaveOption);
-            _journalModel.Serialize(journalsSaveOption);
-            _newspaperModel.Serialize(newspapersSaveOption);
+            _bookModel.Serialize(_view.SaveBooksOption, _view.Books);
+            _journalModel.Serialize(_view.SaveJournalsOption, _view.Journals);
+            _newspaperModel.Serialize(_view.SaveNewspapersOption, _view.Newspapers);
         }
     }
 }

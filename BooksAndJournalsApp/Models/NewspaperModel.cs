@@ -15,25 +15,12 @@ namespace Models
 {
     public class NewspaperModel
     {
-        private static NewspaperModel _model;
-        public List<Newspaper> Newspapers = new List<Newspaper>();
-
-        private NewspaperModel()
+        public NewspaperModel()
         {
             UpdateNewspapers();
         }
 
-        public static NewspaperModel GetInstance()
-        {
-            if (_model == null)
-            {
-                _model = new NewspaperModel();
-            }
-
-            return _model;
-        }
-
-        public void Serialize(string fileFormat)
+        public void Serialize(string fileFormat, List<Newspaper> Newspapers)
         {
             string filePath = ContentType.Newspaper.ToString() + fileFormat;
 
@@ -58,13 +45,13 @@ namespace Models
             }
         }
 
-        public void UpdateNewspapers()
+        public List<Newspaper> UpdateNewspapers()
         {
             DataTable _newspapers = new DataTable();
             SqlDataAdapter adapternewspapers = new SqlDataAdapter("select [Newspapers].Id as Id, [Newspapers].Title as Newspaper, [Newspapers].Publisher as Publisher from [Newspapers];", DataSources.DbConnect);
             adapternewspapers.Fill(_newspapers);
 
-            Newspapers = (from row in _newspapers.AsEnumerable() select (new Newspaper(Int32.Parse(row["Id"].ToString()), row["Newspaper"].ToString(), row["Publisher"].ToString()))).ToList();
+            List<Newspaper> Newspapers = (from row in _newspapers.AsEnumerable() select (new Newspaper(Int32.Parse(row["Id"].ToString()), row["Newspaper"].ToString(), row["Publisher"].ToString()))).ToList();
 
             foreach (Newspaper newspaper in Newspapers)
             {
@@ -74,21 +61,21 @@ namespace Models
 
                 newspaper.Articles.AddRange((from row in articles.AsEnumerable() select (row["Article"].ToString())).ToList());
             }
+
+            return Newspapers;
         }
 
-        public void RemoveFromNewspapers(DataGridViewRow Row)
+        public void RemoveFromNewspapers(int Id)
         {
             using (SqlConnection connection = new SqlConnection(DataSources.DbConnect))
             {
                 SqlCommand command = new SqlCommand("RemoveFromNewspapers", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", Row.Cells["Id"].Value);
+                command.Parameters.AddWithValue("@Id", Id);
                 connection.Open();
 
                 command.ExecuteNonQuery();
             }
-
-            Newspapers.Remove((Newspaper)Row.DataBoundItem);
         }
 
         public void AddNewspaper(string title, string publisher, string articleName)
