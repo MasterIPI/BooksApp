@@ -44,7 +44,9 @@
     <Compile Include="AddBookPresenter.cs" />
     <Compile Include="AddJournalPresenter.cs" />
     <Compile Include="AddNewspaperPresenter.cs" />
-    <Compile Include="DeletePresenter.cs" />
+    <Compile Include="DeleteBookPresenter.cs" />
+    <Compile Include="DeleteJournalPresenter.cs" />
+    <Compile Include="DeleteNewspaperPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainPresenter.cs" />
     <Compile Include="SavePresenter.cs" />

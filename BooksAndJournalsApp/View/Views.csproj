@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBookAdd.cs" />
-    <Compile Include="IDeleteView.cs" />
+    <Compile Include="IDeleJournalView.cs" />
+    <Compile Include="IDeleteNewspaperView.cs" />
+    <Compile Include="IDeleteBookView.cs" />
     <Compile Include="IJournalAdd.cs" />
     <Compile Include="IMainView.cs" />
     <Compile Include="INewspaperAdd.cs" />

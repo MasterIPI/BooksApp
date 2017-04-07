@@ -11,11 +11,10 @@ namespace Forms
 {
     public partial class MainForm : Form, IMainView
     {
-        private MainPresenter _presenter;
-
         private List<Book> _books = new List<Book>();
         private List<Journal> _journals = new List<Journal>();
         private List<Newspaper> _newspapers = new List<Newspaper>();
+        private MainPresenter _presenter;
 
         public List<Book> Books
         {
@@ -177,7 +176,7 @@ namespace Forms
         {
             if (DropBoxTypes.SelectedItem.ToString() == ContentType.Book.ToString())
             {
-                using (DeleteForm dltForm = new DeleteForm(ref _books))
+                using (DeleteBookForm dltForm = new DeleteBookForm(ref _books))
                 {
                     dltForm.ShowDialog();
                 }
@@ -185,7 +184,7 @@ namespace Forms
 
             if (DropBoxTypes.SelectedItem.ToString() == ContentType.Journal.ToString())
             {
-                using (DeleteForm dltForm = new DeleteForm(ref _journals))
+                using (DeleteJournalForm dltForm = new DeleteJournalForm(ref _journals))
                 {
                     dltForm.ShowDialog();
                 }
@@ -193,7 +192,7 @@ namespace Forms
 
             if (DropBoxTypes.SelectedItem.ToString() == ContentType.Newspaper.ToString())
             {
-                using (DeleteForm dltForm = new DeleteForm(ref _newspapers))
+                using (DeleteNewspaperForm dltForm = new DeleteNewspaperForm(ref _newspapers))
                 {
                     dltForm.ShowDialog();
                 }
@@ -228,7 +227,7 @@ namespace Forms
 
         public void CallSaveView()
         {
-            using (SaveForm saveForm = new SaveForm(Books, Journals, Newspapers))
+            using (SaveForm saveForm = new SaveForm(ref _books, ref _journals, ref _newspapers))
             {
                 saveForm.ShowDialog();
             }

@@ -79,11 +79,23 @@
     <Compile Include="AddNewspaperForm.Designer.cs">
       <DependentUpon>AddNewspaperForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeleteForm.cs">
+    <Compile Include="DeleteBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeleteForm.Designer.cs">
-      <DependentUpon>DeleteForm.cs</DependentUpon>
+    <Compile Include="DeleteBookForm.Designer.cs">
+      <DependentUpon>DeleteBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteJournalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteJournalForm.Designer.cs">
+      <DependentUpon>DeleteJournalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteNewspaperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteNewspaperForm.Designer.cs">
+      <DependentUpon>DeleteNewspaperForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -114,8 +126,14 @@
     <EmbeddedResource Include="AddNewspaperForm.resx">
       <DependentUpon>AddNewspaperForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeleteForm.resx">
-      <DependentUpon>DeleteForm.cs</DependentUpon>
+    <EmbeddedResource Include="DeleteBookForm.resx">
+      <DependentUpon>DeleteBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteJournalForm.resx">
+      <DependentUpon>DeleteJournalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteNewspaperForm.resx">
+      <DependentUpon>DeleteNewspaperForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

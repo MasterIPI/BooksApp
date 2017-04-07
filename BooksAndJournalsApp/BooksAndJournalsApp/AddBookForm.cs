@@ -59,29 +59,32 @@ namespace Forms
 
         private void AddBook(object sender, EventArgs e)
         {
-            if (BoxAuthor.Text == string.Empty || BoxTitle.Text == string.Empty || BoxYear.Text == string.Empty)
-            {
-                MessageBox.Show("All of the fields must be not empty!", "Warning!!!");
-            }
+            ShowWarning();
 
-            else
-            {
-                Title = BoxTitle.Text;
-                Author = BoxAuthor.Text;
-                YearOfBirth = Int32.Parse(BoxYear.Text);
+            Title = BoxTitle.Text;
+            Author = BoxAuthor.Text;
+            YearOfBirth = Int32.Parse(BoxYear.Text);
 
-                _presenter.AddBook();
+            _presenter.AddBook();
 
-                BoxAuthor.Text = string.Empty;
-                BoxYear.Text = string.Empty;
-            }
+            BoxAuthor.Text = string.Empty;
+            BoxYear.Text = string.Empty;
+
         }
 
         private void BoxYear_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar) && e.KeyChar == (char)Keys.Back)
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
             {
                 e.Handled = true;
+            }
+        }
+
+        private void ShowWarning()
+        {
+            if (BoxAuthor.Text == string.Empty || BoxTitle.Text == string.Empty || BoxYear.Text == string.Empty)
+            {
+                MessageBox.Show("All of the fields must be not empty!", "Warning!!!");
             }
         }
     }

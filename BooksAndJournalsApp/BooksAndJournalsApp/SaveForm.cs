@@ -10,23 +10,23 @@ namespace Forms
 {
     public partial class SaveForm : Form, ISaveView
     {
-        private List<Book> _books;
-        private List<Journal> _journals;
-        private List<Newspaper> _newspapers;
+        private List<Book> _books = new List<Book>();
+        private List<Journal> _journals = new List<Journal>();
+        private List<Newspaper> _newspapers = new List<Newspaper>();
         private string _saveBooksOption;
         private string _saveJournalsOption;
         private string _saveNewspapersOption;
         private SavePresenter _presenter;
 
-        public SaveForm(List<Book> books, List<Journal> journals, List<Newspaper> newspapers)
+        public SaveForm(ref List<Book> books, ref List<Journal> journals, ref List<Newspaper> newspapers)
         {
             _presenter = new SavePresenter(this);
 
             InitializeComponent();
 
-            Books = books;
-            Journals = journals;
-            Newspapers = newspapers;
+            _books = books;
+            _journals = journals;
+            _newspapers = newspapers;
 
             DrpBoxBooks.Items.AddRange(SaveOption.saveFileOptions.ToArray());
             DrpBoxJournals.Items.AddRange(SaveOption.saveFileOptions.ToArray());
@@ -42,7 +42,7 @@ namespace Forms
 
             set
             {
-                _books.AddRange(value);
+                _books = value;
             }
         }
 
@@ -55,7 +55,7 @@ namespace Forms
 
             set
             {
-                _journals.AddRange(value);
+                _journals = value;
             }
         }
 
@@ -68,7 +68,7 @@ namespace Forms
 
             set
             {
-                _newspapers.AddRange(value);
+                _newspapers = value;
             }
         }
 
