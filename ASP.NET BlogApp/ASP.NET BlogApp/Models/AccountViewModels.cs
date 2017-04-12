@@ -49,9 +49,9 @@ namespace ASP.NET_BlogApp.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Name")]
+        [StringLength(256)]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +64,11 @@ namespace ASP.NET_BlogApp.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [StringLength(256)]
+        [Display(Name = "Name")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -83,6 +88,11 @@ namespace ASP.NET_BlogApp.Models
 
     public class ResetPasswordViewModel
     {
+        [Required]
+        [StringLength(256)]
+        [Display(Name = "Name")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

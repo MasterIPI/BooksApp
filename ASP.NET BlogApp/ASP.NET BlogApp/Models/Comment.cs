@@ -18,7 +18,6 @@ namespace ASP.NET_BlogApp.Models
         [StringLength(128)]
         public string Name { get; set; }
 
-        [Required]
         [StringLength(128)]
         public string Email { get; set; }
 
