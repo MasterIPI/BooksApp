@@ -1,0 +1,10 @@
+﻿@model ASP.NET_BlogApp.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isAdmin = ViewBag.IsAdmin ?? false;
+}
+
+@PostHelper.Render(Model, Html, isAdmin, true)
+

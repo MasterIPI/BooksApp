@@ -1,0 +1,24 @@
+﻿@model ASP.NET_BlogApp.Models.Post
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="jumbotron" action="@Href("~/Home/UpdatePosts")" method="post" id="postForm">
+
+    @if (Model.Id != -1)
+    {
+        <input type="hidden" name="id" value="@Model.Id" />
+    }
+    @{
+        DateTime date = Model.Date.Year > 2000 ? Model.Date : DateTime.Now;
+    }
+    <label class="col-md-2 control-label">Date</label><input class="form-control" type="text" name="date" value="@date" /><br />
+    <label class="col-md-2 control-label">Title</label><input class="form-control" type="text" name="title" value="@Model.Title" /><br />
+    <label class="col-md-2 control-label">Tags</label><input class="form-control" type="text" name="tags" value="@ViewBag.Tags" /><br />
+    <label class="col-md-2 control-label">Post</label><textarea class="form-control" name="body" rows="10" cols="80">@Model.Body</textarea><br />
+    <label class="col-md-2 control-label"></label><input class="btn btn-default" type="submit" name="submit" value="Submit" />
+</form>
+
+

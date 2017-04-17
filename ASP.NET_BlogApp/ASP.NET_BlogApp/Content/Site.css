@@ -1,0 +1,190 @@
+﻿body 
+{
+    margin: 0;
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+    color: #303030;
+    font-size: 14px;
+    font-family: Verdana, Tahoma, "Trebuchet MS", sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content 
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt 
+{
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea 
+{
+    max-width: 280px;
+}
+
+#content
+{
+    background-color: #FFFFFF;
+}
+
+.postTitle 
+{
+    margin: auto;
+    text-align: left;
+    width: 615px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Palatino Linotype";
+    padding-left: 85px;
+}
+
+.postTitle a:link, .postTitle a:visited, .postTitle a:hover, .postTitle a:active 
+{
+    color: #303030;
+    text-decoration: none;
+}
+
+.postTitle a:hover 
+{
+    text-decoration: underline;
+}
+
+.postContainer 
+{
+    width: 700px;
+    margin: 0 auto 50px auto;
+    background-color: #FFFFFF;
+}
+
+.postTabs 
+{
+    color: #FFFFFF;
+    float: left;
+    font-size: 12px;
+}
+
+.dateTab 
+{
+    margin-top: 20px;
+    width: 60px;
+    padding: 5px;
+    background: #303030;
+}
+
+.month 
+{
+}
+
+.day 
+{
+    font-size: 2em;
+}
+
+.commentsTab 
+{
+    margin-top: 20px;
+    width: 60px;
+    padding: 5px;
+    background: #217aa6;
+}
+
+.commentsTab a:link, .commentsTab a:visited, .commentsTab a:hover, .commentsTab a:active 
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.commentsTab img 
+{
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.commentsTab a:hover 
+{
+    text-decoration: underline;
+}
+
+.postContent 
+{
+    padding: 15px 15px 15px 50px;
+    width: 600px;
+    margin-left: 35px;
+    margin-bottom: 30px;
+    color: #000000;
+    background-color: #eeeeee;
+    border-radius: 6px;
+}
+
+.postContent p 
+{
+    text-align: left;
+}
+
+.postBody 
+{
+    text-align: left;
+    line-height: 1.5em;
+}
+
+.tagList 
+{
+    float: left;
+}
+
+.tag 
+{
+}
+
+.postControlPanel 
+{
+}
+
+.comment, #commentEditor
+{
+    text-align: left;
+    color: #000000;
+    background: #EEEEEE;
+    padding: 15px 15px 15px 50px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+}
+
+#commentContainer 
+{
+    width: 630px;
+    margin: auto;
+    padding-right: 30px;
+}
+
+.commentName 
+{
+    font-style: italic;
+}
+
+.commentBody 
+{
+    margin: 5px;
+}
+
+.commentTime 
+{
+    font-style: italic;
+    text-align: right;
+    font-size: 10px;
+}
+
+.commentControlPanel 
+{
+
+}
