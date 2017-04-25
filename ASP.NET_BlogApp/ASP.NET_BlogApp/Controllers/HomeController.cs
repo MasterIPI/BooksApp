@@ -12,7 +12,6 @@ namespace ASP.NET_BlogApp.Controllers
     public class HomeController : Controller
     {
         private BlogModel _model = new BlogModel();
-        private const int _postsPerPage = 4;
 
         public bool IsAdmin
         {
@@ -23,6 +22,7 @@ namespace ASP.NET_BlogApp.Controllers
         }
         public ActionResult Index(int? id)
         {
+            const int _postsPerPage = 4;
             int pageNumber = id ?? 0;
             IEnumerable<Post> posts =
                 (from post in _model.Posts
@@ -35,6 +35,7 @@ namespace ASP.NET_BlogApp.Controllers
             ViewBag.IsAdmin = IsAdmin;
             return View(posts.Take(_postsPerPage));
         }
+
         [ValidateInput(false)]
         public ActionResult UpdatePosts(int? id, string title, string body, DateTime date, string tags)
         {
@@ -91,17 +92,26 @@ namespace ASP.NET_BlogApp.Controllers
         [ValidateInput(false)]
         public ActionResult Comment(int id, string name, string email, string body)
         {
-            Post post = GetPost(id);
-            Comment comment = new Comment();
-            comment.Post = post;
-            comment.Date = DateTime.Now;
-            comment.Name = name;
-            comment.Email = email;
-            comment.Body = body;
-            _model.Comments.Add(comment);
-            _model.SaveChanges();
+            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(body))
+            {
+                Post post = GetPost(id);
+                Comment comment = new Comment();
+                comment.Post = post;
+                comment.Date = DateTime.Now;
+                comment.Name = name;
+                comment.Email = email;
+                comment.Body = body;
+                _model.Comments.Add(comment);
+                _model.SaveChanges();
+            }
 
-            return RedirectToAction("Details", new { id = id });
+            return RedirectToAction("ShowComments", new { id = id });
+        }
+
+        public ActionResult ShowComments(int id)
+        {
+            Post post = GetPost(id);
+            return PartialView(post);
         }
 
         public ActionResult Tags(string id)
@@ -133,6 +143,17 @@ namespace ASP.NET_BlogApp.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult AdminPosts()
+        {
+            IEnumerable<Post> posts =
+                from post in _model.Posts
+                where post.Date < DateTime.Now
+                orderby post.Date descending
+                select post;
+            return View(posts);
         }
 
         private Tag GetTagName(string tagName)

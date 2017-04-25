@@ -10,15 +10,38 @@
 
 @foreach (Post post in Model)
 {
-    @PostHelper.Render(post, Html, isAdmin, false)
+    <div class="postTitle"><a href="@Href("~/Home/Details/" + post.Id)">@post.Title</a></div>
+    <div class="postContainer">
+        <div class="postTabs">
+            <div class="dateTab">
+                <div class="month">@post.Date.ToString("MMM").ToUpper()</div>
+                <div class="day">@post.Date.ToString("dd")</div>
+            </div>
+            <div class="commentsTab">
+                <a href="@Href("~/Home/Details/" + post.Id + "#comments")">
+                    <img src="@Href("~/Content/Images/Comments.png")" alt="Comments" /> @post.Comments.Count()
+                </a>
+            </div>
+        </div>
+        <div class="postContent">
+            <div class="postBody">@Html.Raw(post.Body)</div>
+            <div class="tagList">
+                @foreach (var tag in post.Tags)
+                {
+                    <span class="tag"><a href="@Href("~/Home/Tags/" + tag.Name)">@tag.Name</a></span>
+                }
+            </div>
+        </div>
+    </div>
 }
+<div class="text-center">
+    @if (isPreviousLinkVisible)
+    {
+        <a class="btn btn-primary btn-lg" href="@Href("~/Home/Index/"+ (ViewBag.PageNumber - 1))"> &lt; Previous</a>
+    }
 
-@if (isPreviousLinkVisible)
-{
-    <a class="btn btn-primary btn-lg" href="@Href("~/Home/Index/"+ (ViewBag.PageNumber - 1))"> &lt; Previous</a>
-}
-
-@if (isNextLinkVisible)
-{
-    <a class="btn btn-primary btn-lg" href="@Href("~/Home/Index/"+ (ViewBag.PageNumber + 1))"> Next &gt;</a>
-}
+    @if (isNextLinkVisible)
+    {
+        <a class="btn btn-primary btn-lg" href="@Href("~/Home/Index/"+ (ViewBag.PageNumber + 1))"> Next &gt;</a>
+    }
+</div>

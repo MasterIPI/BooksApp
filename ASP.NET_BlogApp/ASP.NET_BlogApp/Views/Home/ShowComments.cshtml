@@ -1,0 +1,22 @@
+﻿@using ASP.NET_BlogApp.Models
+@model Post
+
+@foreach (var comment in Model.Comments.OrderBy(x => x.Date))
+{
+    <div class="comment">
+        <div class="commentName">
+            @if (!string.IsNullOrWhiteSpace(comment.Email))
+            {
+                <a href="mailto:@comment.Email">@comment.Name</a>
+            }
+            else
+            {
+                @comment.Name
+            }
+        </div>
+        said:
+        <div class="commentBody">@Html.Raw(Html.Encode(comment.Body).Replace("\n", "<br />"))</div>
+        <div class="commentTime">at @comment.Date.ToString("HH:mm") on @comment.Date.ToString("yyyy/MM/dd")</div>
+    </div>
+}
+

@@ -1,7 +1,11 @@
 ﻿@using ASP.NET_BlogApp.Models;
 
+
+
 @helper Render(Post post, System.Web.Mvc.HtmlHelper html, bool isAdmin, bool showComments)
 {
+
+
     <div class="postTitle"><a href="@Href("~/Home/Details/" + post.Id)">@post.Title</a></div>
     <div class="postContainer">
         <div class="postTabs">
@@ -33,8 +37,8 @@
         }
     </div>
 
-    if (showComments)
-    {
+if (showComments)
+{
         <div id="commentContainer">
             <a id="comments"></a>
             @foreach (Comment comment in post.Comments.OrderBy(x => x.Date))
@@ -71,5 +75,7 @@
                 </form>
             </div>
         </div>
-    }
 }
+}
+
+

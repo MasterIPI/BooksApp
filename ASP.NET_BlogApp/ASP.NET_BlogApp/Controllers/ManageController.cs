@@ -72,6 +72,12 @@ namespace ASP.NET_BlogApp.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            if (User.IsInRole("Administrator"))
+            {
+                return View("AdminView", model);
+            }
+
             return View(model);
         }
 
