@@ -43,7 +43,7 @@
             <div class="day">@Model.Date.ToString("dd")</div>
         </div>
         <div class="commentsTab">
-            <a href="@string.Concat(new string[] {Url.Action("Details", "Home", new { id = Model.Id }).ToString(), "#comments" })">
+            <a href="@Url.Action("Details", "Home", new { id = Model.Id })#comments">
                 <img src="@Url.Content("~/Content/Images/Comments.png")" alt="Comments" /> <span id="commentsCount">@Model.Comments.Count</span>
             </a>
         </div>
@@ -53,7 +53,7 @@
         <div class="tagList">
             @foreach (var tag in Model.Tags)
             {
-                <span class="tag"><a href="@Href("~/Home/Tags/" + tag.Name)">@tag.Name</a></span>
+                <span class="tag"><a href="@Url.Action("Tags", "Home", new { id = tag.Name })">@tag.Name</a></span>
             }
         </div> <br />
         <div class="text-center">

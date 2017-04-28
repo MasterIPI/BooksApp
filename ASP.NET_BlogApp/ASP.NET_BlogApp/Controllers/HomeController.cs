@@ -13,36 +13,27 @@ namespace ASP.NET_BlogApp.Controllers
     {
         private BlogModel _model = new BlogModel();
 
-        public bool IsAdmin
-        {
-            get
-            {
-                return User.IsInRole("Administrator");
-            }
-        }
         public ActionResult Index(int? id)
         {
-            const int _postsPerPage = 4;
+            const int postsPerPage = 4;
             int pageNumber = id ?? 0;
-            IEnumerable<Post> posts =
-                (from post in _model.Posts
-                 where post.Date < DateTime.Now
-                 orderby post.Date descending
-                 select post).Skip(pageNumber * _postsPerPage).Take(_postsPerPage + 1);
+            IEnumerable<Post> posts = _model.Posts
+                .Where(post => post.Date < DateTime.Now)
+                .OrderByDescending(post => post.Date)
+                .Select(post => post)
+                .Skip(pageNumber * postsPerPage)
+                .Take(postsPerPage + 1);
+
             ViewBag.IsPreviousLinkVisible = pageNumber > 0;
-            ViewBag.IsNextLinkVisible = posts.Count() > _postsPerPage;
+            ViewBag.IsNextLinkVisible = posts.Count() > postsPerPage;
             ViewBag.PageNumber = pageNumber;
-            ViewBag.IsAdmin = IsAdmin;
-            return View(posts.Take(_postsPerPage));
+            return View(posts.Take(postsPerPage));
         }
 
         [ValidateInput(false)]
-        public ActionResult UpdatePosts(int? id, string title, string body, DateTime date, string tags)
+        [Authorize(Roles = "Administrator")]
+        public ActionResult UpdatePosts(int id, string title, string body, DateTime date, string tags)
         {
-            if (!IsAdmin)
-            {
-                return RedirectToAction("Index");
-            }
             Post post = GetPost(id);
             post.Title = title;
             post.Body = body;
@@ -57,17 +48,38 @@ namespace ASP.NET_BlogApp.Controllers
                 post.Tags.Add(GetTagName(tagName));
             }
 
-            if (!id.HasValue)
-            {
-                _model.Posts.Add(post);
-            }
-
             _model.SaveChanges();
 
-            return RedirectToAction("Details", new { id = post.Id });
+            return RedirectToAction("AdminPosts");
         }
 
-        public ActionResult Edit (int? id)
+        [Authorize(Roles = "Administrator")]
+        public ActionResult CreatePost (string title, string body, DateTime? date, string tags)
+        {
+            if (string.IsNullOrEmpty(title) && string.IsNullOrEmpty(body) && !date.HasValue && string.IsNullOrEmpty(tags))
+            {
+                return View();
+            }
+            Post post = new Post();
+            post.Title = title;
+            post.Body = body;
+            post.Date = (DateTime)date;
+
+            post.Tags.Clear();
+            List<string> tagNames = tags.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            foreach (string tagName in tagNames)
+            {
+                post.Tags.Add(_model.Tags.Where(x => x.Name == tagName).FirstOrDefault() ?? new Tag() { Name = tagName });
+            }
+            
+            _model.Posts.Add(post);
+            _model.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult EditPost (int id)
         {
             Post post = GetPost(id);
             StringBuilder taglist = new StringBuilder();
@@ -82,10 +94,15 @@ namespace ASP.NET_BlogApp.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "Administrator")]
+        public ActionResult AdminView(IndexViewModel model)
+        {
+            return View(model);
+        }
+
         public ActionResult Details(int id)
         {
             Post post = GetPost(id);
-            ViewBag.IsAdmin = IsAdmin;
             return View(post);
         }
 
@@ -117,30 +134,25 @@ namespace ASP.NET_BlogApp.Controllers
         public ActionResult Tags(string id)
         {
             Tag tag = GetTagName(id);
-            ViewBag.IsAdmin = IsAdmin;
             return View("Index", tag.Posts);
         }
 
-        public ActionResult Delete(int id)
+        [Authorize(Roles = "Administrator")]
+        public ActionResult DeletePost(int id)
         {
-            if (IsAdmin)
-            {
-                Post post = GetPost(id);
-                _model.Posts.Remove(post);
-                _model.SaveChanges();
-            }
+            Post post = GetPost(id);
+            _model.Posts.Remove(post);
+            _model.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminPosts");
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteComment(int id)
         {
-            if (IsAdmin)
-            {
-                Comment comment = _model.Comments.Where(x => x.Id == id).First();
-                _model.Comments.Remove(comment);
-                _model.SaveChanges();
-            }
+            Comment comment = _model.Comments.Where(x => x.Id == id).First();
+            _model.Comments.Remove(comment);
+            _model.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -148,22 +160,22 @@ namespace ASP.NET_BlogApp.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult AdminPosts()
         {
-            IEnumerable<Post> posts =
-                from post in _model.Posts
-                where post.Date < DateTime.Now
-                orderby post.Date descending
-                select post;
+            IEnumerable<Post> posts = _model.Posts
+                .Where(post => post.Date < DateTime.Now)
+                .OrderByDescending(post => post.Date)
+                .Select(post => post);
+
             return View(posts);
         }
 
         private Tag GetTagName(string tagName)
         {
-            return _model.Tags.Where(x => x.Name == tagName).FirstOrDefault() ?? new Tag() { Name = tagName };
+            return _model.Tags.Where(x => x.Name == tagName).FirstOrDefault();
         }
 
-        private Post GetPost(int? id)
+        private Post GetPost(int id)
         {
-            return id.HasValue ? _model.Posts.Where(x => x.Id == id).First() : new Post() { Id = -1 };
+            return _model.Posts.Where(x => x.Id == id).First();
         }
 
         public ActionResult About()

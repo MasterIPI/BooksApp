@@ -75,7 +75,7 @@ namespace ASP.NET_BlogApp.Controllers
 
             if (User.IsInRole("Administrator"))
             {
-                return View("AdminView", model);
+                return RedirectToAction("AdminView","Home", model);
             }
 
             return View(model);

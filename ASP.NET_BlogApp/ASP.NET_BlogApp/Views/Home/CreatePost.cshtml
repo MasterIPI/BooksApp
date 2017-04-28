@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "New post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="postContainer">
+    <div class="postTitle">New post</div>
+    @using (Html.BeginForm("CreatePost", "Home", FormMethod.Post, new { @id = "postForm", @class = "jumbotron" }))
+    {
+        <label class="col-md-2">Date</label><input class="form-control" type="text" name="date" value="@DateTime.Now" /><br />
+        <label class="col-md-2">Title</label><input class="form-control" type="text" name="title" value="" /><br />
+        <label class="col-md-2">Tags</label><input class="form-control" type="text" name="tags" value="" /><br />
+        <label class="col-md-2">Post</label><textarea class="form-control" name="body" rows="10" cols="80"></textarea><br />
+        <label class="col-md-2"></label><input class="btn btn-default" type="submit" name="submit" value="Submit" />
+    }
+
+</div>

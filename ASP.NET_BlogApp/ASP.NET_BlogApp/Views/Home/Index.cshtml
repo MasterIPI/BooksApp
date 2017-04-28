@@ -5,12 +5,11 @@
     ViewBag.Title = "Home Page";
     bool isPreviousLinkVisible = ViewBag.IsPreviousLinkVisible ?? false;
     bool isNextLinkVisible = ViewBag.IsNextLinkVisible ?? false;
-    bool isAdmin = ViewBag.IsAdmin ?? false;
 }
 
 @foreach (Post post in Model)
 {
-    <div class="postTitle"><a href="@Href("~/Home/Details/" + post.Id)">@post.Title</a></div>
+    <div class="postTitle"><a href="@Url.Action("Details", "Home", new { id = post.Id})">@post.Title</a></div>
     <div class="postContainer">
         <div class="postTabs">
             <div class="dateTab">
@@ -18,8 +17,8 @@
                 <div class="day">@post.Date.ToString("dd")</div>
             </div>
             <div class="commentsTab">
-                <a href="@Href("~/Home/Details/" + post.Id + "#comments")">
-                    <img src="@Href("~/Content/Images/Comments.png")" alt="Comments" /> @post.Comments.Count()
+                <a href="@Url.Action("Details", "Home", new { id = post.Id})#comments">
+                    <img src="@Url.Content("~/Content/Images/Comments.png")" alt="Comments" /> @post.Comments.Count()
                 </a>
             </div>
         </div>
@@ -28,7 +27,7 @@
             <div class="tagList">
                 @foreach (var tag in post.Tags)
                 {
-                    <span class="tag"><a href="@Href("~/Home/Tags/" + tag.Name)">@tag.Name</a></span>
+                    <span class="tag"><a href="@Url.Action("Tags", "Home", new { id = tag.Name})">@tag.Name</a></span>
                 }
             </div>
         </div>
@@ -37,11 +36,11 @@
 <div class="text-center">
     @if (isPreviousLinkVisible)
     {
-        <a class="btn btn-primary btn-lg" href="@Href("~/Home/Index/"+ (ViewBag.PageNumber - 1))"> &lt; Previous</a>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Home", new { id = ViewBag.PageNumber - 1})"> &lt; Previous</a>
     }
 
     @if (isNextLinkVisible)
     {
-        <a class="btn btn-primary btn-lg" href="@Href("~/Home/Index/"+ (ViewBag.PageNumber + 1))"> Next &gt;</a>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Home", new { id = ViewBag.PageNumber + 1})"> Next &gt;</a>
     }
 </div>

@@ -41,7 +41,7 @@
 
                 @if (User.IsInRole("Administrator"))
                 {
-                    @Html.ActionLink("New Post", "Edit", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("New Post", "CreatePost", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -69,7 +69,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="@Url.Action("Index","Manage", new { })"><i class="fa fa-dashboard fa-fw"></i>Account information</a>
+                            <a href="@Url.Action("AdminView","Home", new { })"><i class="fa fa-dashboard fa-fw"></i>Account information</a>
                         </li>
                         <li>
                             <a href="@Url.Action("AdminPosts","Home")"><i class="fa fa-table fa-fw"></i>Posts editing panel</a>
