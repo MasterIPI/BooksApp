@@ -1,9 +1,7 @@
 ﻿@model ASP.NET_BlogApp.Models.Post
 
 @{
-    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    bool isAdmin = ViewBag.IsAdmin ?? false;
 
     var options = new AjaxOptions()
     {
@@ -11,6 +9,10 @@
         Url = Url.Action("Comment", "Home", new { id = Model.Id }),
         LoadingElementId = "loadingIndicator"
     };
+}
+@section title
+{
+    Details
 }
 
 <div id="modal" class="modal fade">

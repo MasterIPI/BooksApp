@@ -57,8 +57,9 @@ namespace ASP.NET_BlogApp.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            LoginViewModel model = new LoginViewModel();
+            model.ReturnUrl = returnUrl;
+            return View(model);
         }
 
         //
@@ -341,9 +342,7 @@ namespace ASP.NET_BlogApp.Controllers
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email, ReturnUrl = returnUrl, LoginProvider = loginInfo.Login.LoginProvider });
             }
         }
 
@@ -381,7 +380,7 @@ namespace ASP.NET_BlogApp.Controllers
                 AddErrors(result);
             }
 
-            ViewBag.ReturnUrl = returnUrl;
+            model.ReturnUrl = returnUrl;
             return View(model);
         }
 

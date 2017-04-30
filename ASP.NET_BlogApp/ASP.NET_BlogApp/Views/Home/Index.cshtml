@@ -1,13 +1,16 @@
-﻿@using ASP.NET_BlogApp.Models;
-@model IEnumerable<Post>
+﻿@using ASP.NET_BlogApp.Models
+@model IndexPageDataModel
 
 @{
-    ViewBag.Title = "Home Page";
-    bool isPreviousLinkVisible = ViewBag.IsPreviousLinkVisible ?? false;
-    bool isNextLinkVisible = ViewBag.IsNextLinkVisible ?? false;
+    bool isPreviousLinkVisible = Model.IsPreviousLinkVisible;
+    bool isNextLinkVisible = Model.IsNextLinkVisible;
+}
+@section title
+{
+Home Page
 }
 
-@foreach (Post post in Model)
+@foreach (Post post in Model.Posts)
 {
     <div class="postTitle"><a href="@Url.Action("Details", "Home", new { id = post.Id})">@post.Title</a></div>
     <div class="postContainer">
@@ -36,11 +39,11 @@
 <div class="text-center">
     @if (isPreviousLinkVisible)
     {
-        <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Home", new { id = ViewBag.PageNumber - 1})"> &lt; Previous</a>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Home", new { id = Model.PageNumber - 1})"> &lt; Previous</a>
     }
 
     @if (isNextLinkVisible)
     {
-        <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Home", new { id = ViewBag.PageNumber + 1})"> Next &gt;</a>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Home", new { id = Model.PageNumber + 1})"> Next &gt;</a>
     }
 </div>

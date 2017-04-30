@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<ASP.NET_BlogApp.Models.Post>
-
 @{
-    ViewBag.Title = "AdminPosts";
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@section title
+{
+    Admin Panel
 }
 
 <h2>AdminPosts</h2>
@@ -54,5 +56,5 @@
         $(document).ready(function () {
             $('.table').dataTable();
         });
-</script>
+    </script>
 }

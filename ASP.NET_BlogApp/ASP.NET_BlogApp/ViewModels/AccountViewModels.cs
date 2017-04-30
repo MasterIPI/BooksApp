@@ -8,6 +8,10 @@ namespace ASP.NET_BlogApp.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public string ReturnUrl { get; set; }
+
+        public string LoginProvider { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -60,6 +64,8 @@ namespace ASP.NET_BlogApp.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 
     public class RegisterViewModel

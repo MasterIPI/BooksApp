@@ -15,19 +15,20 @@ namespace ASP.NET_BlogApp.Controllers
 
         public ActionResult Index(int? id)
         {
-            const int postsPerPage = 4;
-            int pageNumber = id ?? 0;
+            IndexPageDataModel data = new IndexPageDataModel();
+            data.PageNumber = id ?? 0;
             IEnumerable<Post> posts = _model.Posts
                 .Where(post => post.Date < DateTime.Now)
                 .OrderByDescending(post => post.Date)
                 .Select(post => post)
-                .Skip(pageNumber * postsPerPage)
-                .Take(postsPerPage + 1);
+                .Skip(data.PageNumber * data.PostsPerPage)
+                .Take(data.PostsPerPage + 1);
 
-            ViewBag.IsPreviousLinkVisible = pageNumber > 0;
-            ViewBag.IsNextLinkVisible = posts.Count() > postsPerPage;
-            ViewBag.PageNumber = pageNumber;
-            return View(posts.Take(postsPerPage));
+
+            data.IsPreviousLinkVisible = data.PageNumber > 0;
+            data.IsNextLinkVisible = posts.Count() > data.PostsPerPage;
+            data.Posts = posts.Take(data.PostsPerPage);
+            return View(data);
         }
 
         [ValidateInput(false)]
@@ -88,10 +89,11 @@ namespace ASP.NET_BlogApp.Controllers
             {
                 taglist.AppendFormat($"{tag.Name} ");
             }
+            EditPostModel edit = new EditPostModel();
+            edit.TagsList = taglist.ToString();
+            edit.Post = post;
 
-            ViewBag.Tags = taglist.ToString();
-
-            return View(post);
+            return View(edit);
         }
 
         [Authorize(Roles = "Administrator")]
@@ -180,15 +182,11 @@ namespace ASP.NET_BlogApp.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

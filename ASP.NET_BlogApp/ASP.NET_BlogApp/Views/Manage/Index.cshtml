@@ -1,11 +1,12 @@
 ﻿@model ASP.NET_BlogApp.Models.IndexViewModel
-@{
-    ViewBag.Title = "Manage";
+@section title
+{
+    Manage
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Manage</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+<p class="text-success">@Model.StatusMessage</p>
 <div>
     <h4>Change your account settings</h4>
     <hr />
