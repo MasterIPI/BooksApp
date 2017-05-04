@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET_BlogApp", "ASP.NET_BlogApp\ASP.NET_BlogApp.csproj", "{B7A92928-7A19-478F-9F1B-46A2E5ABC05D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{CA665873-2A8C-4A56-A216-ACC54FED94C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Models\Model.csproj", "{CA665873-2A8C-4A56-A216-ACC54FED94C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{A1098186-A956-4997-A50C-3E3B9989EA1D}"
 EndProject

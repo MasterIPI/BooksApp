@@ -285,9 +285,9 @@
       <Project>{a1098186-a956-4997-a50c-3e3b9989ea1d}</Project>
       <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Model.csproj">
       <Project>{ca665873-2a8c-4a56-a216-acc54fed94c3}</Project>
-      <Name>Models</Name>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
