@@ -1,4 +1,6 @@
 ﻿using ASP.NET_BlogApp.Models;
+using Entities;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace ASP.NET_BlogApp.Controllers
 
         public ActionResult Index(int? id)
         {
-            IndexPageDataModel data = new IndexPageDataModel();
+            IndexHomeViewModel data = new IndexHomeViewModel();
             data.PageNumber = id ?? 0;
             IEnumerable<Post> posts = _model.Posts
                 .Where(post => post.Date < DateTime.Now)
@@ -89,7 +91,7 @@ namespace ASP.NET_BlogApp.Controllers
             {
                 taglist.AppendFormat($"{tag.Name} ");
             }
-            EditPostModel edit = new EditPostModel();
+            EditHomeViewModel edit = new EditHomeViewModel();
             edit.TagsList = taglist.ToString();
             edit.Post = post;
 
@@ -136,7 +138,9 @@ namespace ASP.NET_BlogApp.Controllers
         public ActionResult Tags(string id)
         {
             Tag tag = GetTagName(id);
-            return View("Index", tag.Posts);
+            IndexHomeViewModel data = new IndexHomeViewModel();
+            data.Posts = tag.Posts;
+            return View("Index", data);
         }
 
         [Authorize(Roles = "Administrator")]

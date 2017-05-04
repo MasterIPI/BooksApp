@@ -1,5 +1,4 @@
-﻿@using ASP.NET_BlogApp.Models
-@model Post
+﻿@model Entities.Post
 
 @foreach (var comment in Model.Comments.OrderBy(x => x.Date))
 {

@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ASP.NET_BlogApp.Models;
+using Models;
 
 namespace ASP.NET_BlogApp
 {
