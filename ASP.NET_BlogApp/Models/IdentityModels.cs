@@ -22,7 +22,7 @@ namespace Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("BlogModelCon", throwIfV1Schema: false)
         {
         }
 
@@ -35,7 +35,7 @@ namespace Models
     public partial class BlogModel : DbContext
     {
         public BlogModel()
-            : base("name=BlogModelCon")
+            : base("BlogModelCon")
         {
         }
 

@@ -56,6 +56,7 @@ namespace ASP.NET_BlogApp.Controllers
             return RedirectToAction("AdminPosts");
         }
 
+        [ValidateInput(false)]
         [Authorize(Roles = "Administrator")]
         public ActionResult CreatePost (string title, string body, DateTime? date, string tags)
         {
