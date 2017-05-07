@@ -12,7 +12,7 @@ namespace Model
         public virtual DbSet<Tag> Tags { get; set; }
 
         public ApplicationDbContext()
-            : base("BlogModelCon", throwIfV1Schema: true)
+            : base("BlogModelCon", throwIfV1Schema: false)
         {
         }
 
