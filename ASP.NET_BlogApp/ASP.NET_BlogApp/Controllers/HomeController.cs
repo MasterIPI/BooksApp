@@ -1,6 +1,6 @@
-﻿using ASP.NET_BlogApp.Models;
-using Entities;
-using Models;
+﻿using Entities;
+using Model;
+using ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace ASP.NET_BlogApp.Controllers
 {
     public class HomeController : Controller
     {
-        private BlogModel _model = new BlogModel();
+        private ApplicationDbContext _model = new ApplicationDbContext();
 
         public ActionResult Index(int? id)
         {

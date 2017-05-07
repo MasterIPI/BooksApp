@@ -1,13 +1,19 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
 
-[assembly: OwinStartupAttribute(typeof(ASP.NET_BlogApp.Startup))]
 namespace ASP.NET_BlogApp
 {
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             ConfigureAuth(app);
         }
     }

@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASP.NET_BlogApp.Models
+namespace ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

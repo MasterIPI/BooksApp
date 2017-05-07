@@ -8,8 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using ASP.NET_BlogApp.Models;
-using Models;
+using Model;
+using ViewModels;
+using Entities;
 
 namespace ASP.NET_BlogApp.Controllers
 {
