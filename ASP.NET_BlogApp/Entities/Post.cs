@@ -7,13 +7,6 @@ namespace Entities
 {
     public class Post
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Post()
-        {
-            Comments = new HashSet<Comment>();
-            Tags = new HashSet<Tag>();
-        }
-
         public int Id { get; set; }
 
         [Required]

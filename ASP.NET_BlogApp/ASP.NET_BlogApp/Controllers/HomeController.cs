@@ -69,7 +69,7 @@ namespace ASP.NET_BlogApp.Controllers
             post.Body = body;
             post.Date = (DateTime)date;
 
-            post.Tags.Clear();
+            post.Tags = new HashSet<Tag>();
             List<string> tagNames = tags.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             foreach (string tagName in tagNames)

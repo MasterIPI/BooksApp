@@ -1,15 +1,16 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@RenderSection("title")</title>
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet">
     @Styles.Render("~/Content/css")
     <!-- Bootstrap Core CSS -->
-    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet">
+    
     <!-- MetisMenu CSS -->
     <link href="@Url.Content("~/Content/metisMenu.css")" rel="stylesheet">
     <!-- Custom CSS -->
@@ -27,10 +28,11 @@
     <![endif]-->
 </head>
 <body>
-    <div id="wrapper">
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-            <div class="container">
+    <!--<div id="wrapper">-->
+    <!-- Navigation -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -52,42 +54,45 @@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
-                </div>
-            <!-- /.navbar-top-links -->
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Manage", null)"><i class="fa fa-dashboard fa-fw"></i>Account information</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("AdminPosts","Home")"><i class="fa fa-table fa-fw"></i>Posts editing panel</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            @RenderBody()
-            
-            <!-- /.container-fluid -->
         </div>
-        <!-- /#page-wrapper -->
     </div>
+    <!-- /.navbar-top-links -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="sidebar-search">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","Manage", null)"><i class="fa fa-dashboard fa-fw"></i>Account information</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("AdminPosts","Home")"><i class="fa fa-table fa-fw"></i>Posts editing panel</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My first ASP.NET Application</p>
+        </footer>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+    <!--</div>-->
     <!-- /#wrapper -->
     <!-- jQuery -->
     <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
