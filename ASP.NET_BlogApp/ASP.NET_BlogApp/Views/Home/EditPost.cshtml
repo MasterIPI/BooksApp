@@ -7,9 +7,20 @@
 {
     Edit post
 }
+<div class="postTitle">Edit</div>
 <div class="postContainer">
-    <div class="postTitle">Edit</div>
-    @using (Html.BeginForm("UpdatePosts", "Home", FormMethod.Post, new { @id = "postForm", @class = "jumbotron" }))
+    <div class="postTabs">
+        <div class="dateTab">
+            <div class="month">@Model.Post.Date.ToString("MMM").ToUpper()</div>
+            <div class="day">@Model.Post.Date.ToString("dd")</div>
+        </div>
+        <div class="commentsTab">
+            <span>
+                <img src="@Url.Content("~/Content/Images/Comments.png")" alt="Comments" />@Model.Post.Comments.Count()
+            </span>
+        </div>
+    </div>
+    @using (Html.BeginForm("UpdatePosts", "Home", FormMethod.Post, new { @id = "postForm", @class = "postContent" }))
     {
         <input type="hidden" name="id" value="@Model.Post.Id" />
         <label class="col-md-2">Date</label><input class="form-control" type="text" name="date" value="@Model.Post.Date" /><br />
